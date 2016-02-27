@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="BBT Gantt Chart" company="CIS 250 - Wesleyan University" webLink="http://" view-date="2015-11-29" view-index="0" gantt-divider-location="461" resource-divider-location="300" version="2.7.2" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="BBT Gantt Chart" company="CIS 250 - Wesleyan University" webLink="http://" view-date="2016-02-21" view-index="0" gantt-divider-location="461" resource-divider-location="300" version="2.7.2" locale="en_US">
     <description><![CDATA[This is a gantt chart for our videogame development class. Our goal is to create a game prototype with the Unity game engine, as well as the supplemental materials to pitch our game to investors.]]></description>
-    <view zooming-state="default:7" id="gantt-chart">
+    <view zooming-state="default:4" id="gantt-chart">
         <field id="tpd3" name="Name" width="51" order="0"/>
         <field id="tpd4" name="Begin date" width="24" order="1"/>
         <field id="tpd5" name="End date" width="24" order="2"/>
         <timeline><![CDATA[0]]></timeline>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="71" order="0"/>
-        <field id="1" name="Default role" width="28" order="1"/>
+        <field id="0" name="Name" width="57" order="0"/>
+        <field id="1" name="Default role" width="42" order="1"/>
     </view>
     <!-- -->
     <calendars base-id="none">
@@ -34,8 +34,16 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Game Design Document" color="#8cb6ce" meeting="false" start="2016-02-21" duration="30" complete="5" priority="2" expand="true"/>
-        <task id="3" name="task_3" meeting="false" start="2015-12-01" duration="1" complete="0" expand="true"/>
+        <task id="0" name="Game Design Document" color="#8cb6ce" meeting="false" start="2016-02-21" duration="1" complete="0" priority="2" expand="true">
+            <task id="5" name="task_5" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="7" name="Level Design" color="#8cb6ce" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true">
+            <task id="11" name="Maze Structural Layout" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true"/>
+            <task id="12" name="task_12" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="10" name="Art Design" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true">
+            <task id="9" name="Character Models" meeting="false" start="2016-02-21" duration="1" complete="0" expand="true"/>
+        </task>
     </tasks>
     <resources>
         <resource id="0" name="Victor Chu" function="Default:1" contacts="vmchu@wesleyan.edu" phone="5105080238"/>
