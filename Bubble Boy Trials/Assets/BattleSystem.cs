@@ -27,8 +27,9 @@ public class BattleSystem : MonoBehaviour {
     public Button answer2;
     public Button answer3;
     public Button answer4;
-
+    
     public Text time_left;
+    public Text problem;
 
     // Use this for initialization
     void Start () {
@@ -39,15 +40,16 @@ public class BattleSystem : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         timeRemaining -= Time.fixedDeltaTime;
-        time_left.text = timeRemaining.ToString();
 	    switch (current_state) {
             case BattleState.player_turn:
+                time_left.text = timeRemaining.ToString();
                 if (timeRemaining < 0)
                 {
                     EnemyTurn();
                 }
                 break;
             case BattleState.enemy_turn:
+                time_left.text = "WAITING...";
                 if (timeRemaining < 0)
                 {
                     PlayerTurn();
@@ -61,6 +63,7 @@ public class BattleSystem : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
                     player.SendMessage("TakeDamage", 20);
+                    PlayerTurn();
                 }
                 if (timeRemaining < ReactionWindow)
                 {
@@ -80,6 +83,7 @@ public class BattleSystem : MonoBehaviour {
         timeRemaining = TimePerTurn;
         variable_one = Mathf.CeilToInt(Random.Range(0, 10));
         variable_two = Mathf.CeilToInt(Random.Range(0, 10));
+        problem.text = variable_one.ToString() + " + " + variable_two.ToString() + " = ?";
         for (int i = 0; i < 4; ++i)
         {
             answers[i] = Mathf.CeilToInt(Random.Range(0, 20));
