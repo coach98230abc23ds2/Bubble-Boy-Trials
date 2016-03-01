@@ -44,6 +44,9 @@ public class Player : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
-        GetComponent<SpriteRenderer>().sprite = DeadSprite;
+        else if (Health <= 10)
+        {
+            GetComponent<SpriteRenderer>().sprite = DeadSprite;
+        }
     }
 }

@@ -27,7 +27,8 @@ public class BattleSystem : MonoBehaviour {
     public Button answer2;
     public Button answer3;
     public Button answer4;
-    
+
+    public Slider time_remaining;
     public Text time_left;
     public Text problem;
 
@@ -42,7 +43,7 @@ public class BattleSystem : MonoBehaviour {
         timeRemaining -= Time.fixedDeltaTime;
 	    switch (current_state) {
             case BattleState.player_turn:
-                time_left.text = Mathf.CeilToInt(timeRemaining).ToString();
+                time_remaining.value = timeRemaining;
                 if (timeRemaining < 0)
                 {
                     Debug.Log("TRANSITION");
@@ -87,6 +88,7 @@ public class BattleSystem : MonoBehaviour {
         answer2.gameObject.SetActive(true);
         answer3.gameObject.SetActive(true);
         answer4.gameObject.SetActive(true);
+        time_remaining.gameObject.SetActive(true);
         variable_one = Mathf.CeilToInt(Random.Range(0, 10));
         variable_two = Mathf.CeilToInt(Random.Range(0, 10));
         problem.text = variable_one.ToString() + " + " + variable_two.ToString() + " = ?";
@@ -157,6 +159,7 @@ public class BattleSystem : MonoBehaviour {
         answer3.gameObject.SetActive(false);
         answer4.gameObject.SetActive(false);
         problem.gameObject.SetActive(false);
+        time_remaining.gameObject.SetActive(false);
         current_state = BattleState.enemy_turn;
         timeRemaining = Random.Range(2, 2 + TimePerTurn);
     }
