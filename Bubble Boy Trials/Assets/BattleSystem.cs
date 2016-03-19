@@ -13,21 +13,6 @@ public class BattleSystem : MonoBehaviour
 
 		;
 
-		private GameObject player;
-		public GameObject enemy;
-		private BattleState current_state;
-
-		[Range (1, 30)] public float TimePerTurn = 10000;
-		[Range (0.25f, 2)] public float ReactionWindow = 1000;
-
-		private float timeRemaining;
-		private float timeToDefend;
-
-		private int variable_one;
-		private int variable_two;
-		private List<Button> answers;
-
-
 		public Button answer1;
 		public Button answer2;
 		public Button answer3;
@@ -36,6 +21,21 @@ public class BattleSystem : MonoBehaviour
 		public Slider time_remaining;
 		public Text time_left;
 		public Text problem;
+		public GameObject enemy;
+
+		private GameObject player;
+		private BattleState current_state;
+
+		[Range (1, 30)] public float TimePerTurn = 10000;
+		[Range (0.25f, 2)] public float ReactionWindow = 1000;
+
+		private float timeRemaining;
+		private float timeToDefend;
+
+		private List<Button> answers;
+
+
+		private int comboChain;
 
 		// Use this for initialization
 		void Start ()
@@ -53,6 +53,7 @@ public class BattleSystem : MonoBehaviour
 				case BattleState.player_turn:
 						time_remaining.value = timeRemaining;
 						if (timeRemaining < 0) {
+								comboChain = 0;
 								EnemyTurn ();
 						}
 						break;
@@ -141,7 +142,12 @@ public class BattleSystem : MonoBehaviour
 
 		private void RightAnswer ()
 		{
-				enemy.SendMessage ("TakeDamage", 10);
+				int dmg = 10;
+				if (comboChain >= 3) {
+						dmg += 10 * comboChain - 2;
+				}
+				enemy.SendMessage ("TakeDamage", dmg);
+				comboChain++;
 
 				HidePlayerUI ();
 				EnemyTurn ();
@@ -149,6 +155,7 @@ public class BattleSystem : MonoBehaviour
 
 		private void WrongAnswer ()
 		{
+				comboChain = 0;
 				HidePlayerUI ();
 				EnemyTurn ();
 		}
