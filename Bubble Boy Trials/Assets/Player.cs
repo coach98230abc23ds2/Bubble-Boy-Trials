@@ -6,17 +6,18 @@ public class Player : MonoBehaviour
 {
 
 		public int Health = 30;
-		public GameObject HealthPrefab;
 		public Sprite IdleSprite;
 		public Sprite HurtSprite;
 		public Sprite DeadSprite;
+
 		private float animCycle;
 		private GameObject healthBar;
+		private bool isDead = false;
     
 		// Use this for initialization
 		void Start ()
 		{
-				healthBar = GameObject.Instantiate (HealthPrefab, new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
+				healthBar = GameObject.Instantiate (Resources.Load("HealthBar"), new Vector3 (0, 0, 0), Quaternion.identity) as GameObject;
 				healthBar.transform.SetParent (GameObject.Find ("Canvas").GetComponent<RectTransform> (), false);
 				healthBar.GetComponent<Slider> ().value = Health;
 				GetComponent<SpriteRenderer> ().sprite = IdleSprite;
@@ -37,7 +38,9 @@ public class Player : MonoBehaviour
 
 				// run through animations
 				animCycle -= Time.deltaTime;
-				if (animCycle < 0) {
+				if (isDead) {
+						GetComponent<SpriteRenderer> ().sprite = DeadSprite;
+				} else if (animCycle < 0) {
 						animCycle = 0.5f;
 						if (GetComponent<SpriteRenderer> ().sprite == HurtSprite)
 								GetComponent<SpriteRenderer> ().sprite = IdleSprite;
@@ -55,9 +58,7 @@ public class Player : MonoBehaviour
 				}
 
 				if (Health <= 0) {
-						gameObject.SetActive (false);
-				} else if (Health <= 10) {
-						GetComponent<SpriteRenderer> ().sprite = DeadSprite;
+					isDead = true;
 				}
 		}
 }

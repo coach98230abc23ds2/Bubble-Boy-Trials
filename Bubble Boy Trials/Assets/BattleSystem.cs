@@ -25,7 +25,11 @@ public class BattleSystem : MonoBehaviour
 		private GameObject player;
 		private BattleState current_state;
 
-		[Range (1, 30)] public float TimePerTurn = 10000;
+		private static float MAX_TIME_PER_TURN = 10;
+		private static float TIME_INCREASE_ON_WRONG_ANSWER = 1;
+		private static RollingAverage time_per_turn;
+
+		[Range (1, 20)] public static int TimePerTurnAverageLength = 5;
 		[Range (0.25f, 2)] public float ReactionWindow = 1000;
 
 		private float timeRemaining;
@@ -39,6 +43,9 @@ public class BattleSystem : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
+				if (time_per_turn == null) {
+						time_per_turn = new RollingAverage(TimePerTurnAverageLength, MAX_TIME_PER_TURN);
+				}
 				player = GameObject.FindGameObjectWithTag ("Player");
 				answers = new List<Button> { answer1, answer2, answer3, answer4 };
 				PlayerTurn ();
@@ -52,6 +59,8 @@ public class BattleSystem : MonoBehaviour
 				case BattleState.player_turn:
 						time_remaining.value = timeRemaining;
 						if (timeRemaining < 0) {
+								// pretend the player would have gotten it in another second if stuck
+								time_per_turn.AddValue (time_per_turn.GetAverage () + TIME_INCREASE_ON_WRONG_ANSWER);
 								comboChain = 0;
 								EnemyTurn ();
 						}
@@ -114,7 +123,7 @@ public class BattleSystem : MonoBehaviour
 
 		private void PlayerTurn ()
 		{
-				timeRemaining = TimePerTurn;
+				timeRemaining = time_per_turn.GetAverage();
 				current_state = BattleState.player_turn;
 
 				// reset buttons and UI elements
@@ -143,6 +152,7 @@ public class BattleSystem : MonoBehaviour
 
 		private void RightAnswer ()
 		{
+				time_per_turn.AddValue (time_per_turn.GetAverage() - timeRemaining);
 				int dmg = 10;
 				if (comboChain >= 3) {
 						dmg += 10 * comboChain - 2;
@@ -158,6 +168,7 @@ public class BattleSystem : MonoBehaviour
 
 		private void WrongAnswer ()
 		{
+				time_per_turn.AddValue (time_per_turn.GetAverage () + TIME_INCREASE_ON_WRONG_ANSWER);
 				comboChain = 0;
 				HidePlayerUI ();
 				EnemyTurn ();
@@ -166,6 +177,6 @@ public class BattleSystem : MonoBehaviour
 		private void EnemyTurn ()
 		{
 				current_state = BattleState.enemy_turn;
-				timeRemaining = Random.Range (2, 2 + TimePerTurn);
+				timeRemaining = Random.Range (2, 2 + time_per_turn.GetAverage());
 		}
 }
