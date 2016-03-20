@@ -16,26 +16,13 @@ public class Problem
 
 		public enum Operator
 		{
-				FIRST = 0,
 				PLUS = 0,
 				MINUS = 1,
 				TIMES = 2,
-				LAST = 2
 		};
-
-		public static Operator OperatorFromInt(int operatorCode) {
-				Assert.IsTrue ((int)Operator.FIRST <= operatorCode && operatorCode <= (int)Operator.LAST);
-				switch (operatorCode) {
-				case 0:
-						return Operator.PLUS;
-				case 1:
-						return Operator.MINUS;
-				case 2:
-						return Operator.TIMES;
-				default:
-						Debug.LogError ("Expected int in range of Operator, given: " + operatorCode.ToString ());
-						return Operator.PLUS;
-				}
+				
+		private static Operator OperatorFromInt(int operatorCode) {
+				return (System.Enum.GetValues (typeof(Operator)).GetValue(operatorCode) as Operator?).Value;
 		}
 
 		public static int SOLUTION_COUNT = 4;
@@ -51,11 +38,9 @@ public class Problem
 				m_operandFirst = Mathf.CeilToInt (Random.Range (0, 10));
 				m_operandSecond = Mathf.CeilToInt (Random.Range (0, 10));
 				if (problemType.HasValue) {
-						Assert.AreNotEqual (problemType.Value, Operator.FIRST);
-						Assert.AreNotEqual (problemType.Value, Operator.LAST);
 						m_operator = problemType.Value;
 				} else {
-						m_operator = OperatorFromInt(Mathf.RoundToInt(Random.Range ((float)Operator.FIRST, (float)Operator.LAST)));
+						m_operator = OperatorFromInt(Mathf.RoundToInt(Random.Range (0, 2)));
 				}
 
 				// now ensure that we don't end up giving negative solutions

@@ -46,8 +46,8 @@ public class BattleSystem : MonoBehaviour
 		{
 				if (time_per_turn == null) {
 						time_per_turn = new Dictionary<Problem.Operator, RollingAverage> ();
-						for (int op = (int)Problem.Operator.FIRST; op < (int)Problem.Operator.LAST; op++) {
-								time_per_turn.Add(Problem.OperatorFromInt(op), new RollingAverage(TimePerTurnAverageLength, MAX_TIME_PER_TURN));
+						foreach (Problem.Operator op in System.Enum.GetValues(typeof(Problem.Operator))) {
+								time_per_turn.Add(op, new RollingAverage(TimePerTurnAverageLength, MAX_TIME_PER_TURN));
 						}
 				}
 				player = GameObject.FindGameObjectWithTag ("Player");
@@ -63,12 +63,7 @@ public class BattleSystem : MonoBehaviour
 				case BattleState.player_turn:
 						time_remaining.value = timeRemaining;
 						if (timeRemaining < 0) {
-								// pretend the player would have gotten it in another second if stuck
-								time_per_turn[current_problem.GetOperator()].AddValue (
-										CurrentAverage () + TIME_INCREASE_ON_WRONG_ANSWER
-								);
-								comboChain = 0;
-								EnemyTurn ();
+								WrongAnswer ();
 						}
 						break;
 				case BattleState.enemy_turn:
@@ -128,7 +123,12 @@ public class BattleSystem : MonoBehaviour
 
 		private float CurrentAverage ()
 		{
-				return time_per_turn [current_problem.GetOperator ()].GetAverage ();
+				try {
+					return time_per_turn [current_problem.GetOperator ()].GetAverage ();
+				} catch (System.Exception e) {
+						Debug.LogError ("Operator not found!: " + current_problem.GetOperator ().ToString ());
+						throw e;
+				}
 		}
 
 		private void PlayerTurn ()
@@ -139,6 +139,8 @@ public class BattleSystem : MonoBehaviour
 				current_problem = new Problem ();
 
 				timeRemaining = CurrentAverage();
+				time_remaining.maxValue = timeRemaining;
+
 				current_state = BattleState.player_turn;
 
 				// reset buttons and UI elements
