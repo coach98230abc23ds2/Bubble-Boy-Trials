@@ -27,7 +27,7 @@ public class BattleSystem : MonoBehaviour
 
 		private static float MAX_TIME_PER_TURN = 10;
 		private static float TIME_INCREASE_ON_WRONG_ANSWER = 1;
-		private static RollingAverage time_per_turn;
+		private static Dictionary<Problem.Operator,RollingAverage> time_per_turn;
 
 		[Range (1, 20)] public static int TimePerTurnAverageLength = 5;
 		[Range (0.25f, 2)] public float ReactionWindow = 1000;
@@ -36,6 +36,7 @@ public class BattleSystem : MonoBehaviour
 		private float timeToDefend;
 
 		private List<Button> answers;
+		private Problem current_problem;
 
 
 		private int comboChain;
@@ -44,7 +45,10 @@ public class BattleSystem : MonoBehaviour
 		void Start ()
 		{
 				if (time_per_turn == null) {
-						time_per_turn = new RollingAverage(TimePerTurnAverageLength, MAX_TIME_PER_TURN);
+						time_per_turn = new Dictionary<Problem.Operator, RollingAverage> ();
+						for (int op = (int)Problem.Operator.FIRST; op < (int)Problem.Operator.LAST; op++) {
+								time_per_turn.Add(Problem.OperatorFromInt(op), new RollingAverage(TimePerTurnAverageLength, MAX_TIME_PER_TURN));
+						}
 				}
 				player = GameObject.FindGameObjectWithTag ("Player");
 				answers = new List<Button> { answer1, answer2, answer3, answer4 };
@@ -60,7 +64,9 @@ public class BattleSystem : MonoBehaviour
 						time_remaining.value = timeRemaining;
 						if (timeRemaining < 0) {
 								// pretend the player would have gotten it in another second if stuck
-								time_per_turn.AddValue (time_per_turn.GetAverage () + TIME_INCREASE_ON_WRONG_ANSWER);
+								time_per_turn[current_problem.GetOperator()].AddValue (
+										CurrentAverage () + TIME_INCREASE_ON_WRONG_ANSWER
+								);
 								comboChain = 0;
 								EnemyTurn ();
 						}
@@ -120,24 +126,30 @@ public class BattleSystem : MonoBehaviour
 				battleMessage.gameObject.SetActive (true);
 		}
 
+		private float CurrentAverage ()
+		{
+				return time_per_turn [current_problem.GetOperator ()].GetAverage ();
+		}
 
 		private void PlayerTurn ()
 		{
-				timeRemaining = time_per_turn.GetAverage();
+				// generate new problem
+				// this must go above CurrentAverage()
+				// since that requires the operation is known
+				current_problem = new Problem ();
+
+				timeRemaining = CurrentAverage();
 				current_state = BattleState.player_turn;
 
 				// reset buttons and UI elements
 				ShowPlayerUI ();
-
-				// generate new problem
-				Problem newProblem = new Problem ();
 		
 				// set question text fields based on new problem
-				problem.text = newProblem.ToString();
+				problem.text = current_problem.ToString();
 				problem.gameObject.SetActive (true);
 		
 				// set solution text fields based on new Problem
-				int[] possibleSolutions = newProblem.GetPossibleSolutions ();
+				int[] possibleSolutions = current_problem.GetPossibleSolutions ();
 
 				// although this is set as a variable in newProblem
 				// we need to make UI buttons by hand on the scene, so
@@ -147,12 +159,14 @@ public class BattleSystem : MonoBehaviour
 						answers [i].GetComponentInChildren<Text> ().text = possibleSolutions [i].ToString ();
 				}
 
-				SetListener (answers [newProblem.GetSolutionIndex ()], true);
+				SetListener (answers [current_problem.GetSolutionIndex ()], true);
 		}
 
 		private void RightAnswer ()
 		{
-				time_per_turn.AddValue (time_per_turn.GetAverage() - timeRemaining);
+				time_per_turn[current_problem.GetOperator()].AddValue (
+						CurrentAverage() - timeRemaining
+				);
 				int dmg = 10;
 				if (comboChain >= 3) {
 						dmg += 10 * comboChain - 2;
@@ -168,7 +182,9 @@ public class BattleSystem : MonoBehaviour
 
 		private void WrongAnswer ()
 		{
-				time_per_turn.AddValue (time_per_turn.GetAverage () + TIME_INCREASE_ON_WRONG_ANSWER);
+				time_per_turn[current_problem.GetOperator()].AddValue (
+						CurrentAverage () + TIME_INCREASE_ON_WRONG_ANSWER
+				);
 				comboChain = 0;
 				HidePlayerUI ();
 				EnemyTurn ();
@@ -177,6 +193,6 @@ public class BattleSystem : MonoBehaviour
 		private void EnemyTurn ()
 		{
 				current_state = BattleState.enemy_turn;
-				timeRemaining = Random.Range (2, 2 + time_per_turn.GetAverage());
+				timeRemaining = Random.Range (2, 5);
 		}
 }

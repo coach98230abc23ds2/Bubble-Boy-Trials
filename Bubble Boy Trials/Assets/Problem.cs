@@ -23,7 +23,7 @@ public class Problem
 				LAST = 2
 		};
 
-		private Operator OperatorFromInt(int operatorCode) {
+		public static Operator OperatorFromInt(int operatorCode) {
 				Assert.IsTrue ((int)Operator.FIRST <= operatorCode && operatorCode <= (int)Operator.LAST);
 				switch (operatorCode) {
 				case 0:
@@ -105,6 +105,11 @@ public class Problem
 		public int[] GetPossibleSolutions ()
 		{
 				return m_solutionList.ToArray ();
+		}
+
+		public Operator GetOperator ()
+		{
+				return m_operator;
 		}
 				
 		public override string ToString ()
