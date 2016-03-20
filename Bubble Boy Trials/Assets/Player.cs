@@ -46,10 +46,14 @@ public class Player : MonoBehaviour
 				}
 		}
 
-		void TakeDamage (int damage)
+		public void TakeDamage (int damage)
 		{
 				Health -= damage;
-				healthBar.GetComponent<Slider> ().value = Health;
+
+				if (healthBar != null) {
+						healthBar.GetComponent<Slider> ().value = Health;
+				}
+
 				if (Health <= 0) {
 						gameObject.SetActive (false);
 				} else if (Health <= 10) {

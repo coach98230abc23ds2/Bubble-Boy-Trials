@@ -9,9 +9,8 @@ public class BattleSystem : MonoBehaviour
 		public enum BattleState
 		{
 				player_turn,
-				enemy_turn}
-
-		;
+				enemy_turn
+		};
 
 		public Button answer1;
 		public Button answer2;
@@ -19,7 +18,7 @@ public class BattleSystem : MonoBehaviour
 		public Button answer4;
 
 		public Slider time_remaining;
-		public Text time_left;
+		public Text battleMessage;
 		public Text problem;
 		public GameObject enemy;
 
@@ -59,19 +58,19 @@ public class BattleSystem : MonoBehaviour
 						break;
 				case BattleState.enemy_turn:
 						if (timeRemaining < ReactionWindow) {
-								time_left.text = "NOW!";
+								battleMessage.text = "NOW!";
 						} else {
-								time_left.text = "WAITING...";
+								battleMessage.text = "WAITING...";
 						}
 						if (timeRemaining < 0) {
 								PlayerTurn ();
-								player.SendMessage ("TakeDamage", 10);
+								player.GetComponent<Player>().TakeDamage(10);
 
 						} else if (timeRemaining < ReactionWindow && Input.GetKeyDown (KeyCode.X)) {
 								PlayerTurn ();
 						} else if (Input.GetKeyDown (KeyCode.X)) {
 								PlayerTurn ();
-								player.SendMessage ("TakeDamage", 20);
+								player.GetComponent<Player> ().TakeDamage (20);
 						}
 						break;
 				}
@@ -101,6 +100,7 @@ public class BattleSystem : MonoBehaviour
 				answers.ForEach (b => ResetButton (b));
 				problem.gameObject.SetActive (true);
 				time_remaining.gameObject.SetActive (true);
+				battleMessage.gameObject.SetActive (false);
 		}
 
 		private void HidePlayerUI ()
@@ -108,6 +108,7 @@ public class BattleSystem : MonoBehaviour
 				answers.ForEach (b => b.gameObject.SetActive (false));
 				problem.gameObject.SetActive (false);
 				time_remaining.gameObject.SetActive (false);
+				battleMessage.gameObject.SetActive (true);
 		}
 
 
@@ -146,7 +147,9 @@ public class BattleSystem : MonoBehaviour
 				if (comboChain >= 3) {
 						dmg += 10 * comboChain - 2;
 				}
-				enemy.SendMessage ("TakeDamage", dmg);
+
+				enemy.GetComponent<Player> ().TakeDamage (dmg);
+
 				comboChain++;
 
 				HidePlayerUI ();

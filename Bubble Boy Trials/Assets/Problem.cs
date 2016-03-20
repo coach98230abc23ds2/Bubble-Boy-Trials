@@ -16,12 +16,29 @@ public class Problem
 
 		public enum Operator
 		{
-				PLUS,
-				MINUS,
-				TIMES
+				FIRST = 0,
+				PLUS = 0,
+				MINUS = 1,
+				TIMES = 2,
+				LAST = 2
 		};
 
-		static int SOLUTION_COUNT = 4;
+		private Operator OperatorFromInt(int operatorCode) {
+				Assert.IsTrue ((int)Operator.FIRST <= operatorCode && operatorCode <= (int)Operator.LAST);
+				switch (operatorCode) {
+				case 0:
+						return Operator.PLUS;
+				case 1:
+						return Operator.MINUS;
+				case 2:
+						return Operator.TIMES;
+				default:
+						Debug.LogError ("Expected int in range of Operator, given: " + operatorCode.ToString ());
+						return Operator.PLUS;
+				}
+		}
+
+		public static int SOLUTION_COUNT = 4;
 		static int MAX_OPERAND = 10;
 
 		int m_operandFirst;
@@ -29,11 +46,17 @@ public class Problem
 		Operator m_operator;
 		List<int> m_solutionList;
 
-		public Problem (Operator problemType = Operator.PLUS)
+		public Problem (Operator? problemType = null)
 		{
 				m_operandFirst = Mathf.CeilToInt (Random.Range (0, 10));
 				m_operandSecond = Mathf.CeilToInt (Random.Range (0, 10));
-				m_operator = problemType;
+				if (problemType.HasValue) {
+						Assert.AreNotEqual (problemType.Value, Operator.FIRST);
+						Assert.AreNotEqual (problemType.Value, Operator.LAST);
+						m_operator = problemType.Value;
+				} else {
+						m_operator = OperatorFromInt(Mathf.RoundToInt(Random.Range ((float)Operator.FIRST, (float)Operator.LAST)));
+				}
 
 				// now ensure that we don't end up giving negative solutions
 				if (m_operator == Operator.MINUS && m_operandFirst < m_operandSecond) {
@@ -42,8 +65,24 @@ public class Problem
 						m_operandSecond = swap;
 				}
         
+				Initialize ();
+		}
+
+		public Problem (Operator problemType, int operandFirst, int operandSecond)
+		{
+				m_operator = problemType;
+				m_operandFirst = operandFirst;
+				m_operandSecond = operandSecond;
+
+				Assert.IsTrue (problemType != Operator.MINUS || (operandFirst >= operandSecond));
+
+				Initialize ();
+		}
+
+		private void Initialize()
+		{
 				m_solutionList = new List<int> (SOLUTION_COUNT);
-        
+
 				// fill solutionList with dummy solutions
 				// making sure every value is unique
 				for (int i = 0; i < SOLUTION_COUNT; ++i) {
@@ -51,7 +90,7 @@ public class Problem
 						do {
 								possibleSolution = Mathf.RoundToInt (Random.Range (0, MaxSolution ()));
 						} while (m_solutionList.Contains (possibleSolution) || possibleSolution == GetSolution ());
-                
+
 						m_solutionList.Add (possibleSolution);
 				}
 
@@ -61,17 +100,13 @@ public class Problem
 
 				// ensure our list is made of unique elements
 				Assert.IsTrue (m_solutionList.TrueForAll (s => m_solutionList.IndexOf(s) == m_solutionList.LastIndexOf(s)));
-
-		}	
+		}
 
 		public int[] GetPossibleSolutions ()
 		{
 				return m_solutionList.ToArray ();
 		}
-
-		// disables warning about default case,
-		// which we want to keep for safety
-		#pragma warning disable 0162
+				
 		public override string ToString ()
 		{
         
@@ -93,53 +128,39 @@ public class Problem
         
 				return m_operandFirst + operatorString + m_operandSecond + " = ?";
 		}
-		#pragma warning restore 0162
 
-		// disables warning about default case,
-		// which we want to keep for safety
-		#pragma warning disable 0162
 		public int GetSolution ()
 		{
 				switch (m_operator) {
 				case Operator.PLUS:
 						return m_operandFirst + m_operandSecond;
-						break;
 				case Operator.MINUS:
 						return m_operandFirst - m_operandSecond;
-						break;
 				case Operator.TIMES:
 						return m_operandFirst * m_operandSecond;
-						break;
 				default:
 						throw new System.Exception ("Unexpected operator value: " + m_operator.ToString ());
 				}
 		}
-		#pragma warning restore 0162
 
 		public int GetSolutionIndex ()
 		{
-				Assert.IsTrue (m_solutionList.IndexOf(GetSolution()) < 4);
+				Assert.IsTrue (m_solutionList.IndexOf(GetSolution()) < SOLUTION_COUNT);
+				Assert.IsTrue (0 <= GetSolution() && GetSolution () <= MaxSolution ());
 				return m_solutionList.IndexOf (GetSolution ());
 		}
 
-		// disables warning about default case,
-		// which we want to keep for safety
-		#pragma warning disable 0162
 		private int MaxSolution ()
 		{
 				switch (m_operator) {
 				case Operator.PLUS:
 						return MAX_OPERAND + MAX_OPERAND;
-						break;
 				case Operator.MINUS:
 						return MAX_OPERAND;
-						break;
 				case Operator.TIMES:
 						return MAX_OPERAND * MAX_OPERAND;
-						break;
 				default:
 						throw new System.Exception ("Unexpected operator value: " + m_operator.ToString ());
 				}
 		}
-		#pragma warning restore 0162
 }
