@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class RollingAverage
 {
-		// the cached average
-		float? m_average;
+		// the average
+		float m_average;
 
 		// stores the array of values
 		float[] m_values;
@@ -23,33 +23,27 @@ public class RollingAverage
 				// initialize to a default value
 				// so that initial additions occur slowly
 				m_average = defaultValue;
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < m_values.Length; i++) {
 						m_values[i] = defaultValue;
 				}
 		}
 
 		public float GetAverage ()
 		{
-				if (!m_average.HasValue) {
-						m_average = 0;
-						foreach (float value in m_values) {
-								m_average += value;
-						}
-						m_average /= m_values.GetLength(0);
-				}
-
-				return m_average.Value;
-
+				return m_average;
 		}
 
 		public void AddValue (float value)
 		{
-				m_average = null;
+				// the new average is the same as swapping the difference between new
+				// and old values
+				m_average += (value - m_values [m_index]) / m_values.Length;
+
 				m_values [m_index] = value;
 				m_index++;
 
 				// reset index if at the end of the list
-				if (m_index >= m_values.GetLength(0)) {
+				if (m_index >= m_values.Length) {
 						m_index = 0;
 				}
 		}
