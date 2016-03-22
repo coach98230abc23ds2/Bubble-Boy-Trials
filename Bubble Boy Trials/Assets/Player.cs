@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+				// centers the health bar above the player                    
 				RectTransform CanvasRect = GameObject.Find ("Canvas").GetComponent<RectTransform> ();
 				Vector2 ViewportPos = Camera.main.WorldToViewportPoint (transform.position);
 
