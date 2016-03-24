@@ -76,7 +76,7 @@ public class BattleSystem : MonoBehaviour
 								PlayerTurn ();
 								player.GetComponent<Player>().TakeDamage(10);
 
-						} else if (timeRemaining < ReactionWindow && Input.GetKeyDown (KeyCode.X)) {
+						} else if (timeRemaining < ReactionWindow && Input.GetKeyDown (KeyCode.Space)) {
 								PlayerTurn ();
 						} else if (Input.GetKeyDown (KeyCode.X)) {
 								PlayerTurn ();
