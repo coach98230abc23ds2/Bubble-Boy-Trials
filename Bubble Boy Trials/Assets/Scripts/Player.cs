@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
 		private float animCycle;
 		private GameObject healthBar;
-		private bool isDead = false;
+		public bool isDead = false;
     
 		// Use this for initialization
 		void Start ()

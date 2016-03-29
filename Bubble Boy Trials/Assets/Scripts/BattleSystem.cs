@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class BattleSystem : MonoBehaviour
@@ -175,6 +176,11 @@ public class BattleSystem : MonoBehaviour
 				}
 
 				enemy.GetComponent<Player> ().TakeDamage (dmg);
+
+				if (enemy.GetComponent<Player> ().isDead) {
+						// root scene is elevator maze
+						SceneManager.SetActiveScene (SceneManager.GetSceneAt (0));
+				}
 
 				comboChain++;
 
