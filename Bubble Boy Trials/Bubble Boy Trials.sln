@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assembly-CSharp-firstpass.csproj", "{931A7BE5-A9C7-9565-F6A7-E5EEBAB65E18}"
-EndProject
 Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assembly-CSharp.csproj", "{B486F9A1-2BB2-35E0-85D5-59676ABB07D5}"
 EndProject
 Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assembly-CSharp-Editor.csproj", "{13EDD4FB-8E83-526C-2045-96DE457AD82F}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{931A7BE5-A9C7-9565-F6A7-E5EEBAB65E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{931A7BE5-A9C7-9565-F6A7-E5EEBAB65E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{931A7BE5-A9C7-9565-F6A7-E5EEBAB65E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{931A7BE5-A9C7-9565-F6A7-E5EEBAB65E18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B486F9A1-2BB2-35E0-85D5-59676ABB07D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B486F9A1-2BB2-35E0-85D5-59676ABB07D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B486F9A1-2BB2-35E0-85D5-59676ABB07D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
