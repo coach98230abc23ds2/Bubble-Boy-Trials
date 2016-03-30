@@ -36,7 +36,7 @@ public class MazeSystem : MonoBehaviour
 				if (m_level_started) {
 						m_level_started = false;
 				}
-				Vector2 movement_difference = m_target_position - m_elevator.transform.position;
+				Vector2 movement_difference = m_target_position - (Vector2) m_elevator.transform.position;
 				if (movement_difference.magnitude < EPSILON) {
 						m_target_position = m_elevator.transform.position;
 						m_level_started = true;

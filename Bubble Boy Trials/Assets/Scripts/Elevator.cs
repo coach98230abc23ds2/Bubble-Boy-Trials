@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Elevator : MonoBehaviour
 {
+		Vector2 m_transform_position; 
+
 		void Awake ()
 		{
 				GameObject.DontDestroyOnLoad (this);
@@ -21,9 +23,10 @@ public class Elevator : MonoBehaviour
 
 		public void Move (Vector2 move_distance)
 		{
-				transform.position += move_distance;
+				/* This line has a Vector2 & Vector3 conflict */
+				m_transform_position  = (Vector2) transform.position + move_distance;
 
 				// keeps the camera centered on the elevator
-				Camera.main.transform.position = transform.position;
+				Camera.main.transform.position = m_transform_position;
 		}
 }
