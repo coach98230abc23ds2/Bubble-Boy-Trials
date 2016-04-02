@@ -1164,6 +1164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d545b1288d5fc74d8e6c961fb67ab18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterFrames: 0
+  afterSeconds: 0
+  callOnMethod: 14
+  methodToCall: 0
 --- !u!23 &1743957839
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1606,6 +1610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d545b1288d5fc74d8e6c961fb67ab18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterFrames: 0
+  afterSeconds: 0
+  callOnMethod: 14
+  methodToCall: 1
 --- !u!23 &2117648989
 MeshRenderer:
   m_ObjectHideFlags: 0

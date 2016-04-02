@@ -74,6 +74,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
+  m_RootOrder: 0
 --- !u!4 &400002
 Transform:
   m_ObjectHideFlags: 1
@@ -85,6 +86,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
+  m_RootOrder: 1
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -96,6 +98,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
+  m_RootOrder: 2
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -110,6 +113,7 @@ Transform:
   - {fileID: 400002}
   - {fileID: 400004}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,15 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b461c67a1aa2a49b5a87793a6aa18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundProp: {fileID: 5000000, guid: f9d0b7dac836a450f8040b62eb6ebd5f, type: 2}
-  leftSpawnPosX: -24
-  rightSpawnPosX: 24
-  minSpawnPosY: -5.5
-  maxSpawnPosY: -5.5
-  minTimeBetweenSpawns: 8
-  maxTimeBetweenSpawns: 18
-  minSpeed: 5
-  maxSpeed: 8
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,15 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b461c67a1aa2a49b5a87793a6aa18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundProp: {fileID: 5000000, guid: e22b0975178e44f1881534434127b177, type: 2}
-  leftSpawnPosX: -24
-  rightSpawnPosX: 24
-  minSpawnPosY: -6.4000001
-  maxSpawnPosY: -6.4000001
-  minTimeBetweenSpawns: 10
-  maxTimeBetweenSpawns: 15
-  minSpeed: 5
-  maxSpeed: 8
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,15 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b461c67a1aa2a49b5a87793a6aa18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundProp: {fileID: 5000000, guid: cccb6fdca5fce44bc94bacf40fa493e8, type: 2}
-  leftSpawnPosX: -24
-  rightSpawnPosX: 24
-  minSpawnPosY: 4
-  maxSpawnPosY: 8
-  minTimeBetweenSpawns: 2
-  maxTimeBetweenSpawns: 8
-  minSpeed: 5
-  maxSpeed: 8
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -181,4 +158,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100006}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
