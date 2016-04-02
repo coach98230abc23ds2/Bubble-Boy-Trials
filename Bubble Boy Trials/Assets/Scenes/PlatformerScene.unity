@@ -1392,10 +1392,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0
-  Damage: 10
-  notToHit:
+  bulletSpeed: 20
+  whatToHit:
     serializedVersion: 2
     m_Bits: 0
+  bulletPrefab: {fileID: 100000, guid: 9f1c955688b614b259cf703b0b1c73d2, type: 2}
+  force: {fileID: 0}
 --- !u!1 &1661662396
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,10 @@ using System.Collections;
 public class Weapon : MonoBehaviour {
 
 	public float fireRate = 0;
-	public float Damage = 10;
-	public LayerMask notToHit;
+	public float bulletSpeed = 20;
+	public LayerMask whatToHit;
+	public GameObject bulletPrefab;
+	public Rigidbody2D force;
 
 	float timeToFire = 0;
 	Transform firePoint;
@@ -21,23 +23,58 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (fireRate == 0) {
-			if (Input.GetButtonDown ("Fire1")) {
-								Shoot ();
-			}
-		} 
-		else {
-			if (Input.GetButton ("Fire1") && Time.time > timeToFire)
-				timeToFire = Time.time + 1 / fireRate;
-					Shoot ();
+	void Update ()
+		{
+		
+				GameObject playr = GameObject.Find ("Player");
+				if (fireRate == 0) {
+						if (Input.GetButtonDown ("Fire1")) {
+								Debug.Log (Input.GetKey (KeyCode.LeftArrow));
+								Debug.Log (Input.GetKey (KeyCode.RightArrow));
+//				PlatformerCharacter2D scr =  playr.GetComponent("PlatformerCharacter2D")
+								Debug.Log (playr.transform.localScale [0]);
+								if (playr.transform.localScale [0] < 0) {
+										Debug.Log ("SHOOTING LEFT");
+										ShootLeft ();
+								} else if (playr.transform.localScale [0] > 0) {
+										Debug.Log ("SHOOTING RIGHT");
+										ShootRight ();
+								}
+						}
+				} else {
+						if (Input.GetButton ("Fire1") && Time.time > timeToFire)
+								timeToFire = Time.time + 1 / fireRate;
+						Debug.Log (Input.GetKey (KeyCode.LeftArrow));
+						Debug.Log (Input.GetKey (KeyCode.RightArrow));
+						Debug.Log (playr.transform.localScale [0]);
+						if (playr.transform.localScale [0] < 0) {
+								Debug.Log ("SHOOTING LEFT");
+								ShootLeft ();
+						} else if (playr.transform.localScale [0] > 0) {
+								Debug.Log ("SHOOTING RIGHT");
+								ShootRight ();
+						}
 		}
 	}
-	
-		void Shoot () {
-			Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
-			RaycastHit2D hit = Physics2D.Raycast (firePointPosition, Vector2.right, 100, notToHit);
-			Debug.Log ("Test Shot");
-	}
 
+		void ShootLeft () {
+			Debug.Log("Shoot left");
+			GameObject Clone;
+			Vector3 firePointPosition = new Vector3 (firePoint.position.x, firePoint.position.y, firePoint.position.z);
+			Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
+			force = Clone.GetComponent<Rigidbody2D>();
+			force.isKinematic = true;
+			force.velocity = transform.TransformDirection (-transform.right * 40);
+			
+	}
+		void ShootRight () {
+			Debug.Log("Shoot right");
+			GameObject Clone;
+			Vector3 firePointPosition = new Vector3 (firePoint.position.x, firePoint.position.y, firePoint.position.z);
+			Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
+			force = Clone.GetComponent<Rigidbody2D>();
+			force.isKinematic = true;
+			force.velocity = transform.TransformDirection (transform.right * 40);
+			
+	}
 }
