@@ -55,6 +55,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         player = GameObject.FindGameObjectWithTag("Player");
+        enemy.transform.position = player.transform.position + new Vector3(2, 0, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         PlayerTurn();
     }
@@ -196,6 +197,7 @@ public class BattleSystem : MonoBehaviour
         if (enemy.GetComponent<Player>().isDead)
         {
             SceneManager.UnloadScene(2);
+            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
         }
         else
         {

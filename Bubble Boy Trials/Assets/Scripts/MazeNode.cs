@@ -16,9 +16,4 @@ public class MazeNode : MonoBehaviour
 		public MazeNode Right_Node;
 
         public String Scene_Id;
-
-		void Awake ()
-		{
-				GameObject.DontDestroyOnLoad (this);
-		}
 }

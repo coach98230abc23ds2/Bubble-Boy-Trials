@@ -4,8 +4,8 @@ using System.Collections;
 
 public class MazeSystem : MonoBehaviour
 {
-    private static float EPSILON = 1.0f;
-    private static float SPEED = 5.0f;
+    private static float EPSILON = 0.2f;
+    private static float SPEED = 1.0f;
 
     Vector2 m_target_position;
     MazeNode m_current_node;
@@ -25,7 +25,7 @@ public class MazeSystem : MonoBehaviour
         m_current_node = GameObject.FindGameObjectWithTag("Root Node").GetComponent<MazeNode>();
         m_target_position = m_current_node.transform.position;
         m_elevator = GameObject.FindGameObjectWithTag("Elevator").GetComponent<Elevator>();
-        m_elevator.transform.position = m_target_position;
+        m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
     }
 	
@@ -38,7 +38,7 @@ public class MazeSystem : MonoBehaviour
             Vector2 movement_difference = m_target_position - (Vector2)m_elevator.transform.position;
             if (movement_difference.magnitude < EPSILON)
             {
-                m_target_position = m_elevator.transform.position;
+                m_elevator.transform.position = m_target_position;
                 m_level_started = true;
                 StartLevel();
             }
@@ -56,6 +56,11 @@ public class MazeSystem : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName(m_current_node.Scene_Id);
         SceneManager.SetActiveScene(scene);
         m_level_started = true;
+    }
+
+    public void LevelCompleted()
+    {
+        m_level_started = false;
     }
 
     void MoveLeft()

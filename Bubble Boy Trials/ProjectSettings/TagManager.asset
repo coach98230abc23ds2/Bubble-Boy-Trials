@@ -15,6 +15,7 @@ TagManager:
   - HealthBar
   - Elevator
   - Root Node
+  - MazeSystem
   layers:
   - Default
   - TransparentFX

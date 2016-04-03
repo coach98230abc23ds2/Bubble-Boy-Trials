@@ -3,30 +3,14 @@ using System.Collections;
 
 public class Elevator : MonoBehaviour
 {
-		Vector2 m_transform_position; 
+    public void Move(Vector2 move_distance)
+    {
+        /* This line has a Vector2 & Vector3 conflict */
+        transform.position += new Vector3(move_distance.x, move_distance.y, 0);
 
-		void Awake ()
-		{
-				GameObject.DontDestroyOnLoad (this);
-		}
+        GameObject.FindGameObjectWithTag("Player").transform.position += new Vector3(move_distance.x, move_distance.y, 0);
 
-		// Use this for initialization
-		void Start ()
-		{
-	
-		}
-	
-		// Update is called once per frame
-		void Update ()
-		{
-		}
-
-		public void Move (Vector2 move_distance)
-		{
-				/* This line has a Vector2 & Vector3 conflict */
-				m_transform_position  = (Vector2) transform.position + move_distance;
-
-				// keeps the camera centered on the elevator
-				Camera.main.transform.position = m_transform_position;
-		}
+        // keeps the camera centered on the elevator
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+    }
 }
