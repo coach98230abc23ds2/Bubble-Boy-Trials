@@ -45,14 +45,14 @@ public class MazeSystem : MonoBehaviour
             else
             {
                 movement_difference.Normalize();
-                m_elevator.Move(movement_difference * SPEED);
+                m_elevator.Move(movement_difference * SPEED * Time.deltaTime);
             }
         }
     }
 
     void StartLevel()
     {
-        SceneManager.LoadScene(m_current_node.Scene_Id);
+        SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Additive);
         Scene scene = SceneManager.GetSceneByName(m_current_node.Scene_Id);
         SceneManager.SetActiveScene(scene);
         m_level_started = true;
