@@ -12,8 +12,8 @@ GameObject:
   - 50: {fileID: 5000000}
   - 58: {fileID: 5800000}
   - 95: {fileID: 9500000}
-  - 114: {fileID: 11430338}
-  - 114: {fileID: 11416672}
+  - 114: {fileID: 11436798}
+  - 114: {fileID: 11431538}
   m_Layer: 10
   m_Name: enemy1
   m_TagString: Enemy
@@ -238,19 +238,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11416672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495c2b32edf7a42ea81560dab940e28f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
---- !u!114 &11430338
+--- !u!114 &11431538
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -261,7 +249,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c70ae7fb36f4e26b8394791ad5ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed2: 5
+--- !u!114 &11436798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495c2b32edf7a42ea81560dab940e28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_enemy: {fileID: 100000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -377,7 +376,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_UseAutoMass
@@ -403,6 +402,14 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+    - target: {fileID: 0}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: current_enemy
+      value: 
+      objectReference: {fileID: 100000}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

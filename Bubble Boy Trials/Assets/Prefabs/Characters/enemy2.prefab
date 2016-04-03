@@ -100,7 +100,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -136,6 +136,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+<<<<<<< Updated upstream
+=======
+--- !u!114 &11405018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495c2b32edf7a42ea81560dab940e28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_enemy: {fileID: 100006}
+>>>>>>> Stashed changes
 --- !u!114 &11477024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,7 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c70ae7fb36f4e26b8394791ad5ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed2: 5
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -191,12 +205,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+    - target: {fileID: 0}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: current_enemy
+      value: 
+      objectReference: {fileID: 100006}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100006}

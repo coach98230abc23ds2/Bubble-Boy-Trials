@@ -13,13 +13,14 @@ public class EnemySpawner : MonoBehaviour {
 	private float m_new_y;
 	private int m_count = 0;
 	private float m_player_pos = 4.9f; //players current global view position
-	private Vector2 spawn_position; // enemy spawn position
+	private Vector2 spawn_position; //enemy spawn position
 
 	public GameObject[] enemy_types; //stores type of enemies
-	private GameObject[] active_objects; // active game objects
-	private float[] x_positions = new float[]{5.0f, 84.0f, 118.0f, 134.0f}; // all possible x-coordinate spawning points for minions
+	private GameObject[] active_objects; //active game objects
+	private float[] enemy_1_positions = new float[]{24.59f, 84.0f, 118.0f}; //all possible x-coordinate spawning points for grounded minions
+    private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
-																																		& their current positions */
+																    & their current positions */
 
 	//to be implemented																																
 	// private bool IsObjectInRange (){
@@ -46,7 +47,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	private void PrintDict (){
 		foreach (KeyValuePair<string,List<float>> pair in curr_enemy_positions){
-			Debug.Log(pair.Key + ", " + ListToStr(pair.Value));
+			Debug.Log("DICT:" + pair.Key + ", " + ListToStr(pair.Value));
 		}
 	}
 
@@ -54,10 +55,13 @@ public class EnemySpawner : MonoBehaviour {
 	private void InitializeEnemyPos (){
 		curr_enemy_positions = new Dictionary<string, List<float>>();
 		foreach (GameObject enemy in enemy_types){
+//            curr_enemy_positions.Add(enemy.name, new List<float>());
 			curr_enemy_positions.Add(enemy.name + "(Clone)", new List<float>());
 		}
 	}
 
+
+    // adds given position to the dictionary
 	private void AddToDict (string name, float pos){
 		try{
 			curr_enemy_positions[name].Add(pos); 
@@ -77,34 +81,54 @@ public class EnemySpawner : MonoBehaviour {
 		}
 	}
 
-	private bool ShouldInstantiate (float enemy_pos){
+    private bool ShouldInstantiate (string enemy_key, float enemy_pos){
 		if (active_objects.Length != 0){
-			foreach (GameObject enemy in active_objects){
-				if (!curr_enemy_positions[enemy.name].Contains(enemy_pos)){
-					return true;
-				}
+            
+            Debug.Log ("ENEMY_NAME: " + enemy_key);
+            Debug.Log(ListToStr(curr_enemy_positions[enemy_key]));
+            Debug.Log (System.Convert.ToString(enemy_pos));
+            if (!(curr_enemy_positions[enemy_key].Contains(enemy_pos))){
+                Debug.Log("can instantiate enemy");
+    			return true;
+            }else{
+                return false;
 			}
-			return false;
-		}
-		return true;
-
+			
+        }else{
+            return true;
+        }
+   
 	}
 
 	//spawns minions in designated positions if the player is in viewable range
 	private void SpawnMinions (){
-		for (int i = 0; i< x_positions.Length; i++){
-			int r = UnityEngine.Random.Range (0, enemy_types.Length);
-			GameObject rand_enemy = enemy_types[r];		
+        float[] curr_positions = new float[Mathf.Max(enemy_1_positions.Length, 
+                                                   enemy_2_positions.Length)];
 
-			if (Mathf.Abs(m_player_pos - x_positions[i]) <= 30.0f)
-			{
-				if (ShouldInstantiate(x_positions[i])){
-					spawn_position = new Vector2 (x_positions[i], 25);
-					GameObject new_enemy = (GameObject) Instantiate(rand_enemy, spawn_position, rand_enemy.transform.rotation);
-					AddToDict(new_enemy.name, x_positions[i]);
-				}
-			}
-		}
+        foreach (GameObject enemy in enemy_types){        
+            switch (enemy.name)
+            {
+                case "enemy1":
+                case "enemy1(Clone)":
+                    curr_positions = enemy_1_positions;
+                    break;
+                case "enemy2":
+                case "enemy2(Clone)":
+                    curr_positions = enemy_2_positions;
+                    break;
+            }
+            for (int i = 0; i< curr_positions.Length; i++){
+                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 15.0f)
+    			{  
+                    if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i])){
+    					spawn_position = new Vector2 (curr_positions[i], 25);
+    					GameObject new_enemy = (GameObject) Instantiate(enemy, 
+                                    spawn_position, enemy.transform.rotation);
+                        AddToDict(new_enemy.name, curr_positions[i]);
+    				}
+    			}
+    		}
+        }
 	}
 	
 	// Use this for initialization
@@ -117,8 +141,8 @@ public class EnemySpawner : MonoBehaviour {
 		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
 		active_objects.Distinct();
 		m_timer += Time.deltaTime;
-		if(m_timer > 6.0f){
-			// Debug.Log(ArrayToStr(active_objects));
+		if(m_timer > 1.0f){
+			 Debug.Log("ACTIVE OBJECTS:"+ ArrayToStr(active_objects));
 			PrintDict();
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();
