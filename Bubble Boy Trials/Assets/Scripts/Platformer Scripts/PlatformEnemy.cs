@@ -4,7 +4,6 @@ using System.Collections;
 public class PlatformEnemy : MonoBehaviour {
 
     public GameObject current_enemy;
-	
     private EnemySpawner spawner; 
     private float m_x_pos;
 
