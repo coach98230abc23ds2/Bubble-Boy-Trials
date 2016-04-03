@@ -978,6 +978,26 @@ BoxCollider2D:
 GameObject:
   m_PrefabParentObject: {fileID: 135496, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
   m_PrefabInternal: {fileID: 1058025249}
+--- !u!50 &988057627 stripped
+Rigidbody2D:
+  m_PrefabParentObject: {fileID: 5078844, guid: d885083fb2da74422a7b12ff36b94dfc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1058025249}
+--- !u!114 &988057631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988057623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79238fe74f42940b6a7ed7b7dda0d633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  bulletSpeed: 20
+  bulletPrefab: {fileID: 100000, guid: 8fde8ec1b330d4bbfb4839f4b41cadc0, type: 2}
+  force: {fileID: 988057627}
 --- !u!1001 &1058025249
 Prefab:
   m_ObjectHideFlags: 0
@@ -1007,15 +1027,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0064869435
       objectReference: {fileID: 0}
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99997896
       objectReference: {fileID: 0}
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468358, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+      propertyPath: m_JumpForce
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
