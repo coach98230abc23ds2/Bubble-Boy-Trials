@@ -17,6 +17,7 @@ TagManager:
   - Root Node
   - MazeSystem
   - MazeUI
+  - Canvas
   layers:
   - Default
   - TransparentFX

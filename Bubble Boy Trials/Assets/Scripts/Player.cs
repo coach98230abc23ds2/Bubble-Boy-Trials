@@ -20,10 +20,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthBar != null)
+        // canvas is null when in platformer mode
+        GameObject canvas = GameObject.Find("Canvas");
+        if (healthBar != null && canvas != null)
         {
-            // centers the health bar above the player                    
-            RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+            // centers the health bar above the player
+            RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
             Vector2 ViewportPos = Camera.main.WorldToViewportPoint(transform.position);
 
             Vector2 ScreenPos = new Vector2(
