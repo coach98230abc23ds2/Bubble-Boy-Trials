@@ -43,7 +43,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11477024}
-  - 114: {fileID: 11405018}
+  - 114: {fileID: 11444324}
   m_Layer: 10
   m_Name: enemy2
   m_TagString: Enemy
@@ -137,9 +137,9 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11405018
+--- !u!114 &11444324
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495c2b32edf7a42ea81560dab940e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_enemy: {fileID: 100006}
+  m_enemy_alive: 0
 --- !u!114 &11477024
 MonoBehaviour:
   m_ObjectHideFlags: 1

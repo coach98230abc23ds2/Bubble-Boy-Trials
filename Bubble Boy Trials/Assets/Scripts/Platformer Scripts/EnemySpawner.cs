@@ -63,10 +63,10 @@ public class EnemySpawner : MonoBehaviour {
 
     // adds given position to the dictionary
 	private void AddToDict (string name, float pos){
-		try{
+		try {
 			curr_enemy_positions[name].Add(pos); 
-		}catch (Exception e){
-			Debug.Log("key is not in dictionary yet. Will add.");
+		} catch (Exception e){
+            Debug.Log("key is not in dictionary yet. Will add:" + e.Message);
 			curr_enemy_positions.Add(name, new List<float>(new float[]{pos}));
 		}
 	}
@@ -77,7 +77,7 @@ public class EnemySpawner : MonoBehaviour {
 		try{
 			curr_enemy_positions[name].Remove(pos); 
 		}catch (Exception e){
-			Debug.Log("key is not in dictionary yet. Cannot remove.");
+            Debug.Log("key is not in dictionary yet. Cannot remove:" + e.Message);
 		}
 	}
 

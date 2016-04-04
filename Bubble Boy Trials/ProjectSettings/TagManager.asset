@@ -13,6 +13,10 @@ TagManager:
   - BombPickup
   - ExplosionFX
   - HealthBar
+  - Elevator
+  - Root Node
+  - MazeSystem
+  - MazeUI
   layers:
   - Default
   - TransparentFX
