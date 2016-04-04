@@ -8,15 +8,17 @@ public class Weapon : MonoBehaviour {
 //    public LayerMask whatToHit;
     public GameObject bulletPrefab;
     public Rigidbody2D force;
-
+    public GameObject Clone;
     float timeToFire = 0;
-    Transform firePoint;
+    GameObject firePoint;
+    Transform bullet;
 
     // Use this for initialization
     void Awake () {
-        firePoint = transform.FindChild ("FirePoint");
+        firePoint = GameObject.Find("FirePoint");
+        bullet = firePoint.transform;
         if (firePoint == null) {
-            Debug.LogError ("No FirePoint = WHAT?!");
+            Debug.LogError ("No Firepoint Found");
 
         }
 
@@ -58,22 +60,20 @@ public class Weapon : MonoBehaviour {
 
     void ShootLeft () {
         Debug.Log("Shoot left");
-        GameObject Clone;
-        Vector3 firePointPosition = new Vector3 (firePoint.position.x, firePoint.position.y, firePoint.position.z);
+        Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
-        force.velocity = transform.TransformDirection (-transform.right * 40);
+        force.velocity = transform.TransformDirection (-transform.right * bulletSpeed);
 
     }
     void ShootRight () {
         Debug.Log("Shoot right");
-        GameObject Clone;
-        Vector3 firePointPosition = new Vector3 (firePoint.position.x, firePoint.position.y, firePoint.position.z);
+        Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
-        force.velocity = transform.TransformDirection (transform.right * 40);
+        force.velocity = transform.TransformDirection (transform.right * bulletSpeed);
 
     }
 }
