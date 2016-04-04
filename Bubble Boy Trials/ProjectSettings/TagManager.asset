@@ -16,6 +16,7 @@ TagManager:
   - Elevator
   - Root Node
   - MazeSystem
+  - MazeUI
   layers:
   - Default
   - TransparentFX

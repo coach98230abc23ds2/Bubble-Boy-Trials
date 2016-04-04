@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MazeSystem : MonoBehaviour
 {
     private static float EPSILON = 0.2f;
     private static float SPEED = 1.0f;
+
+    public CanvasGroup MazeUI;
+    public Button LeftButton;
+    public Button UpButton;
+    public Button RightButton;
 
     Vector2 m_target_position;
     MazeNode m_current_node;
@@ -13,6 +20,7 @@ public class MazeSystem : MonoBehaviour
     Elevator m_elevator;
 
     bool m_level_started;
+    bool m_path_chosen;
 
     void Awake()
     {
@@ -27,13 +35,15 @@ public class MazeSystem : MonoBehaviour
         m_elevator = GameObject.FindGameObjectWithTag("Elevator").GetComponent<Elevator>();
         m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
+        m_path_chosen = true;
+        MazeUI.alpha = 0;
     }
 	
     // Update is called once per frame
     void Update()
     {
         // we just got back from a level
-        if (!m_level_started)
+        if (!m_level_started && m_path_chosen)
         {
             Vector2 movement_difference = m_target_position - (Vector2)m_elevator.transform.position;
             if (movement_difference.magnitude < EPSILON)
@@ -56,28 +66,39 @@ public class MazeSystem : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName(m_current_node.Scene_Id);
         SceneManager.SetActiveScene(scene);
         m_level_started = true;
+        m_path_chosen = false;
     }
 
     public void LevelCompleted()
     {
         m_level_started = false;
+        MazeUI.alpha = 1;
+        LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
+        UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
+        RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
     }
 
-    void MoveLeft()
+    public void MoveLeft()
     {
         m_current_node = m_current_node.Left_Node;
         m_target_position = m_current_node.transform.position;
+        MazeUI.alpha = 0;
+        m_path_chosen = true;
     }
 
-    void MoveRight()
+    public void MoveRight()
     {
         m_current_node = m_current_node.Right_Node;
         m_target_position = m_current_node.transform.position;
+        MazeUI.alpha = 0;
+        m_path_chosen = true;
     }
 
-    void MoveUp()
+    public void MoveUp()
     {
         m_current_node = m_current_node.Up_Node;
         m_target_position = m_current_node.transform.position;
+        MazeUI.alpha = 0;
+        m_path_chosen = true;
     }
 }
