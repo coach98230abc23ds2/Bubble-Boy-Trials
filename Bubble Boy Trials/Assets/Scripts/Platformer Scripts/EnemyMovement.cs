@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour {
                     this.GetComponent<Rigidbody2D>().gravityScale = 4.9f;
                 }else{
                     this.GetComponent<Rigidbody2D>().gravityScale = 9.8f;
-                    Debug.Log ("got to enemy1");
+//                    Debug.Log ("got to enemy1");
                     this.GetComponent<Rigidbody2D>().velocity = new Vector2(-m_speed, 0);
                 }
             }
@@ -60,7 +60,7 @@ public class EnemyMovement : MonoBehaviour {
         if (m_can_move == true){
             if (this.name == "enemy2" || this.name == "enemy2(Clone)"){
                 MoveUpAndDown();          
-                Debug.Log ("got to enemy2");
+//                Debug.Log ("got to enemy2");
                 if (m_timer > 2.0f){
                     SwitchDirection();
                 }
