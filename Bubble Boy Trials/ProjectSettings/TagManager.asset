@@ -9,7 +9,6 @@ TagManager:
   - Enemy
   - Wall
   - Obstacle
-  - Bullet
   - BombPickup
   - ExplosionFX
   - HealthBar
@@ -18,6 +17,8 @@ TagManager:
   - MazeSystem
   - MazeUI
   - Canvas
+  - Ammo
+  - Head
   layers:
   - Default
   - TransparentFX

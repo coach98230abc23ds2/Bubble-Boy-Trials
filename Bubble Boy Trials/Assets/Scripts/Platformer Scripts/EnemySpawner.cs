@@ -75,20 +75,28 @@ public class EnemySpawner : MonoBehaviour {
 	//removes a position from the given enemy's list of positons.
 	public void RemoveFromDict (string name, float pos){
 		try{
-			curr_enemy_positions[name].Remove(pos); 
+            float new_pos = pos;
+            foreach (float x_pos in curr_enemy_positions[name]){
+                if (Mathf.Abs(x_pos - pos) <= 15.0f){
+                    new_pos = x_pos;
+                    break;
+                }
+            }
+			curr_enemy_positions[name].Remove(new_pos); 
 		}catch (Exception e){
-            Debug.Log("key is not in dictionary yet. Cannot remove:" + e.Message);
+            Debug.LogError("key is not in dictionary yet. Cannot remove:" + e.Message);
 		}
 	}
 
     private bool ShouldInstantiate (string enemy_key, float enemy_pos){
 		if (active_objects.Length != 0){
             
-            Debug.Log ("ENEMY_NAME: " + enemy_key);
-            Debug.Log(ListToStr(curr_enemy_positions[enemy_key]));
-            Debug.Log (System.Convert.ToString(enemy_pos));
+//            Debug.Log ("ENEMY_NAME: " + enemy_key);
+//            Debug.Log(ListToStr(curr_enemy_positions[enemy_key]));
+//            Debug.Log (System.Convert.ToString(enemy_pos));
+
+            //checks if enemy can be instantiated
             if (!(curr_enemy_positions[enemy_key].Contains(enemy_pos))){
-                Debug.Log("can instantiate enemy");
     			return true;
             }else{
                 return false;
@@ -130,10 +138,17 @@ public class EnemySpawner : MonoBehaviour {
     		}
         }
 	}
+
+    IEnumerator InitialWait(){
+        yield return new WaitForSeconds(3);
+    }
 	
 	// Use this for initialization
 	void Start () {
 		InitializeEnemyPos();
+        StartCoroutine(InitialWait());
+        m_player_pos = player.transform.position.x;
+        SpawnMinions();
 	}
 	
 	// Update is called once per frame
@@ -141,9 +156,9 @@ public class EnemySpawner : MonoBehaviour {
 		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
 		active_objects.Distinct();
 		m_timer += Time.deltaTime;
-		if(m_timer > 1.0f){
-			 Debug.Log("ACTIVE OBJECTS:"+ ArrayToStr(active_objects));
-			PrintDict();
+		if(m_timer > 5.0f){
+//			Debug.Log("ACTIVE OBJECTS:"+ ArrayToStr(active_objects));
+//			PrintDict();
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();
 			m_timer = 0.0f;
