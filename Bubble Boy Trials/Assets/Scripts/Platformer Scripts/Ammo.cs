@@ -26,14 +26,14 @@ public class Ammo : MonoBehaviour {
     }
 
     void Start(){
-        spawner = Camera.main.GetComponent<EnemySpawner>();
+        spawner = Camera.current.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
         m_player = player.GetComponent<PlatformPlayer>();
     }
 
     void Update(){
         //destroys ammo when it goes out of the camera's view
-        float viewport_x_pos = Camera.main.WorldToViewportPoint(this.transform.position).x;
+        float viewport_x_pos = Camera.current.WorldToViewportPoint(this.transform.position).x;
         if (viewport_x_pos > 1 || viewport_x_pos < -1){
             Destroy(this.gameObject);
         }
