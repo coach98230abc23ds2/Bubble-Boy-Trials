@@ -9,7 +9,7 @@ public class MazeSystem : MonoBehaviour
     private static float EPSILON = 0.2f;
     private static float SPEED = 1.0f;
 
-    public CanvasGroup MazeUI;
+    public Canvas MazeUI;
     public Button LeftButton;
     public Button UpButton;
     public Button RightButton;
@@ -36,7 +36,7 @@ public class MazeSystem : MonoBehaviour
         m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
         m_path_chosen = true;
-        MazeUI.alpha = 0;
+        MazeUI.gameObject.SetActive(false);
     }
 	
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class MazeSystem : MonoBehaviour
     public void LevelCompleted()
     {
         m_level_started = false;
-        MazeUI.alpha = 1;
+        MazeUI.gameObject.SetActive(true);
         LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
         UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
         RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
@@ -82,7 +82,7 @@ public class MazeSystem : MonoBehaviour
     {
         m_current_node = m_current_node.Left_Node;
         m_target_position = m_current_node.transform.position;
-        MazeUI.alpha = 0;
+        MazeUI.gameObject.SetActive(false);
         m_path_chosen = true;
     }
 
@@ -90,7 +90,7 @@ public class MazeSystem : MonoBehaviour
     {
         m_current_node = m_current_node.Right_Node;
         m_target_position = m_current_node.transform.position;
-        MazeUI.alpha = 0;
+        MazeUI.gameObject.SetActive(false);
         m_path_chosen = true;
     }
 
@@ -98,7 +98,7 @@ public class MazeSystem : MonoBehaviour
     {
         m_current_node = m_current_node.Up_Node;
         m_target_position = m_current_node.transform.position;
-        MazeUI.alpha = 0;
+        MazeUI.gameObject.SetActive(false);
         m_path_chosen = true;
     }
 }

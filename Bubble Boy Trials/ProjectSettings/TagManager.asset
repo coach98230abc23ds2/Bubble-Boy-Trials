@@ -16,6 +16,7 @@ TagManager:
   - Root Node
   - MazeSystem
   - MazeUI
+  - Canvas
   - Ammo
   - Head
   layers:
