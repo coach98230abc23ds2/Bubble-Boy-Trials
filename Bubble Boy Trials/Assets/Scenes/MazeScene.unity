@@ -129,7 +129,7 @@ MonoBehaviour:
   Left_Node: {fileID: 0}
   Up_Node: {fileID: 1707287472}
   Right_Node: {fileID: 0}
-  Scene_Id: BattleScene
+  Scene_Id: PlatformerScene
 --- !u!212 &31377799
 SpriteRenderer:
   m_ObjectHideFlags: 0

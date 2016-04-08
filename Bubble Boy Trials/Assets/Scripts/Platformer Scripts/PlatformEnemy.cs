@@ -16,7 +16,6 @@ public class PlatformEnemy : MonoBehaviour {
         hidden_obj.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update () {
         if (hidden_obj != null){
             hidden_obj.GetComponent<SpriteRenderer>().enabled = false;

@@ -6,6 +6,7 @@ public class PlatformPlayer : MonoBehaviour {
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
+    private int m_num_combos = 0; // player's current number of combos
     private bool m_invincible = false;
     private EnemySpawner spawner;
 
@@ -19,12 +20,12 @@ public class PlatformPlayer : MonoBehaviour {
         temp.x = 5.3f;
         temp.y = 20.0f;
         this.gameObject.transform.position = temp;
-
     }
 
     //increases score by the increment number
     public void GainScore (int increment){
-        m_score += increment;
+        m_num_combos++;
+        m_score += increment * m_num_combos;
     }
 
     //decreases lives by 1
@@ -32,13 +33,13 @@ public class PlatformPlayer : MonoBehaviour {
         if (!m_invincible){
             m_lives--; 
             m_invincible = true;
-            StartCoroutine(Invincible());
+            StartCoroutine(Invincible(3.0f));
             m_invincible = false;
         }
     }
 
-    IEnumerator Invincible(){
-        yield return new WaitForSeconds(2);
+    IEnumerator Invincible(float wait_time){
+        yield return new WaitForSeconds(wait_time);
     }
 
 	// Use this for initialization
@@ -64,7 +65,7 @@ public class PlatformPlayer : MonoBehaviour {
             Destroy(parent_enemy);
             GainScore(10);
 
-        }else{
+        }else if (other.tag != "Ground"){
             if (!m_invincible){
                 LoseLives();
             }

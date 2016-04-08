@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour {
         m_just_switched = true;
     }
         
-//
+    //used for dealing with rigidbodies; called every physics step
     void FixedUpdate (){
         if (m_can_move == true){
             if (this.name == "enemy1" || this.name == "enemy1(Clone)"){

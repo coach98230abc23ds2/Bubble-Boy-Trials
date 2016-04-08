@@ -24,7 +24,7 @@ public class Ammo : MonoBehaviour {
                 m_player.GainScore(50);
         }   
     }
-
+    
     void Start(){
         spawner = Camera.main.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
