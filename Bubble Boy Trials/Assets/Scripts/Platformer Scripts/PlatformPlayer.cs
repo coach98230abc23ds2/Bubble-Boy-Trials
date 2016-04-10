@@ -8,8 +8,9 @@ public class PlatformPlayer : MonoBehaviour {
     public float m_repeat_damage_period= 2f; // how frequently the player can be damaged.
     public float m_health = 100f; // the player's m_health
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
-    public float m_hurt_force = 2000f;               // The force with which the player is pushed when hurt.
+    public float m_hurt_force = 300f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
+    public float hit_height = 3f; //height at which player will hit the enemy's head 
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
@@ -61,6 +62,29 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
+    void FixedUpdate(){
+        Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
+        Vector2 down_dir = transform.TransformDirection(Vector2.down);
+        Vector2 size = new Vector2(1.564927f, 0.5199999f);
+        float angle = 180f;
+
+        RaycastHit2D[] hit = Physics2D.RaycastAll(cast_origin, down_dir, hit_height, 1 << 13);
+
+        if (hit != null){
+            foreach (RaycastHit2D head_hit in hit){
+                Debug.Log(head_hit.transform.tag);
+                if(head_hit.transform.tag == "Enemy"){
+                    this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,1500));
+                    GameObject parent_enemy = head_hit.transform.gameObject;
+                    m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
+                    Destroy(parent_enemy);
+                    GainScore(10);
+                }   
+            }
+            
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D coll){      
         if (coll.gameObject.name == "enemy1(Clone)"){
             if (Time.time > m_last_hit_time + m_repeat_damage_period) 
@@ -95,13 +119,7 @@ public class PlatformPlayer : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D coll){
-        if (coll.gameObject.tag == "Head"){
-            this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,2000));
-            GameObject parent_enemy = coll.gameObject.transform.parent.gameObject;
-            m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-            Destroy(parent_enemy);
-            GainScore(10);
-        }else if (coll.gameObject.name == "enemy2(Clone)"){
+        if (coll.gameObject.name == "enemy2(Clone)"){
             // need to fix this; enemies go right through enemy2.
             if (Time.time > m_last_hit_time + m_repeat_damage_period) 
             {
@@ -138,8 +156,10 @@ public class PlatformPlayer : MonoBehaviour {
     {
         m_player_control.m_Jump = false;
 
+        Vector3 displacement = (transform.position - enemy.position);
+        Vector3 new_displacement = new Vector3 (300 * displacement.x, 10* displacement.y);
         // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector3 hurt_vector = transform.position - enemy.position + Vector3.up * 5f;
+        Vector3 hurt_vector = displacement + Vector3.up;
 
         // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
         GetComponent<Rigidbody2D>().AddForce(hurt_vector * m_hurt_force);

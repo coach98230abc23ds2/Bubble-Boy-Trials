@@ -430,49 +430,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 9.93, y: 8.56}
---- !u!1 &469354539
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 147886, guid: 66fe2da2077f94183ae003dde85a8b1a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 469354540}
-  - 61: {fileID: 469354541}
-  m_Layer: 10
-  m_Name: Hidden
-  m_TagString: Head
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &469354540
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 492974, guid: 66fe2da2077f94183ae003dde85a8b1a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 469354539}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.61198, y: -14.540559, z: -8.544}
-  m_LocalScale: {x: 0.38021377, y: 0.24965435, z: 0.24965438}
-  m_Children: []
-  m_Father: {fileID: 1526854181}
-  m_RootOrder: 2
---- !u!61 &469354541
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6171450, guid: 66fe2da2077f94183ae003dde85a8b1a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 469354539}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 2.9899998, y: 0.52}
 --- !u!1 &601276156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1445,18 @@ Prefab:
       propertyPath: score_text
       value: 
       objectReference: {fileID: 1136170981}
+    - target: {fileID: 456760, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.739
+      objectReference: {fileID: 0}
+    - target: {fileID: 456760, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419628, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+      propertyPath: m_JumpForce
+      value: 800
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
   m_IsPrefabParent: 0
@@ -1804,7 +1773,6 @@ Transform:
   m_Children:
   - {fileID: 630998265}
   - {fileID: 35808108}
-  - {fileID: 469354540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1534605479
