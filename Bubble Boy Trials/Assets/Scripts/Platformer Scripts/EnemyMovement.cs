@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour {
 
     private int m_move_state = 0;
-    private int m_direction = 1;
+    private int m_direction = -1;
     private float m_speed = 2.0f;
     private float m_timer = 0.0f;
     private float curr_y_pos;
@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour {
     //switches enemy's current moving direction
     private void SwitchDirection(){
         m_direction *= -1;
-        m_timer = 0;
+        m_timer = 1.0f;
         m_just_switched = true;
     }
         
@@ -46,12 +46,16 @@ public class EnemyMovement : MonoBehaviour {
                     this.GetComponent<Rigidbody2D>().velocity = new Vector2(-m_speed, 0);
                 }
             }
+            if (Time.time > 2.0f){
+                m_speed = 5.0f;
+            }
         }
     }
 
     void Update(){
         curr_y_pos = this.transform.position.y;
-        if (m_timer > 1.0f){
+
+        if (m_timer >= 1.0f){
             m_can_move = true; 
         }
 
@@ -61,11 +65,10 @@ public class EnemyMovement : MonoBehaviour {
             if (this.name == "enemy2" || this.name == "enemy2(Clone)"){
                 MoveUpAndDown();          
 //                Debug.Log ("got to enemy2");
-                if (m_timer > 2.0f){
+                if (m_timer > 3.0f){
                     SwitchDirection();
                 }
             }
         }
-
     }
 }

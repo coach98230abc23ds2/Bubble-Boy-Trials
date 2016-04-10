@@ -8,18 +8,16 @@ public class PlatformEnemy : MonoBehaviour {
     private float m_x_pos;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         spawner = Camera.main.GetComponent<EnemySpawner>();
         m_x_pos = this.gameObject.transform.position.x;
+    }
+
+    void Start(){
         hidden_obj = GameObject.Find("Hidden");
-        //hides 'hidden' object used for detecting if the player jumped on the enemy's head
-        hidden_obj.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void Update () {
-        if (hidden_obj != null){
-            hidden_obj.GetComponent<SpriteRenderer>().enabled = false;
-        }
         float y_pos = this.gameObject.transform.position.y;
         if (y_pos <= 0){
             spawner.RemoveFromDict(this.gameObject.name, m_x_pos); 

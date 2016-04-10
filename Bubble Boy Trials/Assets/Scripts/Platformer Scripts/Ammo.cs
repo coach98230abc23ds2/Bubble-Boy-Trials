@@ -7,25 +7,37 @@ public class Ammo : MonoBehaviour {
     private EnemySpawner spawner;
 
     //handles collision for when ammo collides with enemies
-    void OnTriggerEnter2D(Collider2D other){
-        float x_pos = other.gameObject.transform.position.x;
+    void OnCollisionEnter2D(Collision2D coll){
+        float x_pos = coll.gameObject.transform.position.x;
+        Debug.Log(coll.gameObject.tag);
         //destroys ammo and minion; increases player's score
-        if (other.tag == "Enemy"){
-                spawner.RemoveFromDict(other.gameObject.name, x_pos); 
-                Destroy(other.gameObject);
+        if (coll.gameObject.tag == "Enemy"){
+                spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
+                Destroy(coll.gameObject);
                 Destroy(this.gameObject);
                 m_player.GainScore(10);
         }
         //destroys ammo and boss; increases player's score
-        if(other.tag == "Boss"){
-                spawner.RemoveFromDict(other.gameObject.name, x_pos); 
-                Destroy(other.gameObject);
+        if(coll.gameObject.tag == "Boss"){
+                spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
+                Destroy(coll.gameObject);
                 Destroy(this.gameObject);
                 m_player.GainScore(50);
         }   
     }
+
+    void OnTriggerEnter2D(Collider2D coll){
+        float x_pos = coll.gameObject.transform.position.x;
+
+        if (coll.gameObject.tag == "Enemy"){
+            spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
+            Destroy(coll.gameObject);
+            Destroy(this.gameObject);
+            m_player.GainScore(20);
+        }
+    }
     
-    void Start(){
+    void Awake(){
         spawner = Camera.current.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
         m_player = player.GetComponent<PlatformPlayer>();

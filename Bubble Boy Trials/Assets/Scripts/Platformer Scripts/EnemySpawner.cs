@@ -21,11 +21,7 @@ public class EnemySpawner : MonoBehaviour {
     private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
 																    & their current positions */
-
-	//to be implemented																																
-	// private bool IsObjectInRange (){
-
-	// }																													
+                                                                    																										
 
 	private string ListToStr (List<float> list){
 		string x = "[";
@@ -55,7 +51,6 @@ public class EnemySpawner : MonoBehaviour {
 	private void InitializeEnemyPos (){
 		curr_enemy_positions = new Dictionary<string, List<float>>();
 		foreach (GameObject enemy in enemy_types){
-//            curr_enemy_positions.Add(enemy.name, new List<float>());
 			curr_enemy_positions.Add(enemy.name + "(Clone)", new List<float>());
 		}
 	}
@@ -77,7 +72,7 @@ public class EnemySpawner : MonoBehaviour {
 		try{
             float new_pos = pos;
             foreach (float x_pos in curr_enemy_positions[name]){
-                if (Mathf.Abs(x_pos - pos) <= 15.0f){
+                if (Mathf.Abs(x_pos - pos) <= 25.0f){
                     new_pos = x_pos;
                     break;
                 }
@@ -89,24 +84,24 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
     private bool ShouldInstantiate (string enemy_key, float enemy_pos){
-		if (active_objects.Length != 0){
-            
-//            Debug.Log ("ENEMY_NAME: " + enemy_key);
-//            Debug.Log(ListToStr(curr_enemy_positions[enemy_key]));
-//            Debug.Log (System.Convert.ToString(enemy_pos));
 
-            //checks if enemy can be instantiated
-            if (!(curr_enemy_positions[enemy_key].Contains(enemy_pos))){
-    			return true;
-            }else{
-                return false;
-			}
-			
-        }else{
-            return true;
+        try {
+    		if (active_objects.Length != 0){
+        	    if (!(curr_enemy_positions[enemy_key].Contains(enemy_pos))){
+        		    return true;
+                }else{
+                    return false;
+            	} 			
+            }
+            else{
+               return true;
+            }
         }
-   
-	}
+        catch (Exception e){
+            return false;
+        }
+       
+    }
 
 	//spawns minions in designated positions if the player is in viewable range
 	private void SpawnMinions (){
@@ -126,39 +121,33 @@ public class EnemySpawner : MonoBehaviour {
                     break;
             }
             for (int i = 0; i< curr_positions.Length; i++){
-                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 15.0f)
-    			{  
+                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 25.0f){  
                     if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i])){
-    					spawn_position = new Vector2 (curr_positions[i], 25);
-    					GameObject new_enemy = (GameObject) Instantiate(enemy, 
-                                    spawn_position, enemy.transform.rotation);
-                        AddToDict(new_enemy.name, curr_positions[i]);
-    				}
-    			}
-    		}
+    		    					spawn_position = new Vector2 (curr_positions[i], 25);
+    		    					GameObject new_enemy = (GameObject) Instantiate(enemy, 
+    		                                    spawn_position, enemy.transform.rotation);
+    		                        AddToDict(new_enemy.name, curr_positions[i]);
+    		    				}
+    		    		}
+    		    }
         }
 	}
 
-    IEnumerator InitialWait(){
-        yield return new WaitForSeconds(3);
+    void Awake(){
+        InitializeEnemyPos();
+        m_player_pos = player.transform.position.x;
     }
-	
 	// Use this for initialization
 	void Start () {
-		InitializeEnemyPos();
-        StartCoroutine(InitialWait());
-        m_player_pos = player.transform.position.x;
         SpawnMinions();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
 		active_objects.Distinct();
 		m_timer += Time.deltaTime;
-		if(m_timer > 5.0f){
-//			Debug.Log("ACTIVE OBJECTS:"+ ArrayToStr(active_objects));
-//			PrintDict();
+		if(m_timer > 3.5f){
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();
 			m_timer = 0.0f;

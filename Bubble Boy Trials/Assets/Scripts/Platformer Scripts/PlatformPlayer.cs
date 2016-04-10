@@ -1,21 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class PlatformPlayer : MonoBehaviour {
+
+    public float m_repeat_damage_period= 2f; // how frequently the player can be damaged.
+    public float m_health = 100f; // the player's m_health
+    public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
+    public float m_hurt_force = 2000f;               // The force with which the player is pushed when hurt.
+    public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
-    private bool m_invincible = false;
-    private EnemySpawner spawner;
+    private bool m_touched_head = false;
+    private float m_last_hit_time; // the time at which the player was last hit.
+    private float m_score_penalty = .30f; // how much the player's score is reduced after dying
+    private EnemySpawner m_spawner;
+    private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
+    private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
+    private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
+    private Animator m_anim;                      // Reference to the animator on the player
 
-    public Text lives_text;
     public Text score_text; 
 
+    void Awake (){
+        // Setting up references.
+        m_player_control = GetComponent<Platformer2DUserControl>();
+        m_health_bar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+//        m_anim = GetComponent<m_animator>();
+        m_health_scale = m_health_bar.transform.localScale;
+        m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
+    }
+
     private void RespawnPlayer(){
-        m_lives = 3;
-//        Transform player_transform = this.gameObject.transform;
+        GetComponent<Platformer2DUserControl>().enabled = true;
+        GetComponentInChildren<Weapon>().enabled = true;
+        m_health = 100;
+        UpdateHealthBar();
+        m_score -= (int) (m_score * m_score_penalty);
         Vector2 temp = this.gameObject.transform.position;
         temp.x = 5.3f;
         temp.y = 20.0f;
@@ -28,28 +52,8 @@ public class PlatformPlayer : MonoBehaviour {
         m_score += increment * m_num_combos;
     }
 
-    //decreases lives by 1
-    public void LoseLives (){
-        if (!m_invincible){
-            m_lives--; 
-            m_invincible = true;
-            StartCoroutine(Invincible(3.0f));
-            m_invincible = false;
-        }
-    }
-
-    IEnumerator Invincible(float wait_time){
-        yield return new WaitForSeconds(wait_time);
-    }
-
-	// Use this for initialization
-	void Start () {
-        spawner = Camera.main.GetComponent<EnemySpawner>();
-	}
-	
 	// Update is called once per frame
 	void Update () {
-        lives_text.text = "Lives: " + m_lives;
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
             || m_lives <= 0){
@@ -57,19 +61,111 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter2D(Collider2D other){
-        if (other.tag == "Head"){
-            this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 300);
-            GameObject parent_enemy = other.gameObject.transform.parent.gameObject;
-            spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-            Destroy(parent_enemy);
-            GainScore(10);
+    void OnCollisionEnter2D(Collision2D coll){      
+        if (coll.gameObject.name == "enemy1(Clone)"){
+            if (Time.time > m_last_hit_time + m_repeat_damage_period) 
+            {
+                if(m_health > 0f)
+                {
+                    TakeDamage(coll.transform); 
+                    m_last_hit_time = Time.time; 
+                }
+                else
+                {
+                    // Find all of the colliders on the gameobject and set them all to be triggers.
+                    Collider2D[] cols = GetComponents<Collider2D>();
+                    foreach(Collider2D c in cols)
+                    {
+                        c.isTrigger = true;
+                    }
 
-        }else if (other.tag != "Ground"){
-            if (!m_invincible){
-                LoseLives();
+                    // Move all sprite parts of the player to the front
+                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+                    foreach(SpriteRenderer s in spr)
+                    {
+                        s.sortingLayerName = "UI";
+                    }
+
+                    GetComponent<Platformer2DUserControl>().enabled = false;
+                    GetComponentInChildren<Weapon>().enabled = false;
+//                    m_anim.SetTrigger("Die");
+                }
             }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D coll){
+        if (coll.gameObject.tag == "Head"){
+            this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,2000));
+            GameObject parent_enemy = coll.gameObject.transform.parent.gameObject;
+            m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
+            Destroy(parent_enemy);
+            GainScore(10);
+        }else if (coll.gameObject.name == "enemy2(Clone)"){
+            // need to fix this; enemies go right through enemy2.
+            if (Time.time > m_last_hit_time + m_repeat_damage_period) 
+            {
+                if(m_health > 0f)
+                {
+                    TakeDamage(coll.transform); 
+                    m_last_hit_time = Time.time; 
+                }
+                else
+                {
+                    // Find all of the colliders on the gameobject and set them all to be triggers.
+                    Collider2D[] cols = GetComponents<Collider2D>();
+                    foreach(Collider2D c in cols)
+                    {
+                        c.isTrigger = true;
+                    }
+
+                    // Move all sprite parts of the player to the front
+                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+                    foreach(SpriteRenderer s in spr)
+                    {
+                        s.sortingLayerName = "UI";
+                    }
+
+                    GetComponent<Platformer2DUserControl>().enabled = false;
+                    GetComponentInChildren<Weapon>().enabled = false;
+//                    m_anim.SetTrigger("Die");
+                }
+            }
+        }
+    }
+
+    void TakeDamage (Transform enemy)
+    {
+        m_player_control.m_Jump = false;
+
+        // Create a vector that's from the enemy to the player with an upwards boost.
+        Vector3 hurt_vector = transform.position - enemy.position + Vector3.up * 5f;
+
+        // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
+        GetComponent<Rigidbody2D>().AddForce(hurt_vector * m_hurt_force);
+
+        // Reduce the player's m_health by 10.
+        m_health -= m_damage_amount;
+
+        // Update what the m_health bar looks like.
+        UpdateHealthBar();
+
+        // Play a random clip of the player getting hurt.
+//        int i = Random.Range (0, m_ouch_clips.Length);
+//        AudioSource.PlayClipAtPoint(m_ouch_clips[i], transform.position);
+    }
+
+    public void UpdateHealthBar ()
+    {
+        // Set the health bar's colour to proportion of the way between green and red based on the player's health.
+        m_health_bar.material.color = Color.Lerp(Color.green, Color.red, 1 - m_health * 0.01f);
+
+        // Set the scale of the health bar to be proportional to the player's health.
+        m_health_bar.transform.localScale = new Vector3(m_health_scale.x * m_health * 0.01f, 1, 1);
+    }
+
+
+
+   
 
 }

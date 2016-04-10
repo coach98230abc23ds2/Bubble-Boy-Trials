@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 		// Getting the intial scale of the healthbar (whilst the player has full health).
 		healthScale = healthBar.transform.localScale;
 	}
-
+    
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
