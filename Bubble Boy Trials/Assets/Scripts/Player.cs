@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         if (healthBar != null && canvas != null)
         {
             // centers the health bar above the player
+            healthBar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
             RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
             Vector2 ViewportPos = Camera.main.WorldToViewportPoint(transform.position);
 

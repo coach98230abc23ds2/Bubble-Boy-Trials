@@ -129,7 +129,7 @@ MonoBehaviour:
   Left_Node: {fileID: 0}
   Up_Node: {fileID: 1707287472}
   Right_Node: {fileID: 0}
-  Scene_Id: PlatformerScene
+  Scene_Id: BattleScene
 --- !u!212 &31377799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -243,6 +243,7 @@ GameObject:
   - 4: {fileID: 593260940}
   - 114: {fileID: 593260939}
   - 212: {fileID: 593260938}
+  - 95: {fileID: 593260941}
   m_Layer: 0
   m_Name: MazePlayer
   m_TagString: Player
@@ -305,6 +306,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!95 &593260941
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 593260937}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bcc2d83c8e85244d2ae78855b8bfe381, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &674968537
 GameObject:
   m_ObjectHideFlags: 0
