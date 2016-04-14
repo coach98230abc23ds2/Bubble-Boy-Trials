@@ -18,12 +18,13 @@ public class Ammo : MonoBehaviour {
                 m_player.GainScore(10);
         }
         //destroys ammo and boss; increases player's score
-        if(coll.gameObject.tag == "Boss"){
-                spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
-                Destroy(coll.gameObject);
-                Destroy(this.gameObject);
-                m_player.GainScore(50);
-        }   
+//        if (Time.time > last_hit_time + 
+            if(coll.gameObject.tag == "Boss"){
+                    spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
+                    Destroy(coll.gameObject);
+                    Destroy(this.gameObject);
+                    m_player.GainScore(50);
+            }   
     }
 
     void OnTriggerEnter2D(Collider2D coll){

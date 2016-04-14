@@ -108,7 +108,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 30
+  m_MaxValue: 100
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -313,6 +313,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 47a82cad23a3241318d426d0008ffb67,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101440}
