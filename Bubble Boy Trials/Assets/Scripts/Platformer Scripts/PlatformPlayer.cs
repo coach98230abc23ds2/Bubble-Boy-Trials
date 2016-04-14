@@ -42,7 +42,8 @@ public class PlatformPlayer : MonoBehaviour {
     private void RespawnPlayer(){
         GetComponent<Platformer2DUserControl>().enabled = true;
         GetComponentInChildren<Weapon>().enabled = true;
-        m_health = 100;
+        m_health = 100f;
+        health_bar.GetComponent<Slider>().value = m_health;
         m_score -= (int) (m_score * m_score_penalty);
         Vector2 temp = this.gameObject.transform.position;
         temp.x = 5.3f;
