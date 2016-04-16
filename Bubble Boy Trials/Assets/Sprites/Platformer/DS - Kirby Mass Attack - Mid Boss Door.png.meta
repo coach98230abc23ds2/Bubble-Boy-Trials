@@ -1,0 +1,1444 @@
+fileFormatVersion: 2
+guid: 4796a544ccf3f4e3c90860137b1c1134
+timeCreated: 1460770496
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DS - Kirby Mass Attack - Mid Boss Door_0
+    21300002: DS - Kirby Mass Attack - Mid Boss Door_1
+    21300004: DS - Kirby Mass Attack - Mid Boss Door_2
+    21300006: DS - Kirby Mass Attack - Mid Boss Door_3
+    21300008: DS - Kirby Mass Attack - Mid Boss Door_4
+    21300010: DS - Kirby Mass Attack - Mid Boss Door_5
+    21300012: DS - Kirby Mass Attack - Mid Boss Door_6
+    21300014: DS - Kirby Mass Attack - Mid Boss Door_7
+    21300016: DS - Kirby Mass Attack - Mid Boss Door_8
+    21300018: DS - Kirby Mass Attack - Mid Boss Door_9
+    21300020: DS - Kirby Mass Attack - Mid Boss Door_10
+    21300022: DS - Kirby Mass Attack - Mid Boss Door_11
+    21300024: DS - Kirby Mass Attack - Mid Boss Door_12
+    21300026: DS - Kirby Mass Attack - Mid Boss Door_13
+    21300028: DS - Kirby Mass Attack - Mid Boss Door_14
+    21300030: DS - Kirby Mass Attack - Mid Boss Door_15
+    21300032: DS - Kirby Mass Attack - Mid Boss Door_16
+    21300034: DS - Kirby Mass Attack - Mid Boss Door_17
+    21300036: DS - Kirby Mass Attack - Mid Boss Door_18
+    21300038: DS - Kirby Mass Attack - Mid Boss Door_19
+    21300040: DS - Kirby Mass Attack - Mid Boss Door_20
+    21300042: DS - Kirby Mass Attack - Mid Boss Door_21
+    21300044: DS - Kirby Mass Attack - Mid Boss Door_22
+    21300046: DS - Kirby Mass Attack - Mid Boss Door_23
+    21300048: DS - Kirby Mass Attack - Mid Boss Door_24
+    21300050: DS - Kirby Mass Attack - Mid Boss Door_25
+    21300052: DS - Kirby Mass Attack - Mid Boss Door_26
+    21300054: DS - Kirby Mass Attack - Mid Boss Door_27
+    21300056: DS - Kirby Mass Attack - Mid Boss Door_28
+    21300058: DS - Kirby Mass Attack - Mid Boss Door_29
+    21300060: DS - Kirby Mass Attack - Mid Boss Door_30
+    21300062: DS - Kirby Mass Attack - Mid Boss Door_31
+    21300064: DS - Kirby Mass Attack - Mid Boss Door_32
+    21300066: DS - Kirby Mass Attack - Mid Boss Door_33
+    21300068: DS - Kirby Mass Attack - Mid Boss Door_34
+    21300070: DS - Kirby Mass Attack - Mid Boss Door_35
+    21300072: DS - Kirby Mass Attack - Mid Boss Door_36
+    21300074: DS - Kirby Mass Attack - Mid Boss Door_37
+    21300076: DS - Kirby Mass Attack - Mid Boss Door_38
+    21300078: DS - Kirby Mass Attack - Mid Boss Door_39
+    21300080: DS - Kirby Mass Attack - Mid Boss Door_40
+    21300082: DS - Kirby Mass Attack - Mid Boss Door_41
+    21300084: DS - Kirby Mass Attack - Mid Boss Door_42
+    21300086: DS - Kirby Mass Attack - Mid Boss Door_43
+    21300088: DS - Kirby Mass Attack - Mid Boss Door_44
+    21300090: DS - Kirby Mass Attack - Mid Boss Door_45
+    21300092: DS - Kirby Mass Attack - Mid Boss Door_46
+    21300094: DS - Kirby Mass Attack - Mid Boss Door_47
+    21300096: DS - Kirby Mass Attack - Mid Boss Door_48
+    21300098: DS - Kirby Mass Attack - Mid Boss Door_49
+    21300100: DS - Kirby Mass Attack - Mid Boss Door_50
+    21300102: DS - Kirby Mass Attack - Mid Boss Door_51
+    21300104: DS - Kirby Mass Attack - Mid Boss Door_52
+    21300106: DS - Kirby Mass Attack - Mid Boss Door_53
+    21300108: DS - Kirby Mass Attack - Mid Boss Door_54
+    21300110: DS - Kirby Mass Attack - Mid Boss Door_55
+    21300112: DS - Kirby Mass Attack - Mid Boss Door_56
+    21300114: DS - Kirby Mass Attack - Mid Boss Door_57
+    21300116: DS - Kirby Mass Attack - Mid Boss Door_58
+    21300118: DS - Kirby Mass Attack - Mid Boss Door_59
+    21300120: DS - Kirby Mass Attack - Mid Boss Door_60
+    21300122: DS - Kirby Mass Attack - Mid Boss Door_61
+    21300124: DS - Kirby Mass Attack - Mid Boss Door_62
+    21300126: DS - Kirby Mass Attack - Mid Boss Door_63
+    21300128: DS - Kirby Mass Attack - Mid Boss Door_64
+    21300130: DS - Kirby Mass Attack - Mid Boss Door_65
+    21300132: DS - Kirby Mass Attack - Mid Boss Door_66
+    21300134: DS - Kirby Mass Attack - Mid Boss Door_67
+    21300136: DS - Kirby Mass Attack - Mid Boss Door_68
+    21300138: DS - Kirby Mass Attack - Mid Boss Door_69
+    21300140: DS - Kirby Mass Attack - Mid Boss Door_70
+    21300142: DS - Kirby Mass Attack - Mid Boss Door_71
+    21300144: DS - Kirby Mass Attack - Mid Boss Door_72
+    21300146: DS - Kirby Mass Attack - Mid Boss Door_73
+    21300148: DS - Kirby Mass Attack - Mid Boss Door_74
+    21300150: DS - Kirby Mass Attack - Mid Boss Door_75
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 30
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DS - Kirby Mass Attack - Mid Boss Door_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 239
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 135
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_9
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 135
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_10
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_12
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_13
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_14
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_15
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_16
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_17
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_18
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_19
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_20
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_21
+      rect:
+        serializedVersion: 2
+        x: 1171
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_22
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_23
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_24
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_25
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_26
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_27
+      rect:
+        serializedVersion: 2
+        x: 1807
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_28
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_29
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_30
+      rect:
+        serializedVersion: 2
+        x: 2127
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_31
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_32
+      rect:
+        serializedVersion: 2
+        x: 2339
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_33
+      rect:
+        serializedVersion: 2
+        x: 2443
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_34
+      rect:
+        serializedVersion: 2
+        x: 2551
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_35
+      rect:
+        serializedVersion: 2
+        x: 2655
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_36
+      rect:
+        serializedVersion: 2
+        x: 2763
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_37
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_38
+      rect:
+        serializedVersion: 2
+        x: 2975
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_39
+      rect:
+        serializedVersion: 2
+        x: 3079
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_40
+      rect:
+        serializedVersion: 2
+        x: 3187
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_41
+      rect:
+        serializedVersion: 2
+        x: 3291
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_42
+      rect:
+        serializedVersion: 2
+        x: 3399
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_43
+      rect:
+        serializedVersion: 2
+        x: 3503
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_44
+      rect:
+        serializedVersion: 2
+        x: 3611
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_45
+      rect:
+        serializedVersion: 2
+        x: 3715
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_46
+      rect:
+        serializedVersion: 2
+        x: 3823
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_47
+      rect:
+        serializedVersion: 2
+        x: 3927
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_48
+      rect:
+        serializedVersion: 2
+        x: 4035
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_49
+      rect:
+        serializedVersion: 2
+        x: 4139
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_50
+      rect:
+        serializedVersion: 2
+        x: 4247
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_51
+      rect:
+        serializedVersion: 2
+        x: 4351
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_52
+      rect:
+        serializedVersion: 2
+        x: 4459
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_53
+      rect:
+        serializedVersion: 2
+        x: 4563
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_54
+      rect:
+        serializedVersion: 2
+        x: 4671
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_55
+      rect:
+        serializedVersion: 2
+        x: 4775
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_56
+      rect:
+        serializedVersion: 2
+        x: 4883
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_57
+      rect:
+        serializedVersion: 2
+        x: 4987
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_58
+      rect:
+        serializedVersion: 2
+        x: 5095
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_59
+      rect:
+        serializedVersion: 2
+        x: 5199
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_60
+      rect:
+        serializedVersion: 2
+        x: 5307
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_61
+      rect:
+        serializedVersion: 2
+        x: 5411
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_62
+      rect:
+        serializedVersion: 2
+        x: 5519
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_63
+      rect:
+        serializedVersion: 2
+        x: 5623
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_64
+      rect:
+        serializedVersion: 2
+        x: 5731
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_65
+      rect:
+        serializedVersion: 2
+        x: 5835
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_66
+      rect:
+        serializedVersion: 2
+        x: 5943
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_67
+      rect:
+        serializedVersion: 2
+        x: 6047
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_68
+      rect:
+        serializedVersion: 2
+        x: 6155
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_69
+      rect:
+        serializedVersion: 2
+        x: 6259
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_70
+      rect:
+        serializedVersion: 2
+        x: 6367
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_71
+      rect:
+        serializedVersion: 2
+        x: 6471
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_72
+      rect:
+        serializedVersion: 2
+        x: 6579
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_73
+      rect:
+        serializedVersion: 2
+        x: 6683
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_74
+      rect:
+        serializedVersion: 2
+        x: 6791
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    - name: DS - Kirby Mass Attack - Mid Boss Door_75
+      rect:
+        serializedVersion: 2
+        x: 6896
+        y: 31
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43, y: 44}
+        - {x: 35, y: 48}
+        - {x: -40, y: 48}
+        - {x: -47, y: 44}
+        - {x: -47, y: -48}
+        - {x: 47, y: -48}
+        - {x: 47, y: 43}
+        - {x: 44, y: 44}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
