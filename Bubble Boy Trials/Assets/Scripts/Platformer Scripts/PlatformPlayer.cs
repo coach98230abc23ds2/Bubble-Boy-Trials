@@ -118,7 +118,7 @@ public class PlatformPlayer : MonoBehaviour {
     }
 
     IEnumerator WaitToSwitch(){
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
         Application.LoadLevel("BattleScene");
 
