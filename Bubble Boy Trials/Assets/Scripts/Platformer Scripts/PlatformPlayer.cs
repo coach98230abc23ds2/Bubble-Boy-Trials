@@ -10,7 +10,7 @@ public class PlatformPlayer : MonoBehaviour {
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 300f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
-    public float hit_height = 3f; //height at which player will hit the enemy's head 
+    public float hit_height = 10.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
 
     private int m_lives = 3; //player's remaining lives
@@ -18,7 +18,7 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
     private float m_last_hit_time; // the time at which the player was last hit.
-    private float m_score_penalty = .30f; // how much the player's score is reduced after dying
+    private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private EnemySpawner m_spawner;
     private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
     private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
@@ -37,6 +37,7 @@ public class PlatformPlayer : MonoBehaviour {
         health_bar.GetComponent<Slider>().value = m_health;
 
         m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
+        m_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
     }
 
     private void RespawnPlayer(){
@@ -53,8 +54,8 @@ public class PlatformPlayer : MonoBehaviour {
 
     //increases score by the increment number
     public void GainScore (int increment){
-        m_num_combos++;
-        m_score += increment * m_num_combos;
+//        m_num_combos++;-
+        m_score += increment /* * m_num_combos*/;
     }
 
 	// Update is called once per frame
@@ -85,17 +86,14 @@ public class PlatformPlayer : MonoBehaviour {
     void FixedUpdate(){
         Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
         Vector2 down_dir = transform.TransformDirection(Vector2.down);
-        Vector2 size = new Vector2(1.564927f, 0.5199999f);
-        float angle = 180f;
-
+ 
         RaycastHit2D[] hit = Physics2D.RaycastAll(cast_origin, down_dir, hit_height, 1 << 13);
 
         if (hit != null){
-            foreach (RaycastHit2D head_hit in hit){
-                Debug.Log(head_hit.transform.tag);
-                if(head_hit.transform.tag == "Enemy"){
+            foreach (RaycastHit2D collider_hit in hit){
+                if(collider_hit.transform.tag == "Enemy"){
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,1500));
-                    GameObject parent_enemy = head_hit.transform.gameObject;
+                    GameObject parent_enemy = collider_hit.transform.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
                     Destroy(parent_enemy);
                     GainScore(10);
@@ -103,6 +101,27 @@ public class PlatformPlayer : MonoBehaviour {
             }
             
         }
+
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, down_dir, Mathf.Infinity, 1 << 14);
+
+        if (hit2 != null){
+            foreach (RaycastHit2D collider_hit in hit2){
+                if(collider_hit.transform.gameObject.name == "BossDoor"){
+                    if (Input.GetKeyDown("up") || Input.GetKeyUp("up")){
+                        m_anim.SetBool("is_active", true);
+                        StartCoroutine(WaitToSwitch());
+                    }
+                }
+            }
+        }
+
+    }
+
+    IEnumerator WaitToSwitch(){
+        yield return new WaitForSeconds(1.3f);
+        Destroy(gameObject);
+        Application.LoadLevel("BattleScene");
+
     }
 
     void OnCollisionEnter2D(Collision2D coll){      
@@ -207,9 +226,4 @@ public class PlatformPlayer : MonoBehaviour {
             is_dead = true;
         }
     }
-
-
-
-   
-
 }
