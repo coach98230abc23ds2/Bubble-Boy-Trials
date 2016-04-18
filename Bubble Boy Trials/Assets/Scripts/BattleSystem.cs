@@ -70,7 +70,7 @@ public class BattleSystem : MonoBehaviour
 
         if (bubble != null)
         {
-            bubble.transform.position += Vector3(1,0,0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+            bubble.transform.position += new Vector3(1,0,0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
             if (bubbleLive && attackingPlayer && Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5)
             {
                 bubble.GetComponent<Animator>().SetTrigger("Burst");
