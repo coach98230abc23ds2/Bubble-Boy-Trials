@@ -43,6 +43,12 @@ public class Player : MonoBehaviour
     {
         Health -= damage;
 
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
+
         if (healthBar != null)
         {
             healthBar.GetComponent<Slider>().value = Health;

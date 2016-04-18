@@ -40,6 +40,9 @@ public class BattleSystem : MonoBehaviour
     private List<Button> answers;
     private Problem current_problem;
 
+    private GameObject bubble;
+    private bool attackingPlayer;
+    private bool bubbleLive;
 
     private int comboChain;
 
@@ -64,6 +67,24 @@ public class BattleSystem : MonoBehaviour
     void FixedUpdate()
     {
         timeRemaining -= Time.fixedDeltaTime;
+
+        if (bubble != null)
+        {
+            bubble.transform.position += Vector3(1,0,0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+            if (bubbleLive && attackingPlayer && Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5)
+            {
+                bubble.GetComponent<Animator>().SetTrigger("Burst");
+                PlayerTurn();
+                bubbleLive = false;
+            }
+            else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
+            {
+                bubble.GetComponent<Animator>().SetTrigger("Burst");
+                RightAnswer();
+                bubbleLive = false;
+            }
+        }
+
         switch (current_state)
         {
             case BattleState.player_turn:
@@ -76,6 +97,11 @@ public class BattleSystem : MonoBehaviour
             case BattleState.enemy_turn:
                 if (timeRemaining < ReactionWindow)
                 {
+                    Animator animator = enemy.GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Attacking");
+                    }
                     battleMessage.text = "NOW!";
                 }
                 else
@@ -187,6 +213,14 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void RightAnswer()
+    {
+        bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        bubble.transform.position = player.transform.position + new Vector3(5, 0, 0);
+
+        bubbleLive = true;
+    }
+
+    private void ApplyHit()
     {
         int dmg = 10;
         if (comboChain >= 3)
