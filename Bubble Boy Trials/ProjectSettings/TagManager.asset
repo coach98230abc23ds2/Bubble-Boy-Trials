@@ -20,6 +20,9 @@ TagManager:
   - Ammo
   - Head
   - Boss
+  - Incline
+  - Flat
+  - Decline
   layers:
   - Default
   - TransparentFX

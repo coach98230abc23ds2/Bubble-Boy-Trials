@@ -8,7 +8,7 @@ public class PlatformPlayer : MonoBehaviour {
     public float m_repeat_damage_period= 2f; // how frequently the player can be damaged.
     public float m_health = 100f; // the player's m_health
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
-    public float m_hurt_force = 300f;               // The force with which the player is pushed when hurt.
+    public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
     public float hit_height = 10.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
@@ -195,13 +195,14 @@ public class PlatformPlayer : MonoBehaviour {
     {
         m_player_control.m_Jump = false;
 
-        Vector3 displacement = (transform.position - enemy.position);
-        Vector3 new_displacement = new Vector3 (300 * displacement.x, 10* displacement.y);
+        Vector2 displacement = (transform.position - enemy.position);
+        Debug.Log("Displacement: " + System.Convert.ToString(displacement));
+        Vector2 new_displacement = new Vector2 (5000* displacement.x, 5 *displacement.y);
         // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector3 hurt_vector = displacement + Vector3.up;
+        Vector2 hurt_vector = new_displacement + Vector2.up;
 
         // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
-        GetComponent<Rigidbody2D>().AddForce(hurt_vector * m_hurt_force);
+        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);

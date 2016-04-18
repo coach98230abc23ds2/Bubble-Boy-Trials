@@ -97,7 +97,7 @@ GameObject:
   - 60: {fileID: 165530}
   m_Layer: 12
   m_Name: blockG
-  m_TagString: ground
+  m_TagString: Incline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -484,19 +484,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 432830, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6175480, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
-      propertyPath: m_Size.x
-      value: 3.0776775
-      objectReference: {fileID: 0}
-    - target: {fileID: 6175480, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
-      propertyPath: m_Offset.x
-      value: -0.000015258789
-      objectReference: {fileID: 0}
-    - target: {fileID: 6175480, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
-      propertyPath: m_Offset.y
-      value: -4.8199997
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
@@ -513,7 +501,7 @@ GameObject:
   - 61: {fileID: 381024568}
   m_Layer: 12
   m_Name: blockF
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +574,7 @@ GameObject:
   - 61: {fileID: 601276159}
   m_Layer: 12
   m_Name: blockJ
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -718,7 +706,7 @@ GameObject:
   - 61: {fileID: 672991135}
   m_Layer: 12
   m_Name: blockA
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,7 +779,7 @@ GameObject:
   - 60: {fileID: 684311692}
   m_Layer: 12
   m_Name: blockE
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -918,7 +906,7 @@ GameObject:
   - 60: {fileID: 693016190}
   m_Layer: 12
   m_Name: blockK
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1005,7 +993,7 @@ GameObject:
   - 60: {fileID: 766938369}
   m_Layer: 12
   m_Name: blockI
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1147,7 +1135,7 @@ GameObject:
   - 61: {fileID: 863998803}
   m_Layer: 12
   m_Name: blockM (1)
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1220,7 +1208,7 @@ GameObject:
   - 61: {fileID: 892906384}
   m_Layer: 12
   m_Name: blockL
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1418,7 +1406,7 @@ GameObject:
   - 60: {fileID: 1152302980}
   m_Layer: 12
   m_Name: blockC
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1499,7 +1487,7 @@ GameObject:
   - 61: {fileID: 1209756889}
   m_Layer: 12
   m_Name: miniblocksepA
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1555,7 +1543,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1209756888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.13281, y: -4.7004447, z: 0}
+  m_LocalPosition: {x: 103.2, y: -4.7004447, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 283331110}
@@ -1572,7 +1560,7 @@ GameObject:
   - 61: {fileID: 1318479699}
   m_Layer: 12
   m_Name: blockB
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1784,7 +1772,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!1 &1526854179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1952,7 @@ GameObject:
   - 61: {fileID: 1562521097}
   m_Layer: 12
   m_Name: blockH
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2037,7 +2025,7 @@ GameObject:
   - 61: {fileID: 1661662398}
   m_Layer: 12
   m_Name: blockD
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2110,7 +2098,7 @@ GameObject:
   - 61: {fileID: 1684001516}
   m_Layer: 12
   m_Name: miniblocksepB
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2183,7 +2171,7 @@ GameObject:
   - 61: {fileID: 1844478883}
   m_Layer: 12
   m_Name: miniblocksepC
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2256,7 +2244,7 @@ GameObject:
   - 61: {fileID: 1957648419}
   m_Layer: 12
   m_Name: blockM
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2326,7 +2314,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 161.07
+      value: 68.4
       objectReference: {fileID: 0}
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2354,12 +2342,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461440, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11463150, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
       propertyPath: score_text
       value: 
       objectReference: {fileID: 1136170981}
+    - target: {fileID: 5033526, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d885083fb2da74422a7b12ff36b94dfc, type: 2}
   m_IsPrefabParent: 0
@@ -2434,7 +2426,7 @@ GameObject:
   - 61: {fileID: 2078640824}
   m_Layer: 12
   m_Name: miniblocksepD
-  m_TagString: ground
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
