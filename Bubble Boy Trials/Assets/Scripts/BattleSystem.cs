@@ -70,7 +70,7 @@ public class BattleSystem : MonoBehaviour
 
         if (bubble != null)
         {
-            bubble.transform.position += Vector3(1,0,0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+            bubble.transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
             if (bubbleLive && attackingPlayer && Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5)
             {
                 bubble.GetComponent<Animator>().SetTrigger("Burst");
@@ -80,7 +80,7 @@ public class BattleSystem : MonoBehaviour
             else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
             {
                 bubble.GetComponent<Animator>().SetTrigger("Burst");
-                RightAnswer();
+                ApplyHit();
                 bubbleLive = false;
             }
         }
@@ -116,10 +116,12 @@ public class BattleSystem : MonoBehaviour
                 }
                 else if (timeRemaining < ReactionWindow && Input.GetKeyDown(KeyCode.Space))
                 {
+                    player.GetComponent<Animator>().SetTrigger("Defend");
                     PlayerTurn();
                 }
                 else if (Input.GetKeyDown(KeyCode.X))
                 {
+                    player.GetComponent<Animator>().SetTrigger("Defend");
                     PlayerTurn();
                     player.GetComponent<Player>().TakeDamage(20);
                 }
@@ -215,9 +217,10 @@ public class BattleSystem : MonoBehaviour
     private void RightAnswer()
     {
         bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        bubble.transform.position = player.transform.position + new Vector3(5, 0, 0);
+        bubble.transform.position = player.transform.position + new Vector3(0.5f, 0, 0);
 
         bubbleLive = true;
+        player.GetComponent<Animator>().SetTrigger("Attack");
     }
 
     private void ApplyHit()

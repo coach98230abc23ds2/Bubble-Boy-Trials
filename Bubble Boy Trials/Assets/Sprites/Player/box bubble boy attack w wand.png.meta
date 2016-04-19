@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 01e261e16edb2453da7312019b4dfb44
+timeCreated: 1461024005
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: box bubble boy attack w wand_0
+    21300002: box bubble boy attack w wand_1
+    21300004: box bubble boy attack w wand_2
+    21300006: box bubble boy attack w wand_3
+    21300008: box bubble boy attack w wand_4
+    21300010: box bubble boy attack w wand_5
+    21300012: box bubble boy attack w wand_6
+    21300014: box bubble boy attack w wand_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: box bubble boy attack w wand_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 89
+        width: 447
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -106.568, y: 167.068}
+        - {x: -106.568, y: -1.9320068}
+        - {x: -85.568, y: -103.93201}
+        - {x: -38.568, y: -102.93201}
+        - {x: -19.568, y: -111.93201}
+        - {x: -20.568, y: -92.93201}
+        - {x: -21.568, y: -148.932}
+        - {x: -18.568, y: -171.932}
+        - {x: -13.568001, y: -175.932}
+        - {x: 47.432, y: -175.932}
+        - {x: 47.432, y: 167.068}
+    - name: box bubble boy attack w wand_1
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 89
+        width: 449
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 74.20401, y: 136.068}
+        - {x: 54.20401, y: 158.068}
+        - {x: 34.20401, y: 175.068}
+        - {x: -73.79599, y: 175.068}
+        - {x: -79.79599, y: 172.068}
+        - {x: -79.79599, y: 34.067993}
+        - {x: -56.79599, y: -59.932007}
+        - {x: -26.79599, y: -161.932}
+        - {x: -13.79599, y: -175.932}
+        - {x: 41.20401, y: -175.932}
+        - {x: 44.20401, y: -174.932}
+        - {x: 51.20401, y: -169.932}
+        - {x: 57.20401, y: -58.932007}
+        - {x: 74.20401, y: 83.06799}
+    - name: box bubble boy attack w wand_2
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 89
+        width: 449
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 74.98804, y: -33.932007}
+        - {x: 40.988037, y: 13.067993}
+        - {x: 77.98804, y: 76.06799}
+        - {x: 77.98804, y: 135.068}
+        - {x: 74.98804, y: 146.068}
+        - {x: 16.988037, y: 175.068}
+        - {x: -51.011963, y: 175.068}
+        - {x: -73.01196, y: 165.068}
+        - {x: -80.01196, y: 138.068}
+        - {x: -80.01196, y: 13.067993}
+        - {x: -19.011963, y: -175.932}
+        - {x: 51.988037, y: -175.932}
+        - {x: 63.988037, y: -169.932}
+        - {x: 77.98804, y: -69.93201}
+        - {x: 77.98804, y: -40.932007}
+      - - {x: -60.011963, y: 158.068}
+        - {x: -57.011963, y: 159.068}
+        - {x: -57.011963, y: 162.068}
+        - {x: -60.011963, y: 163.068}
+        - {x: -62.011963, y: 161.068}
+    - name: box bubble boy attack w wand_3
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 89
+        width: 452
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 114.28406, y: 186.068}
+        - {x: 114.28406, y: -184.932}
+        - {x: 117.28406, y: -184.932}
+        - {x: 117.28406, y: 186.068}
+      - - {x: 59.284058, y: 157.068}
+        - {x: 27.284058, y: 174.068}
+        - {x: -34.715942, y: 174.068}
+        - {x: -70.71594, y: 154.068}
+        - {x: -70.71594, y: 66.06799}
+        - {x: -48.715942, y: 33.067993}
+        - {x: -21.715942, y: 35.067993}
+        - {x: -17.715942, y: 34.067993}
+        - {x: -12.715942, y: 35.067993}
+        - {x: -20.715942, y: 34.067993}
+        - {x: -26.715942, y: 34.067993}
+        - {x: -43.715942, y: 27.067993}
+        - {x: -70.71594, y: -3.9320068}
+        - {x: -70.71594, y: -119.93201}
+        - {x: -25.715942, y: -175.932}
+        - {x: 68.28406, y: -175.932}
+        - {x: 107.28406, y: -55.932007}
+        - {x: 107.28406, y: 96.06799}
+        - {x: 96.28406, y: 131.068}
+    - name: box bubble boy attack w wand_4
+      rect:
+        serializedVersion: 2
+        x: 1964
+        y: 89
+        width: 447
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 98.568054, y: 50.067993}
+        - {x: 90.568054, y: 48.067993}
+        - {x: 84.568054, y: 39.067993}
+        - {x: 50.568054, y: 18.067993}
+        - {x: 106.568054, y: 63.067993}
+        - {x: 106.568054, y: 127.06799}
+        - {x: 46.568054, y: 173.068}
+        - {x: -29.431946, y: 173.068}
+        - {x: -47.431946, y: 128.068}
+        - {x: -47.431946, y: 60.067993}
+        - {x: -38.431946, y: 51.067993}
+        - {x: -16.431946, y: 36.067993}
+        - {x: -13.431946, y: 36.067993}
+        - {x: -7.431946, y: 38.067993}
+        - {x: -2.4319458, y: 36.067993}
+        - {x: -23.431946, y: 36.067993}
+        - {x: -33.431946, y: 30.067993}
+        - {x: -47.431946, y: 8.067993}
+        - {x: -47.431946, y: -73.93201}
+        - {x: -23.431946, y: -175.932}
+        - {x: 49.568054, y: -175.932}
+        - {x: 58.568054, y: -171.932}
+        - {x: 106.568054, y: -27.932007}
+        - {x: 106.568054, y: 28.067993}
+    - name: box bubble boy attack w wand_5
+      rect:
+        serializedVersion: 2
+        x: 2445
+        y: 89
+        width: 448
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 73.34009, y: 39.067993}
+        - {x: 71.34009, y: 35.067993}
+        - {x: 64.34009, y: 28.067993}
+        - {x: 80.34009, y: 50.067993}
+        - {x: 101.34009, y: 58.067993}
+        - {x: 101.34009, y: 170.068}
+        - {x: 66.34009, y: 175.068}
+        - {x: -55.659912, y: 175.068}
+        - {x: -55.659912, y: -146.932}
+        - {x: -48.659912, y: -175.932}
+        - {x: 60.340088, y: -175.932}
+        - {x: 101.34009, y: -13.932007}
+        - {x: 101.34009, y: 43.067993}
+        - {x: 84.34009, y: 50.067993}
+    - name: box bubble boy attack w wand_6
+      rect:
+        serializedVersion: 2
+        x: 2927
+        y: 89
+        width: 449
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 102.12402, y: 20.067993}
+        - {x: 102.12402, y: 138.068}
+        - {x: 61.124023, y: 173.068}
+        - {x: -38.875977, y: 173.068}
+        - {x: -52.875977, y: 94.06799}
+        - {x: -52.875977, y: -38.932007}
+        - {x: -18.875977, y: -96.93201}
+        - {x: -29.875977, y: -175.932}
+        - {x: 52.124023, y: -175.932}
+        - {x: 59.124023, y: -170.932}
+        - {x: 33.124023, y: -42.932007}
+        - {x: 87.12402, y: -23.932007}
+    - name: box bubble boy attack w wand_7
+      rect:
+        serializedVersion: 2
+        x: 3421
+        y: 89
+        width: 447
+        height: 722
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 72.552124, y: 39.067993}
+        - {x: 70.552124, y: 35.067993}
+        - {x: 53.552124, y: -0.93200684}
+        - {x: 63.552124, y: 28.067993}
+        - {x: 77.552124, y: 50.067993}
+        - {x: 100.552124, y: 57.067993}
+        - {x: 100.552124, y: 175.068}
+        - {x: -56.447876, y: 175.068}
+        - {x: -56.447876, y: -82.93201}
+        - {x: -24.447876, y: -175.932}
+        - {x: 50.552124, y: -175.932}
+        - {x: 81.552124, y: -164.932}
+        - {x: 100.552124, y: -10.932007}
+        - {x: 100.552124, y: 41.067993}
+        - {x: 82.552124, y: 49.067993}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
