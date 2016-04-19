@@ -6,7 +6,7 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour {
 
-	public GameObject player;
+	private GameObject player;
 
 	private float m_timer = 0.0f;
 	private float m_new_x; 
@@ -135,6 +135,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Awake(){
         InitializeEnemyPos();
+        player = GameObject.Find("Player");
         m_player_pos = player.transform.position.x;
     }
 	// Use this for initialization
@@ -149,6 +150,7 @@ public class EnemySpawner : MonoBehaviour {
 		m_timer += Time.deltaTime;
 		if(m_timer > 3.5f){
 			m_player_pos = player.transform.position.x;
+            Debug.Log(System.Convert.ToString(m_player_pos));
 			SpawnMinions();
 			m_timer = 0.0f;
 		}

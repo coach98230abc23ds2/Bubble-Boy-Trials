@@ -19,9 +19,11 @@ public class EnemyMovement : MonoBehaviour {
     private bool m_Grounded;
     private bool m_incline;
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
+    private Animator m_anim;
     
     private void Awake(){
         m_GroundCheck = transform.Find("GroundCheck");
+        m_anim = gameObject.GetComponent<Animator>();
     }
 
     //moves enemy up and down;
@@ -71,6 +73,7 @@ public class EnemyMovement : MonoBehaviour {
                 }
             }
         }
+        m_anim.SetFloat("x_velocity", this.GetComponent<Rigidbody2D>().velocity.x);
     }
 
     void Update(){
