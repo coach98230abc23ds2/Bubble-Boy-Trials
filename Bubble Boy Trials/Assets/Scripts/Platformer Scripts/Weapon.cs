@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour {
     GameObject firePoint;
     Transform bullet;
 
+    private Animator m_anim;
+
     // Use this for initialization
     void Awake () {
         firePoint = GameObject.Find("FirePoint");
@@ -30,10 +32,6 @@ public class Weapon : MonoBehaviour {
         GameObject playr = GameObject.Find ("Player");
         if (fireRate == 0) {
             if (Input.GetButtonDown ("Fire1")) {
-//                Debug.Log (Input.GetKey (KeyCode.LeftArrow));
-//                Debug.Log (Input.GetKey (KeyCode.RightArrow));
-                //              PlatformerCharacter2D scr =  playr.GetComponent("PlatformerCharacter2D")
-//                Debug.Log (playr.transform.localScale [0]);
                 if (playr.transform.localScale [0] < 0) {
 //                    Debug.Log ("SHOOTING LEFT");
                     ShootLeft ();
@@ -41,13 +39,12 @@ public class Weapon : MonoBehaviour {
 //                    Debug.Log ("SHOOTING RIGHT");
                     ShootRight ();
                 }
+                m_anim.SetBool("Attack", true);
             }
         } else {
             if (Input.GetButton ("Fire1") && Time.time > timeToFire)
                 timeToFire = Time.time + 1 / fireRate;
-//            Debug.Log (Input.GetKey (KeyCode.LeftArrow));
-//            Debug.Log (Input.GetKey (KeyCode.RightArrow));
-//            Debug.Log (playr.transform.localScale [0]);
+                m_anim.SetBool("Attack", true);
             if (playr.transform.localScale [0] < 0) {
 //                Debug.Log ("SHOOTING LEFT");
                 ShootLeft ();

@@ -13,16 +13,18 @@ public class EnemyMovement : MonoBehaviour {
     private float m_speed = 5.0f;
     private float m_timer = 0.0f;
     private float curr_y_pos;
-    private bool m_can_move = false;
+    public bool m_can_move = false;
     private bool m_move_up = false; 
     private bool m_just_switched = false;
     private bool m_Grounded;
     private bool m_incline;
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
+    private Transform m_FrontCheck;
     private Animator m_anim;
     
     private void Awake(){
         m_GroundCheck = transform.Find("GroundCheck");
+        m_FrontCheck = transform.Find("frontCheck");
         m_anim = gameObject.GetComponent<Animator>();
     }
 
@@ -46,34 +48,48 @@ public class EnemyMovement : MonoBehaviour {
         m_Grounded = false;
         m_incline = false;
 
-        try{
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject != gameObject)
-                    Debug.Log("set grounded to be true.");
-                    m_Grounded = true;
+       
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+                Debug.Log("set grounded to be true.");
+                m_Grounded = true;
+        }
 
-                if (colliders[i].gameObject.tag == "Incline")
+//        }catch(Exception e){
+//            Debug.Log("no collider below enemy");
+//        }
+
+  
+            Collider2D[] colliders2 = Physics2D.OverlapCircleAll(m_FrontCheck.position, k_GroundedRadius, m_WhatIsGround);
+            for (int i = 0; i < colliders2.Length; i++)
+            {
+                if (colliders2[i].gameObject.tag == "Incline")
                     Debug.Log("set incline to be true.");
                     m_incline = true;
             }
-        }catch(Exception e){
-            Debug.Log("no collider below enemy");
-        }
+//            catch(Exception e){
+//            Debug.Log("no incline in front of enemy");
+//        }
+            
 
         if (m_can_move == true){
             if (this.name == "enemy1" || this.name == "enemy1(Clone)"){
+                 //need to fix this physics; enemy going up a slope
                 if (!m_Grounded){
-                    this.GetComponent<Rigidbody2D>().velocity.Normalize();
-                }else if (m_incline){
-                    this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-15, 0));
-                }else{
-                    this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-5, 0));
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -9.8f);
+
+                }else if (m_Grounded){
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-5, 0);
                 }
+                else if (m_incline && m_Grounded){
+                    this.GetComponent<Rigidbody2D>().MoveRotation(45f);
+                    this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20f, 0f));
+               }
+                m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
             }
         }
-        m_anim.SetFloat("x_velocity", this.GetComponent<Rigidbody2D>().velocity.x);
     }
 
     void Update(){

@@ -6,11 +6,13 @@ public class PlatformEnemy : MonoBehaviour {
     private EnemySpawner spawner; 
     private GameObject hidden_obj;
     private float m_x_pos;
+    private Animator m_anim;
 
     // Use this for initialization
     void Awake () {
         spawner = Camera.main.GetComponent<EnemySpawner>();
         m_x_pos = this.gameObject.transform.position.x;
+        m_anim = this.gameObject.GetComponent<Animator>();
     }
 
     void Start(){
@@ -24,6 +26,6 @@ public class PlatformEnemy : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
+   
 }
 

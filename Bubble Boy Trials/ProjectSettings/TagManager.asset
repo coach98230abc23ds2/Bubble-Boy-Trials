@@ -23,6 +23,7 @@ TagManager:
   - Incline
   - Flat
   - Decline
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -39,7 +40,7 @@ TagManager:
   - Ground
   - Head
   - Door
-  - 
+  - Background
   - 
   - 
   - 

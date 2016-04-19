@@ -83,6 +83,22 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
+    void GotHurt(GameObject enemy){
+        transform.Rotate(Vector2.left);
+        Animator m_emy_anim = enemy.GetComponent<Animator>();
+        EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        movement.m_can_move = false;
+        m_emy_anim.SetBool("hit", true);
+        StartCoroutine(WaitToDestroy(enemy));
+    }
+
+    IEnumerator WaitToDestroy(GameObject enemy){
+        yield return new WaitForSeconds(2f);
+        Destroy(enemy);
+        GainScore(10);
+    }
+
     void FixedUpdate(){
         Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
         Vector2 down_dir = transform.TransformDirection(Vector2.down);
@@ -95,8 +111,7 @@ public class PlatformPlayer : MonoBehaviour {
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,1500));
                     GameObject parent_enemy = collider_hit.transform.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    Destroy(parent_enemy);
-                    GainScore(10);
+                    GotHurt(parent_enemy);
                 }   
             }
             
@@ -188,6 +203,10 @@ public class PlatformPlayer : MonoBehaviour {
 //                    m_anim.SetTrigger("Die");
                 }
             }
+        }
+        if (coll.gameObject.tag == "Coin"){
+            Destroy(coll.gameObject);
+            GainScore(40);
         }
     }
 

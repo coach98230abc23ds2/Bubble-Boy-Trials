@@ -5,6 +5,22 @@ public class Ammo : MonoBehaviour {
 
     private PlatformPlayer m_player;
     private EnemySpawner spawner;
+    private Animator m_anim;
+
+    void GotHurt(GameObject enemy){
+        Animator m_anim = enemy.GetComponent<Animator>();
+        EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        movement.m_can_move = false;
+        m_anim.SetBool("hit", true);
+        StartCoroutine(WaitToDestroy(enemy));
+    }
+
+    IEnumerator WaitToDestroy(GameObject enemy){
+        yield return new WaitForSeconds(1f);
+        Destroy(enemy);
+        m_player.GainScore(10);
+    }
 
     //handles collision for when ammo collides with enemies
     void OnCollisionEnter2D(Collision2D coll){
@@ -12,10 +28,9 @@ public class Ammo : MonoBehaviour {
         Debug.Log(coll.gameObject.tag);
         //destroys ammo and minion; increases player's score
         if (coll.gameObject.tag == "Enemy"){
-                spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
-                Destroy(coll.gameObject);
+                spawner.RemoveFromDict(coll.gameObject.name, x_pos);
                 Destroy(this.gameObject);
-                m_player.GainScore(10);
+                GotHurt(coll.gameObject);
         }
         //destroys ammo and boss; increases player's score
 //        if (Time.time > last_hit_time + 
