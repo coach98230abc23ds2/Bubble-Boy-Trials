@@ -43,7 +43,7 @@ public class BattleSystem : MonoBehaviour
     private GameObject bubble;
     private bool attackingPlayer;
     private bool bubbleLive;
-
+    private bool createBubble;
     private int comboChain;
 
     // Use this for initialization
@@ -67,6 +67,31 @@ public class BattleSystem : MonoBehaviour
     void FixedUpdate()
     {
         timeRemaining -= Time.fixedDeltaTime;
+
+        Animator playerAnimator = player.GetComponent<Animator>();
+        Animator enemyAnimator = enemy.GetComponent<Animator>();
+        if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
+        {
+            if (bubble != null)
+            {
+                GameObject.Destroy(bubble);
+            }
+            bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            bubble.transform.position = player.transform.position + new Vector3(0.5f, 0, 0);
+            bubbleLive = true;
+            createBubble = false;
+        }
+        else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetNextAnimatorStateInfo(0).IsName("Green Minion Idle"))
+        {
+            if (bubble != null)
+            {
+                GameObject.Destroy(bubble);
+            }
+            bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            bubble.transform.position = enemy.transform.position - new Vector3(0.5f, 0, 0);
+            bubbleLive = true;
+            createBubble = false;
+        }
 
         if (bubble != null)
         {
@@ -114,25 +139,11 @@ public class BattleSystem : MonoBehaviour
                 }
                 break;
             case BattleState.enemy_turn:
-                if (timeRemaining < ReactionWindow)
+                if (timeRemaining < ReactionWindow && !createBubble && !bubbleLive)
                 {
-                    if (bubble != null)
-                    {
-                        GameObject.Destroy(bubble);
-                    }
+                    enemyAnimator.SetTrigger("Attacking");
+                    createBubble = true;
                     attackingPlayer = true;
-                    bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                    bubble.transform.position = enemy.transform.position - new Vector3(0.5f, 0, 0);
-                    bubbleLive = true;
-
-                    Animator animator = enemy.GetComponent<Animator>();
-
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("Attacking");
-
-                    }
-                    battleMessage.text = "NOW!";
                 }
                 break;
         }
@@ -225,15 +236,10 @@ public class BattleSystem : MonoBehaviour
 
     private void RightAnswer()
     {
-        if (bubble != null)
-        {
-            GameObject.Destroy(bubble);
-        }
-        bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        bubble.transform.position = player.transform.position + new Vector3(0.5f, 0, 0);
+        createBubble = true;
         attackingPlayer = false;
-        bubbleLive = true;
         player.GetComponent<Animator>().SetTrigger("Attack");
+        HidePlayerUI();
     }
 
     private void ApplyHit()
@@ -258,7 +264,6 @@ public class BattleSystem : MonoBehaviour
 
             comboChain++;
 
-            HidePlayerUI();
             EnemyTurn();
         }
     }
