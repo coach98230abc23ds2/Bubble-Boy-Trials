@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class MazeSystem : MonoBehaviour
 {
     private static float EPSILON = 0.2f;
-    private static float SPEED = 1.0f;
+    private static float SPEED = 3.0f;
 
     public Canvas MazeUI;
     public Button LeftButton;
