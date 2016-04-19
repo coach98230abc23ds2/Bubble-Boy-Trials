@@ -61,14 +61,23 @@ public class EnemyMovement : MonoBehaviour {
 //            Debug.Log("no collider below enemy");
 //        }
 
-  
-            Collider2D[] colliders2 = Physics2D.OverlapCircleAll(m_FrontCheck.position, k_GroundedRadius, m_WhatIsGround);
-            for (int i = 0; i < colliders2.Length; i++)
-            {
-                if (colliders2[i].gameObject.tag == "Incline")
-                    Debug.Log("set incline to be true.");
-                    m_incline = true;
-            }
+//  
+//        RaycastHit2D hit; 
+//
+//        if(Physics.Raycast(point.position,transform.forward,out hit,1.0f)){
+//            if(Vector3.Dot(Vector3.up,hit.normal)>0.7){
+//                
+//            }
+//        }
+//            for (int i = 0; i < colliders2.Length; i++)
+//            {
+//                if (colliders2[i].gameObject.tag == "Incline"){
+//                    if(Vector3.Dot(Vector3.up,colliders2[i].normal)>0.7){
+//                        Debug.Log("set incline to be true.");
+//                        m_incline = true;
+//                    }
+//                }
+//            }
 //            catch(Exception e){
 //            Debug.Log("no incline in front of enemy");
 //        }
