@@ -71,11 +71,30 @@ public class BattleSystem : MonoBehaviour
         if (bubble != null)
         {
             bubble.transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
-            if (bubbleLive && attackingPlayer && Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5)
+            if (bubbleLive && attackingPlayer)
             {
-                bubble.GetComponent<Animator>().SetTrigger("Burst");
-                PlayerTurn();
-                bubbleLive = false;
+                if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
+                {
+                    player.GetComponent<Player>().TakeDamage(10);
+                    bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    PlayerTurn();
+                    bubbleLive = false;
+                }
+                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 1f && Input.GetKeyDown(KeyCode.Space))
+                {
+                    player.GetComponent<Animator>().SetTrigger("Defend");
+                    bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    PlayerTurn();
+                    bubbleLive = false;
+                }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    player.GetComponent<Player>().TakeDamage(20);
+                    player.GetComponent<Animator>().SetTrigger("Defend");
+                    bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    PlayerTurn();
+                    bubbleLive = false;
+                }
             }
             else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
             {
@@ -97,33 +116,23 @@ public class BattleSystem : MonoBehaviour
             case BattleState.enemy_turn:
                 if (timeRemaining < ReactionWindow)
                 {
+                    if (bubble != null)
+                    {
+                        GameObject.Destroy(bubble);
+                    }
+                    attackingPlayer = true;
+                    bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                    bubble.transform.position = enemy.transform.position - new Vector3(0.5f, 0, 0);
+                    bubbleLive = true;
+
                     Animator animator = enemy.GetComponent<Animator>();
+
                     if (animator != null)
                     {
                         animator.SetTrigger("Attacking");
+
                     }
                     battleMessage.text = "NOW!";
-                }
-                else
-                {
-                    battleMessage.text = "WAITING...";
-                }
-                if (timeRemaining < 0)
-                {
-                    PlayerTurn();
-                    player.GetComponent<Player>().TakeDamage(10);
-
-                }
-                else if (timeRemaining < ReactionWindow && Input.GetKeyDown(KeyCode.Space))
-                {
-                    player.GetComponent<Animator>().SetTrigger("Defend");
-                    PlayerTurn();
-                }
-                else if (Input.GetKeyDown(KeyCode.X))
-                {
-                    player.GetComponent<Animator>().SetTrigger("Defend");
-                    PlayerTurn();
-                    player.GetComponent<Player>().TakeDamage(20);
                 }
                 break;
         }
@@ -216,9 +225,13 @@ public class BattleSystem : MonoBehaviour
 
     private void RightAnswer()
     {
+        if (bubble != null)
+        {
+            GameObject.Destroy(bubble);
+        }
         bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         bubble.transform.position = player.transform.position + new Vector3(0.5f, 0, 0);
-
+        attackingPlayer = false;
         bubbleLive = true;
         player.GetComponent<Animator>().SetTrigger("Attack");
     }
