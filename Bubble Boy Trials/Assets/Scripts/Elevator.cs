@@ -8,7 +8,7 @@ public class Elevator : MonoBehaviour
         /* This line has a Vector2 & Vector3 conflict */
         transform.position += new Vector3(move_distance.x, move_distance.y, 0);
 
-        GameObject.FindGameObjectWithTag("Player").transform.position += new Vector3(move_distance.x, move_distance.y, 0);
+        //GameObject.FindGameObjectWithTag("Player").transform.position += new Vector3(move_distance.x, move_distance.y, 0);
 
         // keeps the camera centered on the elevator
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);

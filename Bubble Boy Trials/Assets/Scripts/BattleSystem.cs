@@ -58,7 +58,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         player = GameObject.FindGameObjectWithTag("Player");
-        enemy.transform.position = player.transform.position + new Vector3(2, 0, 0);
+        enemy.transform.position = player.transform.position + new Vector3(5, 0, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         PlayerTurn();
     }
@@ -95,7 +95,7 @@ public class BattleSystem : MonoBehaviour
 
         if (bubble != null)
         {
-            bubble.transform.position += new Vector3(1, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+            bubble.transform.position += new Vector3(0.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
             if (bubbleLive && attackingPlayer)
             {
                 if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
@@ -105,7 +105,7 @@ public class BattleSystem : MonoBehaviour
                     PlayerTurn();
                     bubbleLive = false;
                 }
-                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 1f && Input.GetKeyDown(KeyCode.Space))
+                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 3f && Input.GetKeyDown(KeyCode.Space))
                 {
                     player.GetComponent<Animator>().SetTrigger("Defend");
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
