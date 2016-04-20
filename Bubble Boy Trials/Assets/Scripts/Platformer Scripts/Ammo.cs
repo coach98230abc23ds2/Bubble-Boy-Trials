@@ -8,21 +8,22 @@ public class Ammo : MonoBehaviour {
     private Animator m_anim;
 
     void GotHurt(GameObject enemy){
+        enemy.GetComponent<Rigidbody2D>().MoveRotation(45f);
         Animator m_anim = enemy.GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
         transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         movement.m_can_move = false;
-        m_anim.SetBool("hit", true);
+        m_anim.SetTrigger("Hit");
+        Destroy(enemy, 2.0f);
         StartCoroutine(WaitToDestroy(enemy));
     }
 
     IEnumerator WaitToDestroy(GameObject enemy){
-        yield return new WaitForSeconds(1f);
-        Destroy(enemy);
+        yield return new WaitForSeconds(2f);
         m_player.GainScore(10);
     }
 
-    //handles collision for when ammo collides with enemies
+    //handles collision for when ammo collides with enemies of type enemy1
     void OnCollisionEnter2D(Collision2D coll){
         float x_pos = coll.gameObject.transform.position.x;
         Debug.Log(coll.gameObject.tag);
@@ -32,16 +33,11 @@ public class Ammo : MonoBehaviour {
                 Destroy(this.gameObject);
                 GotHurt(coll.gameObject);
         }
-        //destroys ammo and boss; increases player's score
-//        if (Time.time > last_hit_time + 
-            if(coll.gameObject.tag == "Boss"){
-                    spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
-                    Destroy(coll.gameObject);
-                    Destroy(this.gameObject);
-                    m_player.GainScore(50);
-            }   
+ 
     }
 
+
+    //handles collision for when ammo collides with enemies of type enemy2
     void OnTriggerEnter2D(Collider2D coll){
         float x_pos = coll.gameObject.transform.position.x;
 

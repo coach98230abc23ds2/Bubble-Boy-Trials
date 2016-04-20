@@ -150,7 +150,6 @@ public class EnemySpawner : MonoBehaviour {
 		m_timer += Time.deltaTime;
 		if(m_timer > 3.5f){
 			m_player_pos = player.transform.position.x;
-            Debug.Log(System.Convert.ToString(m_player_pos));
 			SpawnMinions();
 			m_timer = 0.0f;
 		}

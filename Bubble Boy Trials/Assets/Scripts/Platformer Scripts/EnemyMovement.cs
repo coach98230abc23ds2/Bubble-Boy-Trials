@@ -21,11 +21,13 @@ public class EnemyMovement : MonoBehaviour {
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private Transform m_FrontCheck;
     private Animator m_anim;
+    private Rigidbody2D m_rb2d;
     
     private void Awake(){
         m_GroundCheck = transform.Find("GroundCheck");
         m_FrontCheck = transform.Find("frontCheck");
         m_anim = gameObject.GetComponent<Animator>();
+        m_rb2d = this.GetComponent<Rigidbody2D>();
     }
 
     //moves enemy up and down;
@@ -49,39 +51,37 @@ public class EnemyMovement : MonoBehaviour {
         m_incline = false;
 
        
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].gameObject != gameObject)
-                Debug.Log("set grounded to be true.");
-                m_Grounded = true;
+        Collider2D[] colliders = ((Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround)) ?? (new Collider2D[1]));
+
+        if (colliders != null){
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject != gameObject)
+                    Debug.Log("set grounded to be true.");
+                    m_Grounded = true;
+            }
         }
 
 //        }catch(Exception e){
 //            Debug.Log("no collider below enemy");
 //        }
 
-//  
-//        RaycastHit2D hit; 
-//
-//        if(Physics.Raycast(point.position,transform.forward,out hit,1.0f)){
-//            if(Vector3.Dot(Vector3.up,hit.normal)>0.7){
-//                
-//            }
-//        }
-//            for (int i = 0; i < colliders2.Length; i++)
-//            {
-//                if (colliders2[i].gameObject.tag == "Incline"){
-//                    if(Vector3.Dot(Vector3.up,colliders2[i].normal)>0.7){
-//                        Debug.Log("set incline to be true.");
-//                        m_incline = true;
-//                    }
-//                }
-//            }
-//            catch(Exception e){
-//            Debug.Log("no incline in front of enemy");
-//        }
-            
+//      
+        Transform FrontCheck = GameObject.Find("frontCheck").transform;
+        RaycastHit2D hit = Physics2D.Raycast(FrontCheck.position,transform.forward);
+
+        Debug.DrawRay(FrontCheck.position, transform.forward, Color.black, 5.0f);
+
+        if(hit != null){
+            if (hit.transform.tag == "Incline"){
+                Debug.Log("set incline to be true");
+                m_incline = true;
+                Debug.Log("rotated 45 degrees");
+               
+                m_rb2d.MoveRotation(45f);
+            }
+        }
+//        
 
         if (m_can_move == true){
             if (this.name == "enemy1" || this.name == "enemy1(Clone)"){
@@ -89,13 +89,22 @@ public class EnemyMovement : MonoBehaviour {
                 if (!m_Grounded){
                     this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -9.8f);
 
-                }else if (m_Grounded){
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-5, 0);
+                }else if (m_incline && m_Grounded){
+
+                    this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+//                    if(Vector2.Dot(Vector3.up,hit.normal)> 0.7){
+//                        Debug.Log("rotated 45 degrees");
+//                        this.gameObject.transform.Rotate(new Vector3 (0, 0, 45f));
+//                    }
+
+//                    this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20f, 0f));
                 }
-                else if (m_incline && m_Grounded){
-                    this.GetComponent<Rigidbody2D>().MoveRotation(45f);
-                    this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20f, 0f));
-               }
+
+                else if (!m_incline && m_Grounded ){
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-2, 0);
+                }
+//
                 m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
             }
         }

@@ -89,7 +89,7 @@ public class PlatformPlayer : MonoBehaviour {
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
         transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         movement.m_can_move = false;
-        m_emy_anim.SetBool("hit", true);
+        m_emy_anim.SetTrigger("Hit");
         StartCoroutine(WaitToDestroy(enemy));
     }
 
@@ -108,7 +108,7 @@ public class PlatformPlayer : MonoBehaviour {
         if (hit != null){
             foreach (RaycastHit2D collider_hit in hit){
                 if(collider_hit.transform.tag == "Enemy"){
-                    this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,1500));
+                    this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
                     GameObject parent_enemy = collider_hit.transform.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
                     GotHurt(parent_enemy);
@@ -166,7 +166,6 @@ public class PlatformPlayer : MonoBehaviour {
 
                     GetComponent<Platformer2DUserControl>().enabled = false;
                     GetComponentInChildren<Weapon>().enabled = false;
-//                    m_anim.SetTrigger("Die");
                 }
             }
         }
@@ -216,7 +215,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         Vector2 displacement = (transform.position - enemy.position);
         Debug.Log("Displacement: " + System.Convert.ToString(displacement));
-        Vector2 new_displacement = new Vector2 (5000* displacement.x, 5 *displacement.y);
+        Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
         // Create a vector that's from the enemy to the player with an upwards boost.
         Vector2 hurt_vector = new_displacement + Vector2.up;
 
