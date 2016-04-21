@@ -85,9 +85,10 @@ public class PlatformPlayer : MonoBehaviour {
 
     void GotHurt(GameObject enemy){
         transform.Rotate(Vector2.left);
-        Animator m_emy_anim = enemy.GetComponent<Animator>();
+        Animator m_emy_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        transform.root.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
         StartCoroutine(WaitToDestroy(enemy));

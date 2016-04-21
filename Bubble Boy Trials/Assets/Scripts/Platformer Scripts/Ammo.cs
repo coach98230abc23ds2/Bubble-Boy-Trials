@@ -11,7 +11,8 @@ public class Ammo : MonoBehaviour {
         enemy.GetComponent<Rigidbody2D>().MoveRotation(45f);
         Animator m_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_anim.SetTrigger("Hit");
         Destroy(enemy, 2.0f);
