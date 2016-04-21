@@ -26,6 +26,8 @@ public class Ammo : MonoBehaviour {
 
     //handles collision for when ammo collides with enemies of type enemy1
     void OnCollisionEnter2D(Collision2D coll){
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<CircleCollider2D>());
         float x_pos = coll.gameObject.transform.position.x;
         Debug.Log(coll.gameObject.tag);
         //destroys ammo and minion; increases player's score
@@ -53,7 +55,7 @@ public class Ammo : MonoBehaviour {
     void Awake(){
         spawner = Camera.current.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
-        m_player = player.GetComponent<PlatformPlayer>();
+        m_player = player.GetComponent<PlatformPlayer>(); 
     }
 
     void Update(){

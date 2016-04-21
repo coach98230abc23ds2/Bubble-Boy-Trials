@@ -11,7 +11,7 @@ GameObject:
   - 50: {fileID: 5039788}
   - 114: {fileID: 11436486}
   - 212: {fileID: 21292414}
-  - 58: {fileID: 5899702}
+  - 58: {fileID: 5877690}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Ammo
@@ -48,7 +48,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &5899702
+--- !u!58 &5877690
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

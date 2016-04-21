@@ -52,6 +52,7 @@ public class Weapon : MonoBehaviour {
                 last_time_shot = Time.time;
             }
         } else {
+            // need to fix this
             if (Input.GetButton("Fire1") && Time.time > timeToFire)
                
                 timeToFire = Time.time + 1 / fireRate;
@@ -82,9 +83,6 @@ public class Weapon : MonoBehaviour {
         }
 
     }
-
-
-
 
     void ShootLeft () {
         
