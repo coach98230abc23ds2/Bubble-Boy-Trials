@@ -152,7 +152,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 165527}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -264,11 +264,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 71.7
+      value: 69.7
       objectReference: {fileID: 0}
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 25
+      value: 33.1
       objectReference: {fileID: 0}
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -298,6 +298,10 @@ Prefab:
       propertyPath: score_text
       value: 
       objectReference: {fileID: 1136170981}
+    - target: {fileID: 11416376, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
+      propertyPath: m_JumpForce
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
   m_IsPrefabParent: 0
@@ -566,7 +570,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21233342, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
       propertyPath: m_SortingLayerID
-      value: 1024582385
+      value: 1535931219
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
@@ -624,7 +628,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1535931219
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 66bc290dc9db346ef9a0712b355842d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -799,7 +803,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381024565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.02, y: -8.78, z: 0}
+  m_LocalPosition: {x: 34.02, y: -8.785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 283331110}
@@ -842,7 +846,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 381024565}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5f9c37fb361d64b788498991d3de93d7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -1181,7 +1185,7 @@ Prefab:
       value: miniblocksepA (3)
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6119986, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &497211674 stripped
@@ -1762,8 +1766,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 863992921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.5, y: 1.1000004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 72.5, y: -4.5, z: 0}
+  m_LocalScale: {x: 1.6099999, y: 1.6099992, z: 1.6099992}
   m_Children: []
   m_Father: {fileID: 283331110}
   m_RootOrder: 26
@@ -1960,29 +1964,9 @@ Prefab:
       propertyPath: m_Name
       value: miniblocksepA (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6119986, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &982754073 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 105444, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
-  m_PrefabInternal: {fileID: 982754072}
---- !u!68 &982754074
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 982754073}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.25}
-  m_Points:
-  - {x: -0.82, y: 0}
-  - {x: 0.82, y: 0}
 --- !u!4 &982754075 stripped
 Transform:
   m_PrefabParentObject: {fileID: 454616, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
@@ -2858,7 +2842,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1562521094}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -3020,9 +3004,9 @@ GameObject:
   - 4: {fileID: 1740245283}
   - 212: {fileID: 1740245282}
   - 60: {fileID: 1740245281}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: blockE
-  m_TagString: Untagged
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3119,7 +3103,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1024582385
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cdb177c2670dd46ca96efdab7966ae65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3220,9 +3204,9 @@ GameObject:
   - 4: {fileID: 1919893343}
   - 212: {fileID: 1919893342}
   - 61: {fileID: 1919893341}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: miniblocksepA (1)
-  m_TagString: Untagged
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3265,7 +3249,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1024582385
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a85b2fcfa56eb4c26b30e8519f29ec52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3366,9 +3350,9 @@ GameObject:
   - 4: {fileID: 1972337922}
   - 212: {fileID: 1972337921}
   - 61: {fileID: 1972337920}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: blockB
-  m_TagString: Untagged
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

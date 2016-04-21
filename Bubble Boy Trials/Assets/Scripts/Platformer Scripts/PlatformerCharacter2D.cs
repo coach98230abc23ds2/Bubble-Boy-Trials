@@ -88,7 +88,7 @@ namespace UnityStandardAssets._2D
                 //Allows the player to jump again.
                 if (m_double_jump){
                     m_double_jump = false;
-                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce/2));
                 }
             }
 

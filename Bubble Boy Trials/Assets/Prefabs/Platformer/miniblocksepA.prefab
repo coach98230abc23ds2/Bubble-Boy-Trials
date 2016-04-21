@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 454616}
   - 212: {fileID: 21211866}
-  - 61: {fileID: 6119986}
-  m_Layer: 0
+  - 68: {fileID: 6840352}
+  m_Layer: 12
   m_Name: miniblocksepA
-  m_TagString: Untagged
+  m_TagString: Flat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,13 +24,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.77776, y: 16.87851, z: 0}
+  m_LocalPosition: {x: 140.02492, y: -0.6000004, z: 0}
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6119986
-BoxCollider2D:
+--- !u!68 &6840352
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -40,9 +40,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1.64, y: 0.52}
+  m_Offset: {x: 0, y: 0.25}
+  m_Points:
+  - {x: -0.82, y: 0}
+  - {x: 0.82, y: 0}
 --- !u!212 &21211866
 SpriteRenderer:
   m_ObjectHideFlags: 1
