@@ -87,7 +87,7 @@ public class PlatformPlayer : MonoBehaviour {
         transform.Rotate(Vector2.left);
         Animator m_emy_anim = enemy.GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        transform.root.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
         StartCoroutine(WaitToDestroy(enemy));
@@ -109,9 +109,9 @@ public class PlatformPlayer : MonoBehaviour {
             foreach (RaycastHit2D collider_hit in hit){
                 if(collider_hit.transform.tag == "Enemy"){
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
-                    GameObject parent_enemy = collider_hit.transform.gameObject;
+                    GameObject parent_enemy = collider_hit.transform.root.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    GotHurt(parent_enemy);
+                    GotHurt(collider_hit.transform.gameObject);
                 }   
             }
             
