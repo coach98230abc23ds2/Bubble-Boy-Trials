@@ -63,6 +63,7 @@ public class EnemyMovement : MonoBehaviour {
         m_Grounded = false;
         m_incline = false;
 
+
         Transform m_GroundCheck = transform.Find("GroundCheck").transform;
        
         Collider2D[] colliders = ((Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround)) ?? (new Collider2D[1]));
@@ -89,19 +90,6 @@ public class EnemyMovement : MonoBehaviour {
             }
         }
 
-//        Transform FrontCheck = GameObject.Find("frontCheck").transform;
-//        RaycastHit2D hit = Physics2D.Raycast(FrontCheck.position,transform.forward);
-//
-//        Debug.DrawRay(FrontCheck.position, transform.forward, Color.black, 5.0f);
-//
-//        if(hit != null){
-//            if (hit.transform.tag == "Incline"){
-//                Debug.Log("set incline to be true");
-//                m_incline = true;
-////                transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-//            }
-//        }
-      
 
         if (m_can_move == true){
             if (this.name == "enemy1" || this.name == "enemy1(Clone)"){
@@ -113,7 +101,7 @@ public class EnemyMovement : MonoBehaviour {
                     
                     this.GetComponent<Rigidbody2D>().velocity = new Vector2(-2.5f, 0);
 //                    RotateEnemy(hit);
-                    m_rb2d.MoveRotation(45f);
+//                    m_rb2d.MoveRotation(45f);
                     
                 }
 
