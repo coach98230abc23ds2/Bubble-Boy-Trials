@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets._2D;
 
 public class Weapon : MonoBehaviour {
 
-    public float fireRate = 3f;
-    public float bulletSpeed = 2;
+    public float fireRate = 0f;
+    public float bulletSpeed = 1.5f;
 //    public LayerMask whatToHit;
     public GameObject bulletPrefab;
     public Rigidbody2D force;
     public GameObject Clone;
-    float timeToFire = 3f;
+    float timeToFire = 1f;
     GameObject firePoint;
     Transform bullet;
 
     private Animator m_anim;
+    private bool left_dir;
+    private float last_time_shot;
 
     // Use this for initialization
     void Awake () {
@@ -24,37 +27,64 @@ public class Weapon : MonoBehaviour {
 
         }
         m_anim = this.gameObject.GetComponent<Animator>();
-
+        transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
+        PlatformerCharacter2D.can_move = true;
     }
 
     // Update is called once per frame
     void Update ()
     {
+        PlatformerCharacter2D.can_move = true;
+        transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation) ;
         GameObject playr = GameObject.Find ("Player");
         if (fireRate == 0) {
-            if (Input.GetButtonDown ("Fire1")) {
-                m_anim.SetTrigger("Attack");
+            if (Input.GetButtonDown ("Fire1") && Time.time > last_time_shot + timeToFire) {
+                
                 if (playr.transform.localScale [0] < 0) {
 //                    Debug.Log ("SHOOTING LEFT");
-                    ShootLeft ();
+                   left_dir = true;
+                   StartCoroutine(WaitToShoot(left_dir));
                 } else if (playr.transform.localScale [0] > 0) {
 //                    Debug.Log ("SHOOTING RIGHT");
-                    ShootRight ();
+                   left_dir = false;
+                   StartCoroutine(WaitToShoot(left_dir));
                 }
+                last_time_shot = Time.time;
             }
         } else {
             if (Input.GetButton("Fire1") && Time.time > timeToFire)
+               
                 timeToFire = Time.time + 1 / fireRate;
-                m_anim.SetTrigger("Attack");
+                StartCoroutine(WaitToShoot(left_dir));
             if (playr.transform.localScale [0] < 0) {
 //                Debug.Log ("SHOOTING LEFT");
-                ShootLeft ();
+                left_dir = true;
+                StartCoroutine(WaitToShoot(left_dir));
             } else if (playr.transform.localScale [0] > 0) {
 //                Debug.Log ("SHOOTING RIGHT");
-                ShootRight ();
+                left_dir = false;
+                StartCoroutine(WaitToShoot(left_dir));
             }
         }
     }
+
+    IEnumerator WaitToShoot(bool left_dir){
+        PlatformerCharacter2D.can_move = false;
+
+        m_anim.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(.8f);
+
+        if (left_dir){
+            ShootLeft ();
+        }else{
+            ShootRight();
+        }
+
+    }
+
+
+
 
     void ShootLeft () {
         

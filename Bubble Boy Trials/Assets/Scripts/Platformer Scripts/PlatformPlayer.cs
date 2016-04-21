@@ -85,6 +85,7 @@ public class PlatformPlayer : MonoBehaviour {
 
     void GotHurt(GameObject enemy){
         transform.Rotate(Vector2.left);
+
         Animator m_emy_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
         enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
