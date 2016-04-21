@@ -4,8 +4,8 @@ using UnityStandardAssets._2D;
 
 public class Weapon : MonoBehaviour {
 
-    public float fireRate = 0f;
-    public float bulletSpeed = 1.5f;
+    private float fireRate = 0f;
+    private float bulletSpeed = .5f;
 //    public LayerMask whatToHit;
     public GameObject bulletPrefab;
     public Rigidbody2D force;
@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour {
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
-        force.velocity = transform.TransformDirection (-transform.right * bulletSpeed);
+        force.velocity = transform.TransformDirection (-transform.right) * bulletSpeed;
 
     }
     void ShootRight () {
@@ -102,7 +102,7 @@ public class Weapon : MonoBehaviour {
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
-        force.velocity = transform.TransformDirection (transform.right * bulletSpeed);
+        force.velocity = transform.TransformDirection (transform.right) * bulletSpeed;
 
     }
 }

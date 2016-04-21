@@ -10,7 +10,7 @@ public class PlatformPlayer : MonoBehaviour {
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
-    public float hit_height = 10.0f; //height at which player will hit the enemy's head 
+    public float hit_height = 3.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
 
     private int m_lives = 3; //player's remaining lives
