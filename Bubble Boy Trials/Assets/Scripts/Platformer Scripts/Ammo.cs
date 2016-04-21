@@ -9,7 +9,7 @@ public class Ammo : MonoBehaviour {
 
     void GotHurt(GameObject enemy){
         enemy.GetComponent<Rigidbody2D>().MoveRotation(45f);
-        Animator m_anim = enemy.GetComponent<Animator>();
+        Animator m_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
         transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         movement.m_can_move = false;

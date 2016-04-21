@@ -123,7 +123,7 @@ public class EnemySpawner : MonoBehaviour {
             for (int i = 0; i< curr_positions.Length; i++){
                 if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 25.0f){  
                     if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i])){
-    		    					spawn_position = new Vector2 (curr_positions[i], 25);
+    		    					spawn_position = new Vector2 (curr_positions[i], 30);
     		    					GameObject new_enemy = (GameObject) Instantiate(enemy, 
     		                                    spawn_position, enemy.transform.rotation);
     		                        AddToDict(new_enemy.name, curr_positions[i]);
