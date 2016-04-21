@@ -77,25 +77,25 @@ public class BattleSystem : MonoBehaviour
                 GameObject.Destroy(bubble);
             }
             bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            bubble.transform.position = player.transform.position + new Vector3(0.5f, 0, 0);
+            bubble.transform.position = player.transform.position + new Vector3(0.5f, 0f, 0);
             bubbleLive = true;
             createBubble = false;
         }
-        else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetNextAnimatorStateInfo(0).IsName("Green Minion Idle"))
+        else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Green Minion Attack"))
         {
             if (bubble != null)
             {
                 GameObject.Destroy(bubble);
             }
             bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            bubble.transform.position = enemy.transform.position - new Vector3(0.5f, 0, 0);
+            bubble.transform.position = enemy.transform.position + new Vector3(-0.5f, 0f, 0);
             bubbleLive = true;
             createBubble = false;
         }
 
         if (bubble != null)
         {
-            bubble.transform.position += new Vector3(0.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+            bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
             if (bubbleLive && attackingPlayer)
             {
                 if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
@@ -104,13 +104,16 @@ public class BattleSystem : MonoBehaviour
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
                     PlayerTurn();
                     bubbleLive = false;
+                    bubble.GetComponents<AudioSource>()[1].Play();
                 }
-                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 3f && Input.GetKeyDown(KeyCode.Space))
+                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
                 {
                     player.GetComponent<Animator>().SetTrigger("Defend");
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    player.GetComponents<AudioSource>()[0].Play();
                     PlayerTurn();
                     bubbleLive = false;
+                    bubble.GetComponents<AudioSource>()[1].Play();
                 }
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -119,6 +122,8 @@ public class BattleSystem : MonoBehaviour
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
                     PlayerTurn();
                     bubbleLive = false;
+                    player.GetComponents<AudioSource>()[1].Play();
+                    bubble.GetComponents<AudioSource>()[1].Play();
                 }
             }
             else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
@@ -126,6 +131,7 @@ public class BattleSystem : MonoBehaviour
                 bubble.GetComponent<Animator>().SetTrigger("Burst");
                 ApplyHit();
                 bubbleLive = false;
+                bubble.GetComponents<AudioSource>()[1].Play();
             }
         }
 
