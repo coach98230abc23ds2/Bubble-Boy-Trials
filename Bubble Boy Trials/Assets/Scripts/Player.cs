@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
         healthBar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         healthBar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
         healthBar.GetComponent<Slider>().value = Health;
+        healthBar.GetComponent<Slider>().maxValue = Health;
+        healthBar.GetComponent<Slider>().minValue = 0;
     }
 	
     // Update is called once per frame
@@ -35,6 +37,16 @@ public class Player : MonoBehaviour
                                 );
 
             healthBar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 50);
+
+            // now move the slider value
+            if (healthBar.GetComponent<Slider>().value + 0.5f < Health)
+            {
+                healthBar.GetComponent<Slider>().value += 10 * Time.deltaTime;
+            }
+            else if (healthBar.GetComponent<Slider>().value - 0.5f > Health)
+            {
+                healthBar.GetComponent<Slider>().value -= 10 * Time.deltaTime;
+            }
         }
 
     }
@@ -47,11 +59,6 @@ public class Player : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Hit");
-        }
-
-        if (healthBar != null)
-        {
-            healthBar.GetComponent<Slider>().value = Health;
         }
 
         if (Health <= 0)

@@ -10,7 +10,6 @@ GameObject:
   - 224: {fileID: 22490616}
   - 114: {fileID: 11424390}
   - 222: {fileID: 22255632}
-  - 114: {fileID: 11471888}
   - 212: {fileID: 21241906}
   m_Layer: 5
   m_Name: HealthBar
@@ -109,7 +108,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -170,18 +169,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11471888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054ded02ce8724246928d7241555ba44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
 --- !u!212 &21241906
 SpriteRenderer:
   m_ObjectHideFlags: 1

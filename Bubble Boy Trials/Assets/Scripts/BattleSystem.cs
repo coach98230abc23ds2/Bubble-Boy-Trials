@@ -45,6 +45,7 @@ public class BattleSystem : MonoBehaviour
     private bool bubbleLive;
     private bool createBubble;
     private int comboChain;
+    private bool started;
 
     // Use this for initialization
     void Start()
@@ -58,100 +59,114 @@ public class BattleSystem : MonoBehaviour
             }
         }
         player = GameObject.FindGameObjectWithTag("Player");
-        enemy.transform.position = player.transform.position + new Vector3(5, 0, 0);
+        enemy.transform.position = player.transform.position + new Vector3(10, 0, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
-        PlayerTurn();
     }
 	
     // Update is called once per frame
     void FixedUpdate()
     {
-        timeRemaining -= Time.fixedDeltaTime;
-
-        Animator playerAnimator = player.GetComponent<Animator>();
-        Animator enemyAnimator = enemy.GetComponent<Animator>();
-        if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
+        if (!started)
         {
+            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 5.2f)
+            {
+                started = true;
+                PlayerTurn();
+            }
+            else
+            {
+                enemy.transform.position -= new Vector3(2f * Time.fixedDeltaTime, 0, 0);
+            }
+        }
+        if (started)
+        {
+            timeRemaining -= Time.fixedDeltaTime;
+
+            Animator playerAnimator = player.GetComponent<Animator>();
+            Animator enemyAnimator = enemy.GetComponent<Animator>();
+            if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
+            {
+                if (bubble != null)
+                {
+                    GameObject.Destroy(bubble);
+                }
+                bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                bubble.transform.position = player.transform.position + new Vector3(0.5f, 0f, 0);
+                bubbleLive = true;
+                createBubble = false;
+            }
+            else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Green Minion Attack"))
+            {
+                if (bubble != null)
+                {
+                    GameObject.Destroy(bubble);
+                }
+                bubble = GameObject.Instantiate(Resources.Load("SlimeBubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                bubble.transform.position = enemy.transform.position + new Vector3(-0.5f, 0f, 0);
+                bubbleLive = true;
+                createBubble = false;
+            }
+
             if (bubble != null)
             {
-                GameObject.Destroy(bubble);
+                bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+                if (bubbleLive && attackingPlayer)
+                {
+                    if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
+                    {
+                        player.GetComponent<Player>().TakeDamage(10);
+                        bubble.GetComponent<Animator>().SetTrigger("Burst");
+                        PlayerTurn();
+                        bubbleLive = false;
+                        bubble.GetComponents<AudioSource>()[1].Play();
+                    }
+                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
+                    {
+                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        bubble.GetComponent<Animator>().SetTrigger("Burst");
+                        player.GetComponents<AudioSource>()[0].Play();
+                        PlayerTurn();
+                        bubbleLive = false;
+                        bubble.GetComponents<AudioSource>()[1].Play();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        player.GetComponent<Player>().TakeDamage(20);
+                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        bubble.GetComponent<Animator>().SetTrigger("Burst");
+                        PlayerTurn();
+                        bubbleLive = false;
+                        player.GetComponents<AudioSource>()[1].Play();
+                        bubble.GetComponents<AudioSource>()[1].Play();
+                    }
+                }
+                else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
+                {
+                    bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    ApplyHit();
+                    bubbleLive = false;
+                    bubble.GetComponents<AudioSource>()[1].Play();
+                }
             }
-            bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            bubble.transform.position = player.transform.position + new Vector3(0.5f, 0f, 0);
-            bubbleLive = true;
-            createBubble = false;
-        }
-        else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Green Minion Attack"))
-        {
-            if (bubble != null)
-            {
-                GameObject.Destroy(bubble);
-            }
-            bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            bubble.transform.position = enemy.transform.position + new Vector3(-0.5f, 0f, 0);
-            bubbleLive = true;
-            createBubble = false;
-        }
 
-        if (bubble != null)
-        {
-            bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
-            if (bubbleLive && attackingPlayer)
+            switch (current_state)
             {
-                if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
-                {
-                    player.GetComponent<Player>().TakeDamage(10);
-                    bubble.GetComponent<Animator>().SetTrigger("Burst");
-                    PlayerTurn();
-                    bubbleLive = false;
-                    bubble.GetComponents<AudioSource>()[1].Play();
-                }
-                else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
-                {
-                    player.GetComponent<Animator>().SetTrigger("Defend");
-                    bubble.GetComponent<Animator>().SetTrigger("Burst");
-                    player.GetComponents<AudioSource>()[0].Play();
-                    PlayerTurn();
-                    bubbleLive = false;
-                    bubble.GetComponents<AudioSource>()[1].Play();
-                }
-                else if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    player.GetComponent<Player>().TakeDamage(20);
-                    player.GetComponent<Animator>().SetTrigger("Defend");
-                    bubble.GetComponent<Animator>().SetTrigger("Burst");
-                    PlayerTurn();
-                    bubbleLive = false;
-                    player.GetComponents<AudioSource>()[1].Play();
-                    bubble.GetComponents<AudioSource>()[1].Play();
-                }
+                case BattleState.player_turn:
+                    time_remaining.value = timeRemaining;
+                    if (timeRemaining < 0)
+                    {
+                        WrongAnswer();
+                    }
+                    break;
+                case BattleState.enemy_turn:
+                    if (timeRemaining < ReactionWindow && !createBubble && !bubbleLive)
+                    {
+                        enemyAnimator.SetTrigger("Attacking");
+                        createBubble = true;
+                        attackingPlayer = true;
+                    }
+                    break;
             }
-            else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
-            {
-                bubble.GetComponent<Animator>().SetTrigger("Burst");
-                ApplyHit();
-                bubbleLive = false;
-                bubble.GetComponents<AudioSource>()[1].Play();
-            }
-        }
-
-        switch (current_state)
-        {
-            case BattleState.player_turn:
-                time_remaining.value = timeRemaining;
-                if (timeRemaining < 0)
-                {
-                    WrongAnswer();
-                }
-                break;
-            case BattleState.enemy_turn:
-                if (timeRemaining < ReactionWindow && !createBubble && !bubbleLive)
-                {
-                    enemyAnimator.SetTrigger("Attacking");
-                    createBubble = true;
-                    attackingPlayer = true;
-                }
-                break;
         }
     }
 
