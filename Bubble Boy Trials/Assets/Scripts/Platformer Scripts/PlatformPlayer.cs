@@ -94,7 +94,7 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    public void HurtEnemy(GameObject enemy)
+    public void HurtEnemy(GameObject enemy, int score_increase)
     {
         transform.Rotate(Vector2.left);
 
@@ -104,14 +104,14 @@ public class PlatformPlayer : MonoBehaviour {
                                                                   RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
-        StartCoroutine(WaitToDestroy(enemy));
+        StartCoroutine(WaitToDestroy(enemy, score_increase));
     }
 
-    IEnumerator WaitToDestroy(GameObject enemy)
+    IEnumerator WaitToDestroy(GameObject enemy, int score_increase)
     {
         yield return new WaitForSeconds(2f);
         Destroy(enemy);
-        GainScore(10);
+        GainScore(score_increase);
         collide = true;
     }
 
@@ -132,7 +132,7 @@ public class PlatformPlayer : MonoBehaviour {
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
                     GameObject parent_enemy = collider_hit.transform.root.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    HurtEnemy(collider_hit.transform.gameObject);
+                    HurtEnemy(collider_hit.transform.gameObject, 10);
                 }   
             }
             

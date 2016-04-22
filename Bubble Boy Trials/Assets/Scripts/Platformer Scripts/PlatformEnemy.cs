@@ -40,7 +40,7 @@ public class PlatformEnemy : MonoBehaviour {
             player.collide = false;
             GameObject parent_enemy = this.transform.gameObject;
             spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-            player.HurtEnemy(this.transform.gameObject);
+            player.HurtEnemy(this.transform.gameObject, 0);
 
         }
     }

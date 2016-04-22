@@ -36,9 +36,9 @@ public class Ammo : MonoBehaviour {
         //destroys ammo and minion; increases player's score
         if (coll.gameObject.tag == "Enemy")
         {
-                spawner.RemoveFromDict(coll.gameObject.name, x_pos);
-                Destroy(this.gameObject);
-                GotHurt(coll.gameObject);
+            spawner.RemoveFromDict(coll.gameObject.name, x_pos);
+            Destroy(this.gameObject);
+            GotHurt(coll.gameObject);
         }
  
     }
