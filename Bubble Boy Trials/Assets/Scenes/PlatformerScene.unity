@@ -301,48 +301,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1fbd40d3d4c342f6aef2db7a52d20a4, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &204328048
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 115.668236
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 25.050308
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -9.499023
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470834, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &283331109
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,17 +401,17 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 283331109}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 66b10c4984ac14f23afc5f454efd776f, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
-  Priority: 128
+  Priority: 20
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -559,11 +517,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 432830, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 21233342, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1535931219
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
@@ -855,7 +809,7 @@ GameObject:
   - 4: {fileID: 467472334}
   - 212: {fileID: 467472335}
   - 60: {fileID: 467472336}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pointySpikesB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +867,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -1213,11 +1167,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.7
+      value: 69.4
       objectReference: {fileID: 0}
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 32.2
+      value: 33.1
       objectReference: {fileID: 0}
     - target: {fileID: 479740, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2039,7 +1993,7 @@ GameObject:
   - 4: {fileID: 1022357210}
   - 212: {fileID: 1022357211}
   - 60: {fileID: 1022357212}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: crystalpond
   m_TagString: Untagged
   m_Icon: {fileID: 0}

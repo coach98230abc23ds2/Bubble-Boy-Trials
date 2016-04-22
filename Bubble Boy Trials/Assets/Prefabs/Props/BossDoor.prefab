@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21233342}
   - 95: {fileID: 9535194}
   - 61: {fileID: 6175480}
+  - 114: {fileID: 11436372}
   m_Layer: 14
   m_Name: BossDoor
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 162.95, y: 23.06, z: 0}
+  m_LocalPosition: {x: 176.05, y: 34.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,6 +62,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11436372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5923f5afa1b84575b0df9ba988f688e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 8300000, guid: 40bb8fc82fa6c3247a8ba067a1be517a, type: 3}
 --- !u!212 &21233342
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -85,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1535931219
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4796a544ccf3f4e3c90860137b1c1134, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 430418}
   - 212: {fileID: 21208382}
   - 58: {fileID: 5837436}
+  - 114: {fileID: 11403822}
   m_Layer: 0
   m_Name: pemdas_coin
   m_TagString: Coin
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 176.66315, y: 19.631588, z: 0}
+  m_LocalPosition: {x: 62.861706, y: -7.6982937, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,6 +44,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.825
+--- !u!114 &11403822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
 --- !u!212 &21208382
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -92,6 +105,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103654}

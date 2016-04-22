@@ -19,12 +19,13 @@ public class Weapon : MonoBehaviour {
     private float last_time_shot;
 
     // Use this for initialization
-    void Awake () {
+    void Awake () 
+    {
         firePoint = GameObject.Find("FirePoint");
         bullet = firePoint.transform;
-        if (firePoint == null) {
+        if (firePoint == null) 
+        {
             Debug.LogError ("No Firepoint Found");
-
         }
         m_anim = this.gameObject.GetComponent<Animator>();
         transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
@@ -37,56 +38,65 @@ public class Weapon : MonoBehaviour {
         PlatformerCharacter2D.can_move = true;
         transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation) ;
         GameObject playr = GameObject.Find ("Player");
-        if (fireRate == 0) {
-            if (Input.GetButtonDown ("Fire1") && Time.time > last_time_shot + timeToFire) {
+        if (fireRate == 0) 
+        {
+            if (Input.GetButtonDown ("Fire1") && Time.time > last_time_shot + timeToFire) 
+            {
                 
-                if (playr.transform.localScale [0] < 0) {
-//                    Debug.Log ("SHOOTING LEFT");
+                if (playr.transform.localScale [0] < 0) 
+                {
                    left_dir = true;
                    StartCoroutine(WaitToShoot(left_dir));
-                } else if (playr.transform.localScale [0] > 0) {
-//                    Debug.Log ("SHOOTING RIGHT");
+                } 
+                else if (playr.transform.localScale [0] > 0) 
+                {
                    left_dir = false;
                    StartCoroutine(WaitToShoot(left_dir));
                 }
                 last_time_shot = Time.time;
             }
-        } else {
+        } 
+        else 
+        {
             // need to fix this
-            if (Input.GetButton("Fire1") && Time.time > timeToFire)
-               
+            if (Input.GetButton("Fire1") && Time.time > timeToFire){
                 timeToFire = Time.time + 1 / fireRate;
                 StartCoroutine(WaitToShoot(left_dir));
-            if (playr.transform.localScale [0] < 0) {
-//                Debug.Log ("SHOOTING LEFT");
+            }
+            if (playr.transform.localScale [0] < 0) 
+            {
                 left_dir = true;
                 StartCoroutine(WaitToShoot(left_dir));
-            } else if (playr.transform.localScale [0] > 0) {
-//                Debug.Log ("SHOOTING RIGHT");
+            } 
+            else if (playr.transform.localScale [0] > 0) 
+            {
                 left_dir = false;
                 StartCoroutine(WaitToShoot(left_dir));
             }
         }
     }
 
-    IEnumerator WaitToShoot(bool left_dir){
+    IEnumerator WaitToShoot(bool left_dir)
+    {
         PlatformerCharacter2D.can_move = false;
 
         m_anim.SetTrigger("Attack");
 
         yield return new WaitForSeconds(.8f);
 
-        if (left_dir){
+        if (left_dir)
+        {
             ShootLeft ();
-        }else{
+        }
+        else
+        {
             ShootRight();
         }
 
     }
 
-    void ShootLeft () {
-        
-//        Debug.Log("Shoot left");
+    void ShootLeft () 
+    {
         Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();
@@ -94,8 +104,8 @@ public class Weapon : MonoBehaviour {
         force.velocity = transform.TransformDirection (-transform.right) * bulletSpeed;
 
     }
-    void ShootRight () {
-//        Debug.Log("Shoot right");
+    void ShootRight () 
+    {
         Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
         force = Clone.GetComponent<Rigidbody2D>();

@@ -12,6 +12,9 @@ public class PlatformPlayer : MonoBehaviour {
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
     public float hit_height = 3.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
+    public Coin coin;
+    public Text score_text; 
+    public Door door;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
@@ -27,10 +30,10 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_anim;                      // Reference to the animator on the player
     private GameObject health_bar;
     private PlatformEnemy enemy; 
+   
 
-    public Text score_text; 
-
-    void Awake (){
+    void Awake ()
+    {
         // Setting up references.
         m_player_control = GetComponent<Platformer2DUserControl>();
 
@@ -42,7 +45,8 @@ public class PlatformPlayer : MonoBehaviour {
         m_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
     }
 
-    private void RespawnPlayer(){
+    private void RespawnPlayer()
+    {
         GetComponent<Platformer2DUserControl>().enabled = true;
         GetComponentInChildren<Weapon>().enabled = true;
         m_health = 100f;
@@ -55,17 +59,20 @@ public class PlatformPlayer : MonoBehaviour {
     }
 
     //increases score by the increment number
-    public void GainScore (int increment){
+    public void GainScore (int increment)
+    {
 //        m_num_combos++;-
         m_score += increment /* * m_num_combos*/;
     }
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         Debug.Log (System.Convert.ToString(collide));
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
-            || m_lives <= 0){
+            || m_lives <= 0)
+        {
             RespawnPlayer();
         }
         // canvas is null when in platformer mode
@@ -86,7 +93,8 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    void HurtEnemy(GameObject enemy){
+    void HurtEnemy(GameObject enemy)
+    {
         transform.Rotate(Vector2.left);
 
         Animator m_emy_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
@@ -98,22 +106,27 @@ public class PlatformPlayer : MonoBehaviour {
         StartCoroutine(WaitToDestroy(enemy));
     }
 
-    IEnumerator WaitToDestroy(GameObject enemy){
+    IEnumerator WaitToDestroy(GameObject enemy)
+    {
         yield return new WaitForSeconds(2f);
         Destroy(enemy);
         GainScore(10);
         collide = true;
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
         Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
         Vector2 down_dir = transform.TransformDirection(Vector2.down);
  
         RaycastHit2D[] hit = Physics2D.RaycastAll(cast_origin, down_dir, hit_height, 1 << 13);
 
-        if (hit != null){
-            foreach (RaycastHit2D collider_hit in hit){
-                if(collider_hit.transform.tag == "Enemy"){
+        if (hit != null)
+        {
+            foreach (RaycastHit2D collider_hit in hit)
+            {
+                if(collider_hit.transform.tag == "Enemy")
+                {
                     collide = false;
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
                     GameObject parent_enemy = collider_hit.transform.root.gameObject;
@@ -126,12 +139,15 @@ public class PlatformPlayer : MonoBehaviour {
 
         RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, down_dir, Mathf.Infinity, 1 << 14);
 
-        if (hit2 != null){
+        if (hit2 != null)
+        {
             foreach (RaycastHit2D collider_hit in hit2){
-                if(collider_hit.transform.gameObject.name == "BossDoor"){
-                    if (Input.GetKeyDown("up") || Input.GetKeyUp("up")){
+                if(collider_hit.transform.gameObject.name == "BossDoor")
+                {
+                    if (Input.GetKeyDown("up") || Input.GetKeyUp("up"))
+                    {
                         m_anim.SetBool("is_active", true);
-                        StartCoroutine(WaitToSwitch());
+                        StartCoroutine(WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
@@ -139,17 +155,20 @@ public class PlatformPlayer : MonoBehaviour {
 
     }
 
-    IEnumerator WaitToSwitch(){
+    IEnumerator WaitToSwitch(Vector3 position)
+    {
+        door.PlaySound(position);
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
         Application.LoadLevel("BattleScene");
 
     }
 
-    void OnCollisionEnter2D(Collision2D coll){ 
-
+    void OnCollisionEnter2D(Collision2D coll)
+    { 
         if (collide){     
-            if (coll.gameObject.name == "enemy1(Clone)"){
+            if (coll.gameObject.name == "enemy1(Clone)")
+            {
                 if (Time.time > m_last_hit_time + m_repeat_damage_period) 
                 {
                     if(m_health > 0f)
@@ -181,8 +200,10 @@ public class PlatformPlayer : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D coll){
-        if (coll.gameObject.name == "enemy2(Clone)"){
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.name == "enemy2(Clone)")
+        {
             // need to fix this; enemies go right through enemy2.
             if (Time.time > m_last_hit_time + m_repeat_damage_period) 
             {
@@ -213,8 +234,10 @@ public class PlatformPlayer : MonoBehaviour {
                 }
             }
         }
-        if (coll.gameObject.tag == "Coin"){
+        if (coll.gameObject.tag == "Coin")
+        {
             Destroy(coll.gameObject);
+            coin.PlaySound(coll.transform.position);
             GainScore(40);
         }
     }
