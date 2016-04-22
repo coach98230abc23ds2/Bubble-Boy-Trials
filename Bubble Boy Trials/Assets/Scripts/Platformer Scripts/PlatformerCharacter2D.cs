@@ -20,6 +20,8 @@ namespace UnityStandardAssets._2D
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
         private bool m_double_jump = false; // For checking if a player can double jump.
 
+        public static bool can_move = true;
+
         private void Awake()
         {
             // Setting up references.
@@ -54,7 +56,7 @@ namespace UnityStandardAssets._2D
         {
 
             //only control the player if grounded or airControl is turned on
-            if (m_Grounded || m_AirControl)
+            if ((m_Grounded || m_AirControl) && can_move)
             {
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
@@ -76,14 +78,14 @@ namespace UnityStandardAssets._2D
                 }
             }
             // If the player should jump...
-            if (m_Grounded && jump && m_Anim.GetBool("Ground"))
+            if (m_Grounded && jump && m_Anim.GetBool("Ground") && can_move)
             {
                 // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 m_double_jump = true;
-            }else if (jump && !m_Grounded){
+            }else if (jump && !m_Grounded && can_move){
 
                 //Allows the player to jump again.
                 if (m_double_jump){

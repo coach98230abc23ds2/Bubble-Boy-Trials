@@ -11,7 +11,8 @@ public class Ammo : MonoBehaviour {
         enemy.GetComponent<Rigidbody2D>().MoveRotation(45f);
         Animator m_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_anim.SetTrigger("Hit");
         Destroy(enemy, 2.0f);
@@ -25,6 +26,8 @@ public class Ammo : MonoBehaviour {
 
     //handles collision for when ammo collides with enemies of type enemy1
     void OnCollisionEnter2D(Collision2D coll){
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<CircleCollider2D>());
         float x_pos = coll.gameObject.transform.position.x;
         Debug.Log(coll.gameObject.tag);
         //destroys ammo and minion; increases player's score
@@ -52,7 +55,7 @@ public class Ammo : MonoBehaviour {
     void Awake(){
         spawner = Camera.current.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
-        m_player = player.GetComponent<PlatformPlayer>();
+        m_player = player.GetComponent<PlatformPlayer>(); 
     }
 
     void Update(){

@@ -10,13 +10,14 @@ public class PlatformPlayer : MonoBehaviour {
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
-    public float hit_height = 10.0f; //height at which player will hit the enemy's head 
+    public float hit_height = 3.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
+    private bool collide = true;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private EnemySpawner m_spawner;
@@ -25,6 +26,7 @@ public class PlatformPlayer : MonoBehaviour {
     private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
     private Animator m_anim;                      // Reference to the animator on the player
     private GameObject health_bar;
+    private PlatformEnemy enemy; 
 
     public Text score_text; 
 
@@ -60,6 +62,7 @@ public class PlatformPlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        Debug.Log (System.Convert.ToString(collide));
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
             || m_lives <= 0){
@@ -83,11 +86,13 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    void GotHurt(GameObject enemy){
+    void HurtEnemy(GameObject enemy){
         transform.Rotate(Vector2.left);
-        Animator m_emy_anim = enemy.GetComponent<Animator>();
+
+        Animator m_emy_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
         StartCoroutine(WaitToDestroy(enemy));
@@ -97,6 +102,7 @@ public class PlatformPlayer : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         Destroy(enemy);
         GainScore(10);
+        collide = true;
     }
 
     void FixedUpdate(){
@@ -108,10 +114,11 @@ public class PlatformPlayer : MonoBehaviour {
         if (hit != null){
             foreach (RaycastHit2D collider_hit in hit){
                 if(collider_hit.transform.tag == "Enemy"){
+                    collide = false;
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
-                    GameObject parent_enemy = collider_hit.transform.gameObject;
+                    GameObject parent_enemy = collider_hit.transform.root.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    GotHurt(parent_enemy);
+                    HurtEnemy(collider_hit.transform.gameObject);
                 }   
             }
             
@@ -139,33 +146,36 @@ public class PlatformPlayer : MonoBehaviour {
 
     }
 
-    void OnCollisionEnter2D(Collision2D coll){      
-        if (coll.gameObject.name == "enemy1(Clone)"){
-            if (Time.time > m_last_hit_time + m_repeat_damage_period) 
-            {
-                if(m_health > 0f)
-                {
-                    TakeDamage(coll.transform); 
-                    m_last_hit_time = Time.time; 
-                }
-                else
-                {
-                    // Find all of the colliders on the gameobject and set them all to be triggers.
-                    Collider2D[] cols = GetComponents<Collider2D>();
-                    foreach(Collider2D c in cols)
-                    {
-                        c.isTrigger = true;
-                    }
+    void OnCollisionEnter2D(Collision2D coll){ 
 
-                    // Move all sprite parts of the player to the front
-                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-                    foreach(SpriteRenderer s in spr)
+        if (collide){     
+            if (coll.gameObject.name == "enemy1(Clone)"){
+                if (Time.time > m_last_hit_time + m_repeat_damage_period) 
+                {
+                    if(m_health > 0f)
                     {
-                        s.sortingLayerName = "UI";
+                        TakeDamage(coll.transform); 
+                        m_last_hit_time = Time.time; 
                     }
+                    else
+                    {
+                        // Find all of the colliders on the gameobject and set them all to be triggers.
+                        Collider2D[] cols = GetComponents<Collider2D>();
+                        foreach(Collider2D c in cols)
+                        {
+                            c.isTrigger = true;
+                        }
 
-                    GetComponent<Platformer2DUserControl>().enabled = false;
-                    GetComponentInChildren<Weapon>().enabled = false;
+                        // Move all sprite parts of the player to the front
+                        SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+                        foreach(SpriteRenderer s in spr)
+                        {
+                            s.sortingLayerName = "UI";
+                        }
+
+                        GetComponent<Platformer2DUserControl>().enabled = false;
+                        GetComponentInChildren<Weapon>().enabled = false;
+                    }
                 }
             }
         }
