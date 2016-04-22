@@ -15,19 +15,20 @@ public class PlatformPlayer : MonoBehaviour {
     public Coin coin;
     public Text score_text; 
     public Door door;
+    public bool collide = true;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
-    private bool collide = true;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private EnemySpawner m_spawner;
     private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
     private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
     private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
-    private Animator m_anim;                      // Reference to the animator on the player
+    private Animator m_door_anim;                      // Reference to the animator on the door
+    private Animator m_player_anim;                     // Reference to the animator on the player
     private GameObject health_bar;
     private PlatformEnemy enemy; 
    
@@ -42,7 +43,8 @@ public class PlatformPlayer : MonoBehaviour {
         health_bar.GetComponent<Slider>().value = m_health;
 
         m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
-        m_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
+        m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
+        m_player_anim = this.gameObject.GetComponent<Animator>();
     }
 
     private void RespawnPlayer()
@@ -68,7 +70,6 @@ public class PlatformPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        Debug.Log (System.Convert.ToString(collide));
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
             || m_lives <= 0)
@@ -93,7 +94,7 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    void HurtEnemy(GameObject enemy)
+    public void HurtEnemy(GameObject enemy)
     {
         transform.Rotate(Vector2.left);
 
@@ -146,7 +147,7 @@ public class PlatformPlayer : MonoBehaviour {
                 {
                     if (Input.GetKeyDown("up") || Input.GetKeyUp("up"))
                     {
-                        m_anim.SetBool("is_active", true);
+                        m_door_anim.SetBool("is_active", true);
                         StartCoroutine(WaitToSwitch(collider_hit.transform.position));
                     }
                 }
@@ -167,7 +168,7 @@ public class PlatformPlayer : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     { 
         if (collide){     
-            if (coll.gameObject.name == "enemy1(Clone)")
+            if (coll.gameObject.name == "enemy1(Clone)" || coll.gameObject.tag == "Death")
             {
                 if (Time.time > m_last_hit_time + m_repeat_damage_period) 
                 {
@@ -197,6 +198,32 @@ public class PlatformPlayer : MonoBehaviour {
                     }
                 }
             }
+//            else if (coll.gameObject.tag == "Death"){
+//                if(m_health > 0f)
+//                {
+//                    TakeDamage(coll.transform); 
+//                    m_last_hit_time = Time.time; 
+//                }
+//                else
+//                {
+//                    // Find all of the colliders on the gameobject and set them all to be triggers.
+//                    Collider2D[] cols = GetComponents<Collider2D>();
+//                    foreach(Collider2D c in cols)
+//                    {
+//                        c.isTrigger = true;
+//                    }
+//
+//                    // Move all sprite parts of the player to the front
+//                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+//                    foreach(SpriteRenderer s in spr)
+//                    {
+//                        s.sortingLayerName = "UI";
+//                    }
+//
+//                    GetComponent<Platformer2DUserControl>().enabled = false;
+//                    GetComponentInChildren<Weapon>().enabled = false;
+//                }
+//            }
         }
     }
 
@@ -243,17 +270,21 @@ public class PlatformPlayer : MonoBehaviour {
     }
 
     void TakeDamage (Transform enemy)
-    {
+    {   
+        m_player_anim.SetTrigger("Defend");
         m_player_control.m_Jump = false;
 
-        Vector2 displacement = (transform.position - enemy.position);
-        Debug.Log("Displacement: " + System.Convert.ToString(displacement));
-        Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
-        // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector2 hurt_vector = new_displacement + Vector2.up;
+        if (enemy.name == "enemy1(Clone)")
+        {
+            Vector2 displacement = (transform.position - enemy.position);
+            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
+            Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
+            // Create a vector that's from the enemy to the player with an upwards boost.
+            Vector2 hurt_vector = new_displacement + Vector2.up;
 
-        // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
-        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
+            // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
+            GetComponent<Rigidbody2D>().AddForce(hurt_vector);
+        }
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);

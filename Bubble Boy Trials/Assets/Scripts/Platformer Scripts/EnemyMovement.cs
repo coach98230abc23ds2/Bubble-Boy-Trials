@@ -3,8 +3,7 @@ using System.Collections;
 using System;
 
 public class EnemyMovement : MonoBehaviour {
-
-    [SerializeField] private LayerMask m_WhatIsIncline;   
+  
     [SerializeField] private LayerMask m_WhatIsGround; 
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -69,7 +68,6 @@ public class EnemyMovement : MonoBehaviour {
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i].gameObject != gameObject){
-                    Debug.Log("set grounded to be true.");
                     m_Grounded = true;
                 }
             }
@@ -84,7 +82,6 @@ public class EnemyMovement : MonoBehaviour {
             for (int i = 0; i < colliders2.Length; i++)
             {
                 if (colliders2[i].gameObject.tag == "Incline"){
-                    Debug.Log("set incline to be true.");
                     m_incline = true;
                 }
             }
@@ -98,7 +95,7 @@ public class EnemyMovement : MonoBehaviour {
                  //need to fix this physics; enemy going up a slope
                 if (!m_Grounded)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -9.8f);
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-5f, -9.8f);
 
                 }
                 else if (m_incline && m_Grounded)

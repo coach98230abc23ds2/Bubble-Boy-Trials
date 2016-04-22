@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	public GameObject[] enemy_types; //stores type of enemies
 	private GameObject[] active_objects; //active game objects
-	private float[] enemy_1_positions = new float[]{24.59f, 84.0f, 118.0f}; //all possible x-coordinate spawning points for grounded minions
+	private float[] enemy_1_positions = new float[]{24.59f, 84.0f, 118.0f, 156.0f}; //all possible x-coordinate spawning points for grounded minions
   private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
 																    & their current positions */
@@ -148,7 +148,7 @@ public class EnemySpawner : MonoBehaviour {
             }
             for (int i = 0; i< curr_positions.Length; i++)
             {
-                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 25.0f){  
+                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 30.0f){  
                     if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
                     {
 						spawn_position = new Vector2 (curr_positions[i], 30);
