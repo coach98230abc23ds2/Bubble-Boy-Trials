@@ -291,6 +291,7 @@ public class BattleSystem : MonoBehaviour
 
     private void WrongAnswer()
     {
+        player.GetComponents<AudioSource>()[1].Play();
         time_per_turn[current_problem.GetOperator()].AddValue(
             CurrentAverage() + TIME_INCREASE_ON_WRONG_ANSWER
         );
