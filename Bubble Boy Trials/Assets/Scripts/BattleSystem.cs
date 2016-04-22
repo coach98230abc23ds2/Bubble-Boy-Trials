@@ -143,6 +143,7 @@ public class BattleSystem : MonoBehaviour
                 else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
                 {
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
+                    enemy.GetComponent<AudioSource>().Play();
                     ApplyHit();
                     bubbleLive = false;
                     bubble.GetComponents<AudioSource>()[1].Play();
@@ -260,6 +261,7 @@ public class BattleSystem : MonoBehaviour
         createBubble = true;
         attackingPlayer = false;
         player.GetComponent<Animator>().SetTrigger("Attack");
+        GetComponent<AudioSource>().Play();
         HidePlayerUI();
     }
 
