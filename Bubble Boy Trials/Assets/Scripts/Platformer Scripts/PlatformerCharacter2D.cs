@@ -19,8 +19,12 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
         private bool m_double_jump = false; // For checking if a player can double jump.
+        private bool scroll_left = false;
+        private bool scroll_right = false;
 
         public static bool can_move = true;
+
+        private BGScroller m_scroller;
 
         private void Awake()
         {
@@ -29,9 +33,24 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+//            m_scroller = GameObject.Find("Background").GetComponent<BGScroller>();
         }
 
+        private void Update()
+        {   
+//            Debug.Log(System.Convert.ToString(scroll_left) + System.Convert.ToString(scroll_right));
+//            if (scroll_left)
+//            {
+//                m_scroller.ScrollBG(-m_Rigidbody2D.velocity.x);
+//                scroll_left = false;
+//            }
+//            else if (scroll_right)
+//            {
+//                m_scroller.ScrollBG(m_Rigidbody2D.velocity.x);
+//                scroll_right = false;
+//            }
 
+        }
         private void FixedUpdate()
         {
             m_Grounded = false;
@@ -68,13 +87,22 @@ namespace UnityStandardAssets._2D
                 if (move > 0 && !m_FacingRight)
                 {
                     // ... flip the player.
-                    Flip();
+                    Flip(); 
                 }
                     // Otherwise if the input is moving the player left and the player is facing right...
                 else if (move < 0 && m_FacingRight)
                 {
                     // ... flip the player.
                     Flip();
+                }
+
+                if (m_Rigidbody2D.velocity.x < 0)
+                {
+                    scroll_left = true;
+                }
+                else if (m_Rigidbody2D.velocity.x > 0)
+                {
+                    scroll_right = true;
                 }
             }
             // If the player should jump...

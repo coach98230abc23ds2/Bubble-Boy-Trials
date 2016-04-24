@@ -140,6 +140,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, down_dir, Mathf.Infinity, 1 << 14);
 
+        //detects when player hits the up arrow next to the exit boss door.
         if (hit2 != null)
         {
             foreach (RaycastHit2D collider_hit in hit2){
@@ -198,32 +199,6 @@ public class PlatformPlayer : MonoBehaviour {
                     }
                 }
             }
-//            else if (coll.gameObject.tag == "Death"){
-//                if(m_health > 0f)
-//                {
-//                    TakeDamage(coll.transform); 
-//                    m_last_hit_time = Time.time; 
-//                }
-//                else
-//                {
-//                    // Find all of the colliders on the gameobject and set them all to be triggers.
-//                    Collider2D[] cols = GetComponents<Collider2D>();
-//                    foreach(Collider2D c in cols)
-//                    {
-//                        c.isTrigger = true;
-//                    }
-//
-//                    // Move all sprite parts of the player to the front
-//                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-//                    foreach(SpriteRenderer s in spr)
-//                    {
-//                        s.sortingLayerName = "UI";
-//                    }
-//
-//                    GetComponent<Platformer2DUserControl>().enabled = false;
-//                    GetComponentInChildren<Weapon>().enabled = false;
-//                }
-//            }
         }
     }
 
