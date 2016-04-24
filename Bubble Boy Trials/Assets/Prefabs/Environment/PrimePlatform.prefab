@@ -538,22 +538,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &187144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 494596}
-  - 212: {fileID: 21201312}
-  m_Layer: 0
-  m_Name: PlatformerbackgroundDRAFT2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &193046
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +617,7 @@ Transform:
   m_LocalScale: {x: 1.2431519, y: 1.2431518, z: 1.2431518}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 34
+  m_RootOrder: 33
 --- !u!4 &406922
 Transform:
   m_ObjectHideFlags: 1
@@ -693,7 +677,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 29
+  m_RootOrder: 28
 --- !u!4 &415428
 Transform:
   m_ObjectHideFlags: 1
@@ -717,7 +701,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 32
+  m_RootOrder: 31
 --- !u!4 &418384
 Transform:
   m_ObjectHideFlags: 1
@@ -789,7 +773,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 30
+  m_RootOrder: 29
 --- !u!4 &436006
 Transform:
   m_ObjectHideFlags: 1
@@ -849,7 +833,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 28
+  m_RootOrder: 27
 --- !u!4 &452266
 Transform:
   m_ObjectHideFlags: 1
@@ -873,7 +857,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 31
+  m_RootOrder: 30
 --- !u!4 &466658
 Transform:
   m_ObjectHideFlags: 1
@@ -921,7 +905,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 27
+  m_RootOrder: 26
 --- !u!4 &470986
 Transform:
   m_ObjectHideFlags: 1
@@ -958,7 +942,6 @@ Transform:
   - {fileID: 414664}
   - {fileID: 415428}
   - {fileID: 422016}
-  - {fileID: 494596}
   - {fileID: 469348}
   - {fileID: 451160}
   - {fileID: 415324}
@@ -1016,7 +999,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 470986}
-  m_RootOrder: 33
+  m_RootOrder: 32
 --- !u!4 &487654
 Transform:
   m_ObjectHideFlags: 1
@@ -1077,18 +1060,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 470986}
   m_RootOrder: 0
---- !u!4 &494596
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.5, y: -0, z: 0}
-  m_LocalScale: {x: 2.2927682, y: 2.2927656, z: 2.2927656}
-  m_Children: []
-  m_Father: {fileID: 470986}
-  m_RootOrder: 26
 --- !u!58 &5804076
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -2329,36 +2300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!212 &21201312
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187144}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e10a069eaa1c448918d3476a9300a10c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
 --- !u!212 &21201782
 SpriteRenderer:
   m_ObjectHideFlags: 1
