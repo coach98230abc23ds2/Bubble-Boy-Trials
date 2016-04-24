@@ -14,7 +14,6 @@ public class PlatformPlayer : MonoBehaviour {
     public bool is_dead = false;
     public Coin coin;
     public Text score_text; 
-    public Door door;
     public bool collide = true;
 
     private int m_lives = 3; //player's remaining lives
@@ -31,6 +30,7 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_player_anim;                     // Reference to the animator on the player
     private GameObject health_bar;
     private PlatformEnemy enemy; 
+    private Door m_door;
    
 
     void Awake ()
@@ -43,8 +43,9 @@ public class PlatformPlayer : MonoBehaviour {
         health_bar.GetComponent<Slider>().value = m_health;
 
         m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
-        m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
         m_player_anim = this.gameObject.GetComponent<Animator>();
+        m_door = GameObject.Find("BossDoor").GetComponent<Door>();
+        m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
     }
 
     private void RespawnPlayer()
@@ -149,7 +150,7 @@ public class PlatformPlayer : MonoBehaviour {
                     if (Input.GetKeyDown("up") || Input.GetKeyUp("up"))
                     {
                         m_door_anim.SetBool("is_active", true);
-                        StartCoroutine(WaitToSwitch(collider_hit.transform.position));
+                        StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
@@ -157,14 +158,6 @@ public class PlatformPlayer : MonoBehaviour {
 
     }
 
-    IEnumerator WaitToSwitch(Vector3 position)
-    {
-        door.PlaySound(position);
-        yield return new WaitForSeconds(3.5f);
-        Destroy(gameObject);
-        Application.LoadLevel("BattleScene");
-
-    }
 
     void OnCollisionEnter2D(Collision2D coll)
     { 
