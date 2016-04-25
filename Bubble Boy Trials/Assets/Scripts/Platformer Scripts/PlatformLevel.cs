@@ -5,8 +5,22 @@ using System.Collections.Generic;
 
 public class PlatformLevel : MonoBehaviour {
 
-    private bool m_level_started;
-    public string platformer_id;
+    public bool m_level_started;
+
+    public string platformer_name = "PrimeScene";
+    private GameObject m_platform;
+    private GameObject m_player;
+    private GameObject m_main_camera;
+    private GameObject m_canvas;
+    private GameObject m_health_bar;
+    private GameObject new_elevator;
+    private GameObject new_camera;
+
+    public GameObject m_elevator;
+    public GameObject maze_camera;
+    public GameObject plat_camera;
+
+
 
     void Awake()
     {
@@ -18,31 +32,73 @@ public class PlatformLevel : MonoBehaviour {
         AudioSource sound_track = GetComponent<AudioSource>();
         sound_track.Play();
         m_level_started = true;
+        m_platform = GameObject.Find("Platform");
+        m_player = GameObject.Find("Player");
+        m_main_camera = GameObject.Find("MainCamera");
+        m_canvas = GameObject.Find("Canvas");
+        m_health_bar = GameObject.Find("HealthBar");
     }
 
     void Update()
     {
-        if (m_level_started)
-        {
+        if (!m_level_started)
+        {   
+            m_level_started = true;
             StartLevel();
         }
     }
 
-    void StartLevel()
-    {
-        SceneManager.LoadScene(platformer_id, LoadSceneMode.Additive);
-        Scene scene = SceneManager.GetSceneByName(platformer_id);
+    public void StartLevel()
+    {   
+        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
+        m_platform.SetActive(true);
+        m_main_camera.SetActive(true);
+
+        Instantiate(m_player, new Vector3 (5.3f, 20, 0), Quaternion.identity);
+ 
+        Destroy(new_elevator);
+
+        Destroy(new_camera);
+
+        Instantiate(plat_camera);
+
+        Scene scene = SceneManager.GetSceneByName(platformer_name);
         SceneManager.SetActiveScene(scene);
         m_level_started = true;
     }
 
-    public void LevelComplete()
+    public void LevelCompleted()
     {
         m_level_started = false;
-      
 
+        SceneManager.LoadScene("PlatformerBattleScene", LoadSceneMode.Additive);
+        Scene scene = SceneManager.GetSceneByName("PlatformerBattleScene");
+        SceneManager.SetActiveScene(scene);
+        m_platform.SetActive(false);
+        m_main_camera.SetActive(false);
+
+
+        Destroy(m_player.GetComponent<PlatformPlayer>().health_bar);
+        Destroy(m_player);
+
+        new_elevator = Instantiate(m_elevator);
+        new_elevator.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Character";
+
+        new_camera = Instantiate(maze_camera);
+
+
+       
     }
 
+    void ClearScripts(GameObject obj)
+    {
+        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
+        foreach(MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
+        }
+     
+    }
 
 //
 //    public void LevelCompleted()

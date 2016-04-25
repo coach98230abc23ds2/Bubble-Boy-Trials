@@ -281,6 +281,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11481714, guid: 23c0bb39388fc40ed899dcf54a103b79, type: 2}
+      propertyPath: platformer_id
+      value: Prime{
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225308, guid: 23c0bb39388fc40ed899dcf54a103b79, type: 2}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481714, guid: 23c0bb39388fc40ed899dcf54a103b79, type: 2}
+      propertyPath: platformer_name
+      value: PrimeScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23c0bb39388fc40ed899dcf54a103b79, type: 2}
   m_IsPrefabParent: 0

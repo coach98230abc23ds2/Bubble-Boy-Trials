@@ -18,15 +18,18 @@ public class Door : MonoBehaviour {
         PlaySound(position);
 //        yield return new WaitUntil(x => x = (m_door_anim.IsInTransition(0) 
 //              && m_door_anim.GetNextAnimatorStateInfo(0).IsName("Idle")));
-//      
-        while (!(m_door_anim.IsInTransition(0) 
-              && m_door_anim.GetNextAnimatorStateInfo(0).IsName("Idle")))
-        {
-            yield return null;
-        }
+////      
+//        while (!(m_door_anim.IsInTransition(0) 
+//              && m_door_anim.GetNextAnimatorStateInfo(0).IsName("Idle")))
+//        {
+//            yield return null;
+//        }
+       yield return new WaitForSeconds(2f);
+//  
+//       SceneManager.UnloadScene(level.platformer_name);
+       level.LevelCompleted();
 
-        Destroy(gameObject);
-        SceneManager.UnloadScene(level.platformer_id);
+
     }
 
     public void PlaySound(Vector3 position)

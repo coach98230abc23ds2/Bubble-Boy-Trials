@@ -15,6 +15,7 @@ public class PlatformPlayer : MonoBehaviour {
     public Coin coin;
     public Text score_text; 
     public bool collide = true;
+    public GameObject health_bar;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
@@ -28,7 +29,6 @@ public class PlatformPlayer : MonoBehaviour {
     private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
     private Animator m_door_anim;                      // Reference to the animator on the door
     private Animator m_player_anim;                     // Reference to the animator on the player
-    private GameObject health_bar;
     private PlatformEnemy enemy; 
     private Door m_door;
    

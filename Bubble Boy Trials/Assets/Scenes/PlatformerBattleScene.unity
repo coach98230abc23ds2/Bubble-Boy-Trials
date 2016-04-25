@@ -731,10 +731,9 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 733519564}
   m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!224 &733519566 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 22414398, guid: 76468d871d8a4e849acbd8929104039b,
-    type: 2}
+--- !u!4 &733519566 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 733519564}
 --- !u!1 &820074989
 GameObject:
@@ -1672,7 +1671,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1720,6 +1719,7 @@ MonoBehaviour:
   battleMessage: {fileID: 638947960}
   problem: {fileID: 1298927035}
   enemy: {fileID: 1631079449}
+  platform_lvl: {fileID: 11437274, guid: c648000aa1f6646d0a3d21d5ffaecb26, type: 2}
   ReactionWindow: 0.68
 --- !u!4 &1698799137
 Transform:
@@ -1795,7 +1795,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
