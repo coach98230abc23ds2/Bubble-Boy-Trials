@@ -275,7 +275,7 @@ public class BattleSystem : MonoBehaviour
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
-            SceneManager.UnloadScene(2);
+            SceneManager.UnloadScene(1);
             GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
         }
         else
