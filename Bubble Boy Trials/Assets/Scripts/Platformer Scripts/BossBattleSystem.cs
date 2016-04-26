@@ -116,7 +116,7 @@ public class BossBattleSystem : MonoBehaviour
                 {
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
                     {
-                        player.GetComponent<Player>().TakeDamage(10);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(10);
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
@@ -126,19 +126,19 @@ public class BossBattleSystem : MonoBehaviour
                     {
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
-                        player.GetComponents<AudioSource>()[0].Play();
+//                        player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        player.GetComponent<Player>().TakeDamage(20);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
-                        player.GetComponents<AudioSource>()[1].Play();
+//                        player.GetComponents<AudioSource>()[1].Play();
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                 }
@@ -155,7 +155,7 @@ public class BossBattleSystem : MonoBehaviour
             switch (current_state)
             {
                 case BattleState.player_turn:
-                    time_remaining.value = timeRemaining;
+//                    time_remaining.value = timeRemaining;
                     if (timeRemaining < 0)
                     {
                         WrongAnswer();
@@ -232,7 +232,7 @@ public class BossBattleSystem : MonoBehaviour
         current_problem = new Problem();
 
         //need to get the prefab that max used
-//        timeRemaining = CurrentAverage();
+        timeRemaining = CurrentAverage();
 //        time_remaining.maxValue = timeRemaining;
 
         current_state = BattleState.player_turn;
@@ -296,7 +296,7 @@ public class BossBattleSystem : MonoBehaviour
 
     private void WrongAnswer()
     {
-        player.GetComponents<AudioSource>()[1].Play();
+        //player.GetComponents<AudioSource>()[1].Play();
         time_per_turn[current_problem.GetOperator()].AddValue(
             CurrentAverage() + TIME_INCREASE_ON_WRONG_ANSWER
         );
