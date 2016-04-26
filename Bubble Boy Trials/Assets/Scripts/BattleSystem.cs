@@ -23,7 +23,6 @@ public class BattleSystem : MonoBehaviour
     public Text battleMessage;
     public Text problem;
     public GameObject enemy;
-    public PlatformLevel platform_lvl;
 
     private GameObject player;
     private BattleState current_state;
@@ -276,15 +275,8 @@ public class BattleSystem : MonoBehaviour
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
-            if (SceneManager.GetActiveScene().name == "MazeScene")
-            {   
-                SceneManager.UnloadScene(1);
-                GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
-            }
-            else{
-                SceneManager.UnloadScene(4);
-                platform_lvl.StartLevel();
-            }
+            SceneManager.UnloadScene(1);
+            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
         }
         else
         {

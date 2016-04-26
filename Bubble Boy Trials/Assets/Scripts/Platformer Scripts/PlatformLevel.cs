@@ -19,12 +19,13 @@ public class PlatformLevel : MonoBehaviour {
     public GameObject m_elevator;
     public GameObject maze_camera;
     public GameObject plat_camera;
+    public GameObject player_prefab;
 
 
 
     void Awake()
     {
-        GameObject.DontDestroyOnLoad(this);
+
     }
 
     void Start()
@@ -50,17 +51,11 @@ public class PlatformLevel : MonoBehaviour {
 
     public void StartLevel()
     {   
-        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
+//        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
+        m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(true);
+        m_player.SetActive(true);
         m_platform.SetActive(true);
         m_main_camera.SetActive(true);
-
-        Instantiate(m_player, new Vector3 (5.3f, 20, 0), Quaternion.identity);
- 
-        Destroy(new_elevator);
-
-        Destroy(new_camera);
-
-        Instantiate(plat_camera);
 
         Scene scene = SceneManager.GetSceneByName(platformer_name);
         SceneManager.SetActiveScene(scene);
@@ -69,24 +64,23 @@ public class PlatformLevel : MonoBehaviour {
 
     public void LevelCompleted()
     {
-        m_level_started = false;
-
-        SceneManager.LoadScene("PlatformerBattleScene", LoadSceneMode.Additive);
-        Scene scene = SceneManager.GetSceneByName("PlatformerBattleScene");
+        SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
+        Scene scene = SceneManager.GetSceneByName("BossBattleScene");
         SceneManager.SetActiveScene(scene);
-        m_platform.SetActive(false);
+//        m_platform.SetActive(false);
+//        Resources.UnloadUnusedAssets();
         m_main_camera.SetActive(false);
 
 
-        Destroy(m_player.GetComponent<PlatformPlayer>().health_bar);
-        Destroy(m_player);
+        m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(false);
+        m_player.SetActive(false);
 
         new_elevator = Instantiate(m_elevator);
         new_elevator.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Character";
+        SceneManager.MoveGameObjectToScene(new_elevator, scene);
 
         new_camera = Instantiate(maze_camera);
-
-
+        SceneManager.MoveGameObjectToScene(new_camera, scene);
        
     }
 

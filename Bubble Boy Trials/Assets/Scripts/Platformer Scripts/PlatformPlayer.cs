@@ -37,15 +37,20 @@ public class PlatformPlayer : MonoBehaviour {
     {
         // Setting up references.
         m_player_control = GetComponent<Platformer2DUserControl>();
-
-        health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
-        health_bar.GetComponent<Slider>().value = m_health;
-
         m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
         m_player_anim = this.gameObject.GetComponent<Animator>();
         m_door = GameObject.Find("BossDoor").GetComponent<Door>();
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
+    }
+
+    void Start()
+    {       
+//        if (GameObject.FindGameObjectsWithTag("Health").GetLength(2) == 0)
+//        {
+            health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+            health_bar.GetComponent<Slider>().value = m_health;
+//        }
     }
 
     private void RespawnPlayer()
@@ -245,7 +250,7 @@ public class PlatformPlayer : MonoBehaviour {
         if (enemy.name == "enemy1(Clone)")
         {
             Vector2 displacement = (transform.position - enemy.position);
-            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
+//            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
             Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
             // Create a vector that's from the enemy to the player with an upwards boost.
             Vector2 hurt_vector = new_displacement + Vector2.up;

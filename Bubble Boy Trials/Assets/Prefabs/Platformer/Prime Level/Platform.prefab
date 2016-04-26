@@ -78,8 +78,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 427616}
   - 212: {fileID: 21223716}
-  - 114: {fileID: 11437274}
-  - 82: {fileID: 8248378}
   m_Layer: 12
   m_Name: Platform
   m_TagString: ground
@@ -691,7 +689,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.02492, y: -0.6000004, z: 0}
+  m_LocalPosition: {x: 137.72, y: -0.6000004, z: 0}
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 427616}
@@ -920,7 +918,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.02492, y: 3.987772, z: 0}
+  m_LocalPosition: {x: 142.06, y: 3.987772, z: 0}
   m_LocalScale: {x: 2, y: 1.4539835, z: 1.4539835}
   m_Children: []
   m_Father: {fileID: 427616}
@@ -2288,80 +2286,6 @@ BoxCollider2D:
   m_Offset: {x: -0.000015258789, y: -4.8199997}
   serializedVersion: 2
   m_Size: {x: 3.0776775, y: 4.8}
---- !u!82 &8248378
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114710}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efa27dfb8a0094bcbbcd5c9ae2a91e51, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  Priority: 20
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &9555204
 Animator:
   serializedVersion: 3
@@ -2379,22 +2303,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11437274
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9437d16cc5e184abb840d129e9f4638e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_level_started: 0
-  platformer_name: PrimeScene
-  m_elevator: {fileID: 141992, guid: f43d7db98177246f4ae564838e465bd6, type: 2}
-  maze_camera: {fileID: 164002, guid: fc1f0141dcf7045398bc9f7b8082c9f0, type: 2}
-  plat_camera: {fileID: 154304, guid: 90b7a593efff64802979a4ec4e9d4037, type: 2}
 --- !u!114 &11447780
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,7 +11,7 @@ public class Door : MonoBehaviour {
     void Awake ()
     {
         m_door_anim = this.gameObject.GetComponent<Animator>();
-        level = GameObject.Find("Platform").GetComponent<PlatformLevel>();
+        level = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
     }
     public IEnumerator WaitToSwitch(Vector3 position)
     {

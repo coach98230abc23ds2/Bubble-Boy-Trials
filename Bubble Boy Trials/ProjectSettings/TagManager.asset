@@ -25,6 +25,7 @@ TagManager:
   - Decline
   - Coin
   - Death
+  - Health
   layers:
   - Default
   - TransparentFX
