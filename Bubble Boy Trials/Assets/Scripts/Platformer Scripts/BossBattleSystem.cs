@@ -136,7 +136,7 @@ public class BossBattleSystem : MonoBehaviour
                 {
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
                     {
-                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(10);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
                         player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
@@ -147,14 +147,14 @@ public class BossBattleSystem : MonoBehaviour
                     {
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
-                        player.GetComponents<AudioSource>()[0].Play();
+//                        player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(0);
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
@@ -291,7 +291,7 @@ public class BossBattleSystem : MonoBehaviour
 
     private void ApplyHit()
     {
-        int dmg = 10;
+        int dmg = 5;
         if (comboChain >= 3)
         {
             dmg += 10 * comboChain - 2;

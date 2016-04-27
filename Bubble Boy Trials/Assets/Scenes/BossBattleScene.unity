@@ -1431,6 +1431,10 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: -1783731295
       objectReference: {fileID: 0}
+    - target: {fileID: 8278290, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
   m_IsPrefabParent: 0
@@ -1618,7 +1622,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b60d4d186119ff341ad674aea9bd8c6d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1692,7 +1696,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bded3414b43104cc7aa223f7e6e7b210, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1766,7 +1770,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 16f9ca98144f94153bee0dcbbfd314cc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
