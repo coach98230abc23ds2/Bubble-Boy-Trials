@@ -6,10 +6,13 @@ public class Weapon : MonoBehaviour {
 
     private float fireRate = 0f;
     private float bulletSpeed = 3f;
+
 //    public LayerMask whatToHit;
     public GameObject bulletPrefab;
     public Rigidbody2D force;
     public GameObject Clone;
+    public AnimationClip attack_clip;
+    public bool can_attack = true;
     float timeToFire = 1f;
     GameObject firePoint;
     Transform bullet;
@@ -29,60 +32,60 @@ public class Weapon : MonoBehaviour {
         }
         m_anim = this.gameObject.GetComponent<Animator>();
         transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
-        PlatformerCharacter2D.can_move = true;
     }
 
     // Update is called once per frame
     void Update ()
     {
-        PlatformerCharacter2D.can_move = true;
         transform.gameObject.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation) ;
         GameObject playr = GameObject.Find ("Player");
-        if (fireRate == 0) 
+        if (can_attack)
         {
-            if (Input.GetButtonDown ("Fire1") && Time.time > last_time_shot + timeToFire) 
+            if (fireRate == 0) 
             {
-                
+                if (Input.GetButtonDown ("Fire1") && Time.time > last_time_shot + timeToFire) 
+                {
+                    
+                    if (playr.transform.localScale [0] < 0) 
+                    {
+                       left_dir = true;
+                       StartCoroutine(WaitToShoot(left_dir));
+                    } 
+                    else if (playr.transform.localScale [0] > 0) 
+                    {
+                       left_dir = false;
+                       StartCoroutine(WaitToShoot(left_dir));
+                    }
+                    last_time_shot = Time.time;
+                }
+            } 
+            else 
+            {
+                // need to fix this
+                if (Input.GetButton("Fire1") && Time.time > timeToFire){
+                    timeToFire = Time.time + 1 / fireRate;
+                    StartCoroutine(WaitToShoot(left_dir));
+                }
                 if (playr.transform.localScale [0] < 0) 
                 {
-                   left_dir = true;
-                   StartCoroutine(WaitToShoot(left_dir));
+                    left_dir = true;
+                    StartCoroutine(WaitToShoot(left_dir));
                 } 
                 else if (playr.transform.localScale [0] > 0) 
                 {
-                   left_dir = false;
-                   StartCoroutine(WaitToShoot(left_dir));
+                    left_dir = false;
+                    StartCoroutine(WaitToShoot(left_dir));
                 }
-                last_time_shot = Time.time;
-            }
-        } 
-        else 
-        {
-            // need to fix this
-            if (Input.GetButton("Fire1") && Time.time > timeToFire){
-                timeToFire = Time.time + 1 / fireRate;
-                StartCoroutine(WaitToShoot(left_dir));
-            }
-            if (playr.transform.localScale [0] < 0) 
-            {
-                left_dir = true;
-                StartCoroutine(WaitToShoot(left_dir));
-            } 
-            else if (playr.transform.localScale [0] > 0) 
-            {
-                left_dir = false;
-                StartCoroutine(WaitToShoot(left_dir));
             }
         }
     }
 
     IEnumerator WaitToShoot(bool left_dir)
     {
-        PlatformerCharacter2D.can_move = false;
 
         m_anim.SetTrigger("Attack");
 
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(attack_clip.length - 1f);
 
         if (left_dir)
         {

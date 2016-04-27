@@ -265,6 +265,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 140274, guid: 3c66f731303f54f2cbd9df7c1a1d0822, type: 2}
   force: {fileID: 0}
   Clone: {fileID: 0}
+  attack_clip: {fileID: 7400000, guid: 75ea3c6193c3d414eb18198461a93f8b, type: 2}
 --- !u!114 &11457008
 MonoBehaviour:
   m_ObjectHideFlags: 1

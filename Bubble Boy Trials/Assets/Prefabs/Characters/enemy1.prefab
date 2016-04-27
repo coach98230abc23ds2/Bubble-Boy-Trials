@@ -57,9 +57,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416074}
-  - 50: {fileID: 5018348}
   - 114: {fileID: 11427986}
   - 114: {fileID: 11457786}
+  - 50: {fileID: 5061414}
   m_Layer: 10
   m_Name: enemy1
   m_TagString: Enemy
@@ -146,7 +146,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416074}
   m_RootOrder: 0
---- !u!50 &5018348
+--- !u!50 &5061414
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1

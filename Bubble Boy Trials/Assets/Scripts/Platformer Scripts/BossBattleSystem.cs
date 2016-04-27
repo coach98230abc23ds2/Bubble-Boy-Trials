@@ -23,6 +23,7 @@ public class BossBattleSystem : MonoBehaviour
     public Text battleMessage;
     public Text problem;
     public GameObject enemy;
+    public Door door;
 
     private PlatformLevel platform_lvl;
     private GameObject player;
@@ -61,7 +62,7 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = player.transform.position + new Vector3(10, 0, 0);
+        enemy.transform.position = player.transform.position + new Vector3(20,0,0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
     }
 	
@@ -70,14 +71,14 @@ public class BossBattleSystem : MonoBehaviour
     {
         if (!started)
         {
-            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 5.2f)
+            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 10f)
             {
                 started = true;
                 PlayerTurn();
             }
             else
             {
-                enemy.transform.position -= new Vector3(2f * Time.fixedDeltaTime, 0, 0);
+                enemy.transform.position -= new Vector3(.5f * Time.fixedDeltaTime, 0, 0);
             }
         }
         if (started)

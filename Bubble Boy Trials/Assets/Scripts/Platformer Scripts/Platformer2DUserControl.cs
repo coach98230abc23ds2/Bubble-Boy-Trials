@@ -9,6 +9,7 @@ namespace UnityStandardAssets._2D
     {
         private PlatformerCharacter2D m_Character;
         public bool m_Jump;
+        public bool m_can_move = true;
 
 
         private void Awake()
@@ -29,11 +30,14 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
         {
-            // Read the inputs.
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            // Pass all parameters to the character control script.
-            m_Character.Move(h, m_Jump);
-            m_Jump = false;
+            if (m_can_move)
+            {
+                // Read the inputs.
+                float h = CrossPlatformInputManager.GetAxis("Horizontal");
+                // Pass all parameters to the character control script.
+                m_Character.Move(h, m_Jump);
+                m_Jump = false;
+            }
         }
     }
 }

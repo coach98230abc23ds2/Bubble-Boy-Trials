@@ -177,7 +177,7 @@ public class EnemySpawner : MonoBehaviour {
 		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
 		active_objects.Distinct();
 
-		if(can_spawn && (Time.fixedTime > last_hit_time + 5f))
+		if(can_spawn && (Time.fixedTime > last_hit_time + 3f))
 		{
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();

@@ -75,7 +75,7 @@ namespace UnityStandardAssets._2D
         {
 
             //only control the player if grounded or airControl is turned on
-            if ((m_Grounded || m_AirControl) && can_move)
+            if ((m_Grounded || m_AirControl))
             {
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));

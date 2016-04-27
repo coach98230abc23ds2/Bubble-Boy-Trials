@@ -37,7 +37,7 @@ public class PlatformEnemy : MonoBehaviour {
     {   
         if (coll.gameObject.tag == "Death")
         {
-            player.collide = false;
+            player.collided = true;
             GameObject parent_enemy = this.transform.gameObject;
             spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
             player.HurtEnemy(this.transform.gameObject, 0);

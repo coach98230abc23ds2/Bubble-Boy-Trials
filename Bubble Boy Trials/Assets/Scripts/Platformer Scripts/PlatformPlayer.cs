@@ -14,7 +14,7 @@ public class PlatformPlayer : MonoBehaviour {
     public bool is_dead = false;
     public Coin coin;
     public Text score_text; 
-    public bool collide = true;
+    public bool collided = false;
     public GameObject health_bar;
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
@@ -23,6 +23,7 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
+    private bool m_touched_door = false;
     private bool health_bar_exists = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
@@ -34,6 +35,9 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_player_anim;                     // Reference to the animator on the player
     private Door m_door;
     private Animator m_emy_anim;
+    private Platformer2DUserControl player_control;
+    private Weapon weapon;
+
    
 
     void Awake ()
@@ -44,6 +48,8 @@ public class PlatformPlayer : MonoBehaviour {
         m_player_anim = this.gameObject.GetComponent<Animator>();
         m_door = GameObject.Find("BossDoor").GetComponent<Door>();
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
+        player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
+        weapon = this.gameObject.GetComponent<Weapon>();
     }
 
     void Start()
@@ -113,11 +119,7 @@ public class PlatformPlayer : MonoBehaviour {
                                                                   RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
-        StartCoroutine(WaitToDestroy(curr_enemy, score_increase));
-    }
-
-    IEnumerator WaitToDestroy(GameObject curr_enemy, int score_increase)
-    {   
+//        StartCoroutine(WaitToDestroy(curr_enemy, score_increase));
         AnimationClip enemy_hit;
         float time_to_wait;
         if (curr_enemy.name == "enemy1(Clone)")
@@ -131,13 +133,33 @@ public class PlatformPlayer : MonoBehaviour {
             time_to_wait = enemy_hit.length;
         }
 
-        yield return new WaitForSeconds(time_to_wait);
-
-        Destroy(curr_enemy);
+        Destroy(curr_enemy, time_to_wait);
         GainScore(score_increase);
-        collide = true;
-
+        collided = true;
     }
+
+//    IEnumerator WaitToDestroy(GameObject curr_enemy, int score_increase)
+//    {   
+//        AnimationClip enemy_hit;
+//        float time_to_wait;
+//        if (curr_enemy.name == "enemy1(Clone)")
+//        {
+//            enemy_hit = enemy1_hit;
+//            time_to_wait = enemy_hit.length/4;
+//        }
+//        else
+//        {
+//            enemy_hit = enemy2_hit;
+//            time_to_wait = enemy_hit.length;
+//        }
+//
+//        yield return new WaitForSeconds(time_to_wait);
+//
+//        Destroy(curr_enemy);
+//        GainScore(score_increase);
+//        collide = true;
+//
+//    }
 
     void FixedUpdate()
     {
@@ -146,45 +168,55 @@ public class PlatformPlayer : MonoBehaviour {
  
         RaycastHit2D[] hit = Physics2D.RaycastAll(cast_origin, down_dir, hit_height, 1 << 13);
 
-        if (hit != null)
+        if (!m_touched_head)
         {
-            foreach (RaycastHit2D collider_hit in hit)
+            if (hit != null)
             {
-                if(collider_hit.transform.tag == "Enemy")
+                foreach (RaycastHit2D collider_hit in hit)
                 {
-                    collide = false;
-                    this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
-                    GameObject parent_enemy = collider_hit.transform.root.gameObject;
-                    m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    HurtEnemy(parent_enemy, 10);
-                }   
+                    if(collider_hit.transform.tag == "Enemy")
+                    {
+                        m_touched_head = true;
+                        collided = true;
+                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
+                        GameObject parent_enemy = collider_hit.transform.root.gameObject;
+                        m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
+                        HurtEnemy(parent_enemy, 10);
+                    }   
+                }
+                
             }
-            
         }
 
-        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, down_dir, Mathf.Infinity, 1 << 14);
+        Vector2 right_dir = transform.TransformDirection(Vector2.right);
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 20f, 1 << 14);
 
-        //detects when player hits the up arrow next to the exit boss door.
-        if (hit2 != null)
+        if (!m_touched_door)
         {
-            foreach (RaycastHit2D collider_hit in hit2){
-                if(collider_hit.transform.gameObject.name == "BossDoor")
-                {
-                    if (Input.GetKeyDown("up") || Input.GetKeyUp("up"))
-                    {
+            //detects when player is near the exit boss door.
+            if (hit2 != null)
+            {
+                foreach (RaycastHit2D collider_hit in hit2){
+                    if(collider_hit.transform.gameObject.name == "BossDoor")
+                    {   
+                       
+                        this.gameObject.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
+                        player_control.m_can_move = false;
+                        weapon.can_attack = false;
+                        m_touched_door = true;
                         m_door_anim.SetBool("is_active", true);
                         StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
         }
-
     }
 
 
     void OnCollisionEnter2D(Collision2D coll)
     { 
-        if (collide){     
+        if (!collided){     
             if (coll.gameObject.name == "enemy1(Clone)" || coll.gameObject.tag == "Death")
             {
                 if (Time.time > m_last_hit_time + m_repeat_damage_period) 

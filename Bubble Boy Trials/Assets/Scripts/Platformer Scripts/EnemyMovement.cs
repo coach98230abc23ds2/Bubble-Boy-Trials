@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         m_rb2d = this.GetComponent<Rigidbody2D>();
-        transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        transform.GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         StartCoroutine(WaitToSpawn());
     }
 
@@ -103,19 +103,19 @@ public class EnemyMovement : MonoBehaviour {
                  //need to fix this physics; enemy going up a slope
                 if (!m_Grounded)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-5f, -9.8f);
+                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-5f, -9.8f);
 
                 }
                 else if (m_incline && m_Grounded)
                 {  
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-2.5f, 0);
+                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-2.5f, 0);
                 }
 
                 else if (!m_incline && m_Grounded)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, 0f);   
+                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-3f, 0f);   
                 }
-                m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
+                m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponentInChildren<Rigidbody2D>().velocity.x));
             }
         }
     }

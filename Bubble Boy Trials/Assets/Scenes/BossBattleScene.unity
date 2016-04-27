@@ -1714,6 +1714,7 @@ MonoBehaviour:
   battleMessage: {fileID: 1298927035}
   problem: {fileID: 638947960}
   enemy: {fileID: 1631079449}
+  door: {fileID: 166472, guid: 37957511fdd1c4f8baa9ef541df0b44e, type: 2}
   ReactionWindow: 1000
 --- !u!4 &1698799137
 Transform:
