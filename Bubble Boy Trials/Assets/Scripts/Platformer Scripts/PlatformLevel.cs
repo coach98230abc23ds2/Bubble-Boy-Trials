@@ -15,35 +15,25 @@ public class PlatformLevel : MonoBehaviour {
     private GameObject m_health_bar;
     private GameObject new_elevator;
     private GameObject new_camera;
-    private AudioSource plat_sound_track;
+    private AudioSource source;
 
     public GameObject m_elevator;
     public GameObject maze_camera;
     public GameObject plat_camera;
     public GameObject player_prefab;
-    public AudioSource boss_sound_track;
 
 
-
-    void Awake()
-    {
-
-    }
 
     void Start()
     {
-        plat_sound_track = GetComponent<AudioSource>();
-        plat_sound_track.Play();
+        source = GetComponent<AudioSource>();
+        source.Play();
         m_level_started = true;
         m_platform = GameObject.Find("Platform");
         m_player = GameObject.Find("Player");
         m_main_camera = GameObject.Find("MainCamera");
         m_canvas = GameObject.Find("Canvas");
         m_health_bar = GameObject.Find("HealthBar");
-    }
-
-    void Update()
-    {
     }
 
     public void StartLevel()
@@ -60,32 +50,21 @@ public class PlatformLevel : MonoBehaviour {
         m_level_started = true;
     }
 
-    public void LevelCompleted()
+    public void LevelCompleted(GameObject door)
     {   
         if (m_level_started)
         {
-        m_level_started = false;
-        plat_sound_track.Stop();
-        SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
-        Scene scene = SceneManager.GetSceneByName("BossBattleScene");
-        SceneManager.SetActiveScene(scene);
-//        m_platform.SetActive(false);
-       // Resources.UnloadUnusedAssets();
-        //m_main_camera.SetActive(false);
-
-
-        //m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(false);
-        //m_player.SetActive(false);
-
-        //new_elevator = Instantiate(m_elevator);
-        //new_elevator.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Character";
-        //SceneManager.MoveGameObjectToScene(new_elevator, scene);
-
-        //new_camera = Instantiate(maze_camera);
-        //SceneManager.MoveGameObjectToScene(new_camera, scene);
+            m_level_started = false;
+            source.Stop();
+            SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
+            Scene scene = SceneManager.GetSceneByName("BossBattleScene");
+            SceneManager.SetActiveScene(scene);
+            Destroy(door,2.0f);
         }
 
     }
+
+
 
     void ClearScripts(GameObject obj)
     {

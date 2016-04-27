@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BossBattleSystem : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class BossBattleSystem : MonoBehaviour
     public Text problem;
     public GameObject enemy;
     public Door door;
+    public AudioClip[] boss_music;
+    private AudioSource source;
 
     private PlatformLevel platform_lvl;
     private GameObject player;
@@ -48,6 +51,21 @@ public class BossBattleSystem : MonoBehaviour
     private bool createBubble;
     private int comboChain;
     private bool started;
+    private int m_score;
+    private AudioSource[] sounds;
+
+    void Awake()
+    {
+        sounds = this.gameObject.GetComponents<AudioSource>();
+        StartCoroutine(PlayBossMusic());
+    }
+
+    IEnumerator PlayBossMusic()
+    {
+        sounds[1].Play();
+        yield return new WaitForSeconds(sounds[1].clip.length);
+        sounds[2].Play();
+    }
 
     // Use this for initialization
     void Start()
@@ -62,8 +80,9 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = player.transform.position + new Vector3(20,0,0);
+        enemy.transform.position = new Vector3 (190.1f, 33.67f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
+//        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
 	
     // Update is called once per frame
@@ -71,14 +90,14 @@ public class BossBattleSystem : MonoBehaviour
     {
         if (!started)
         {
-            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 10f)
+            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 5.5f)
             {
                 started = true;
                 PlayerTurn();
             }
             else
             {
-                enemy.transform.position -= new Vector3(.5f * Time.fixedDeltaTime, 0, 0);
+                enemy.transform.position -= new Vector3(.4f * Time.fixedDeltaTime, 0, 0);
             }
         }
         if (started)
@@ -118,6 +137,7 @@ public class BossBattleSystem : MonoBehaviour
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
                     {
                         player.GetComponent<PlatformPlayer>().UpdateHealthBar(10);
+                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
@@ -127,7 +147,7 @@ public class BossBattleSystem : MonoBehaviour
                     {
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
-//                        player.GetComponents<AudioSource>()[0].Play();
+                        player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
@@ -156,7 +176,7 @@ public class BossBattleSystem : MonoBehaviour
             switch (current_state)
             {
                 case BattleState.player_turn:
-//                    time_remaining.value = timeRemaining;
+                    time_remaining.value = timeRemaining;
                     if (timeRemaining < 0)
                     {
                         WrongAnswer();
@@ -200,7 +220,7 @@ public class BossBattleSystem : MonoBehaviour
     {
         answers.ForEach(b => ResetButton(b));
         problem.gameObject.SetActive(true);
-//        time_remaining.gameObject.SetActive(true);
+        time_remaining.gameObject.SetActive(true);
         battleMessage.gameObject.SetActive(false);
     }
 
@@ -208,7 +228,7 @@ public class BossBattleSystem : MonoBehaviour
     {
         answers.ForEach(b => b.gameObject.SetActive(false));
         problem.gameObject.SetActive(false);
-//        time_remaining.gameObject.SetActive(false);
+        time_remaining.gameObject.SetActive(false);
         battleMessage.gameObject.SetActive(true);
     }
 
@@ -234,7 +254,7 @@ public class BossBattleSystem : MonoBehaviour
 
         //need to get the prefab that max used
         timeRemaining = CurrentAverage();
-//        time_remaining.maxValue = timeRemaining;
+        time_remaining.maxValue = timeRemaining;
 
         current_state = BattleState.player_turn;
 

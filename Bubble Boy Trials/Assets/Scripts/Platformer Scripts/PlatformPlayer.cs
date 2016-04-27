@@ -189,7 +189,7 @@ public class PlatformPlayer : MonoBehaviour {
         }
 
         Vector2 right_dir = transform.TransformDirection(Vector2.right);
-        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 20f, 1 << 14);
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 15f, 1 << 14);
 
         if (!m_touched_door)
         {
@@ -198,10 +198,9 @@ public class PlatformPlayer : MonoBehaviour {
             {
                 foreach (RaycastHit2D collider_hit in hit2){
                     if(collider_hit.transform.gameObject.name == "BossDoor")
-                    {   
-                       
-                        this.gameObject.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
-                                                                  RigidbodyConstraints2D.FreezePositionY) ;
+                    {       
+                        m_player_anim.SetFloat("Speed",0);
+                        this.gameObject.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                         player_control.m_can_move = false;
                         weapon.can_attack = false;
                         m_touched_door = true;

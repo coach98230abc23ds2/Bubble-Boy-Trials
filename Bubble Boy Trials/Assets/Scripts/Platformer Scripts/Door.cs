@@ -11,6 +11,7 @@ public class Door : MonoBehaviour {
     public AnimationClip door_clip;
     public AudioClip[] boss_music;
     private AudioSource source;
+    private Vector3 door_position;
 
 
     void Awake ()
@@ -18,26 +19,16 @@ public class Door : MonoBehaviour {
         m_door_anim = this.gameObject.GetComponent<Animator>();
         level = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
         source = this.gameObject.GetComponent<AudioSource>();
+        door_position = this.gameObject.transform.position;
     }
+
     public IEnumerator WaitToSwitch(Vector3 position)
     {
        PlaySound(position);
        yield return new WaitForSeconds(door_clip.length);
-       Destroy(this.gameObject);
-//       SceneManager.UnloadScene(level.platformer_name);
-       level.LevelCompleted();
-       StartCoroutine(PlayBossIntro(position));
+       level.LevelCompleted(this.gameObject);
     }
 
-    IEnumerator PlayBossIntro(Vector3 position)
-    {   
-        source.clip = boss_music[0];
-        source.Play();
-        yield return new WaitForSeconds(source.clip.length);
-        source.clip = boss_music[1];
-        source.loop = true;
-        source.Play();
-    }
 
     public void PlaySound(Vector3 position)
     {
