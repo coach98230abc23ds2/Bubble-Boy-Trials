@@ -58,7 +58,6 @@ public class BossBattleSystem : MonoBehaviour
     {
         sounds = this.gameObject.GetComponents<AudioSource>();
         StartCoroutine(PlayBossMusic());
-        enemy.
     }
 
     IEnumerator PlayBossMusic()
