@@ -120,9 +120,9 @@ public class BattleSystem : MonoBehaviour
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
-                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
+                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) > 1f && Vector3.Distance(bubble.transform.position, player.transform.position) < 3.5f && Input.GetKeyDown(KeyCode.Space))
                     {
-                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
@@ -132,7 +132,7 @@ public class BattleSystem : MonoBehaviour
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
                         player.GetComponent<Player>().TakeDamage(20);
-                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;

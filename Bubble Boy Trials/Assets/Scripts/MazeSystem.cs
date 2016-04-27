@@ -32,7 +32,7 @@ public class MazeSystem : MonoBehaviour
     {
         m_current_node = GameObject.FindGameObjectWithTag("Root Node").GetComponent<MazeNode>();
         m_target_position = m_current_node.transform.position;
-        m_elevator = GameObject.FindGameObjectWithTag("Elevator").GetComponent<Elevator>();
+        m_elevator = GameObject.FindGameObjectWithTag("PlayerElevator").GetComponent<Elevator>();
         m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
         m_path_chosen = true;
