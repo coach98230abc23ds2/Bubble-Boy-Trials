@@ -58,6 +58,7 @@ public class BossBattleSystem : MonoBehaviour
     {
         sounds = this.gameObject.GetComponents<AudioSource>();
         StartCoroutine(PlayBossMusic());
+        enemy.
     }
 
     IEnumerator PlayBossMusic()
@@ -106,7 +107,7 @@ public class BossBattleSystem : MonoBehaviour
 
             Animator playerAnimator = player.GetComponent<Animator>();
             Animator enemyAnimator = enemy.GetComponent<Animator>();
-            if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
+            if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Boy Idle"))
             {
                 if (bubble != null)
                 {
@@ -117,7 +118,7 @@ public class BossBattleSystem : MonoBehaviour
                 bubbleLive = true;
                 createBubble = false;
             }
-            else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Green Minion Attack"))
+            else if (createBubble && attackingPlayer && enemyAnimator.IsInTransition(0) && enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Prime Attack"))
             {
                 if (bubble != null)
                 {
