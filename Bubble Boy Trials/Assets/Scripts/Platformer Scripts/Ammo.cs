@@ -52,9 +52,8 @@ public class Ammo : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             spawner.RemoveFromDict(coll.gameObject.name, x_pos); 
-            Destroy(coll.gameObject);
             Destroy(this.gameObject);
-            m_player.GainScore(20);
+            GotHurt(coll.gameObject);
         }
     }
     

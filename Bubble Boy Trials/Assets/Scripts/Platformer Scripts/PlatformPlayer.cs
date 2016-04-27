@@ -16,6 +16,8 @@ public class PlatformPlayer : MonoBehaviour {
     public Text score_text; 
     public bool collide = true;
     public GameObject health_bar;
+    public AnimationClip enemy1_hit;
+    public AnimationClip enemy2_hit;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
@@ -30,8 +32,8 @@ public class PlatformPlayer : MonoBehaviour {
     private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
     private Animator m_door_anim;                      // Reference to the animator on the door
     private Animator m_player_anim;                     // Reference to the animator on the player
-    private PlatformEnemy enemy; 
     private Door m_door;
+    private Animator m_emy_anim;
    
 
     void Awake ()
@@ -46,8 +48,6 @@ public class PlatformPlayer : MonoBehaviour {
 
     void Start()
     {       
-//        if (GameObject.FindGameObjectsWithTag("Health").GetLength(2) == 0)
-//        {
           if (!health_bar_exists){
             health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
@@ -103,25 +103,40 @@ public class PlatformPlayer : MonoBehaviour {
         }
 	}
 
-    public void HurtEnemy(GameObject enemy, int score_increase)
+    public void HurtEnemy(GameObject curr_enemy, int score_increase)
     {
         transform.Rotate(Vector2.left);
 
-        Animator m_emy_anim = enemy.transform.Find("Collider").GetComponent<Animator>();
-        EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-        enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+        m_emy_anim = curr_enemy.GetComponentInChildren<Animator>();
+        EnemyMovement movement = curr_enemy.GetComponent<EnemyMovement>();
+        curr_enemy.transform.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
                                                                   RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
-        StartCoroutine(WaitToDestroy(enemy, score_increase));
+        StartCoroutine(WaitToDestroy(curr_enemy, score_increase));
     }
 
-    IEnumerator WaitToDestroy(GameObject enemy, int score_increase)
-    {
-        yield return new WaitForSeconds(2f);
-        Destroy(enemy);
+    IEnumerator WaitToDestroy(GameObject curr_enemy, int score_increase)
+    {   
+        AnimationClip enemy_hit;
+        float time_to_wait;
+        if (curr_enemy.name == "enemy1(Clone)")
+        {
+            enemy_hit = enemy1_hit;
+            time_to_wait = enemy_hit.length/4;
+        }
+        else
+        {
+            enemy_hit = enemy2_hit;
+            time_to_wait = enemy_hit.length;
+        }
+
+        yield return new WaitForSeconds(time_to_wait);
+
+        Destroy(curr_enemy);
         GainScore(score_increase);
         collide = true;
+
     }
 
     void FixedUpdate()
@@ -141,7 +156,7 @@ public class PlatformPlayer : MonoBehaviour {
                     this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
                     GameObject parent_enemy = collider_hit.transform.root.gameObject;
                     m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
-                    HurtEnemy(collider_hit.transform.gameObject, 10);
+                    HurtEnemy(parent_enemy, 10);
                 }   
             }
             

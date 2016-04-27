@@ -725,9 +725,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &733519565 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 0}
+--- !u!224 &733519565 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22414398, guid: 76468d871d8a4e849acbd8929104039b,
+    type: 2}
   m_PrefabInternal: {fileID: 733519564}
 --- !u!1 &820074989
 GameObject:
@@ -1713,7 +1714,6 @@ MonoBehaviour:
   battleMessage: {fileID: 1298927035}
   problem: {fileID: 638947960}
   enemy: {fileID: 1631079449}
-  platform_lvl: {fileID: 0}
   ReactionWindow: 1000
 --- !u!4 &1698799137
 Transform:

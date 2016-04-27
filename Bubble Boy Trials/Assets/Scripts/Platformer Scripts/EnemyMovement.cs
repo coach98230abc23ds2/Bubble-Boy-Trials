@@ -31,7 +31,15 @@ public class EnemyMovement : MonoBehaviour {
 
         m_rb2d = this.GetComponent<Rigidbody2D>();
         transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        StartCoroutine(WaitToSpawn());
     }
+
+    IEnumerator WaitToSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+        m_can_move = true;
+    }
+
 
     //moves enemy up and down;
     private void MoveUpAndDown()
@@ -105,7 +113,7 @@ public class EnemyMovement : MonoBehaviour {
 
                 else if (!m_incline && m_Grounded)
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-5f, 0f);   
+                    this.GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, 0f);   
                 }
                 m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
             }
@@ -115,19 +123,13 @@ public class EnemyMovement : MonoBehaviour {
     void Update(){
         curr_y_pos = this.transform.position.y;
 
-        if (m_timer >= 1.0f)
-        {
-            m_can_move = true; 
-        }
-
         m_timer += Time.deltaTime;
 
-        if (m_can_move == true)
+        if (m_can_move)
         {
             if (this.name == "enemy2" || this.name == "enemy2(Clone)")
             {
                 MoveUpAndDown();          
-//                Debug.Log ("got to enemy2");
                 if (m_timer > 3.0f)
                 {
                     SwitchDirection();

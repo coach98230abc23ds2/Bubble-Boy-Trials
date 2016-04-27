@@ -8,9 +8,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	private GameObject player;
 
+    private bool can_spawn;
 	private float m_timer = 0.0f;
 	private float m_new_x; 
 	private float m_new_y;
+    private float last_hit_time;
 	private int m_count = 0;
 	private float m_player_pos = 4.9f; //players current global view position
 	private Vector2 spawn_position; //enemy spawn position
@@ -18,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject[] enemy_types; //stores type of enemies
 	private GameObject[] active_objects; //active game objects
 	private float[] enemy_1_positions = new float[]{24.59f, 84.0f, 118.0f, 156.0f}; //all possible x-coordinate spawning points for grounded minions
-  private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
+    private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
 																    & their current positions */
                                                                     																										
@@ -166,24 +168,20 @@ public class EnemySpawner : MonoBehaviour {
         InitializeEnemyPos();
         player = GameObject.Find("Player");
         m_player_pos = player.transform.position.x;
+        can_spawn = true;
     }
-	// Use this for initialization
-	void Start () 
-	{
-        SpawnMinions();
-	}
 	
 	// Update is called once per frame
-	void FixedUpdate () 
+	void Update () 
 	{
 		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
 		active_objects.Distinct();
-		m_timer += Time.deltaTime;
-		if(m_timer > 3.5f)
+
+		if(can_spawn && (Time.fixedTime > last_hit_time + 5f))
 		{
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();
-			m_timer = 0.0f;
+            last_hit_time = Time.fixedTime;
 		}
 	}
 
