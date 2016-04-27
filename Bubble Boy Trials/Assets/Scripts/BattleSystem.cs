@@ -115,6 +115,7 @@ public class BattleSystem : MonoBehaviour
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
                     {
                         player.GetComponent<Player>().TakeDamage(10);
+                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
@@ -132,6 +133,7 @@ public class BattleSystem : MonoBehaviour
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
                         player.GetComponent<Player>().TakeDamage(20);
+                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
