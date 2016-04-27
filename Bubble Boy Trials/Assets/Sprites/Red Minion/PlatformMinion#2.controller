@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PlatformMinion#1
+  m_Name: PlatformMinion#2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: x_velocity
@@ -33,30 +33,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110104934
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: x_velocity
-    m_EventTreshold: 0.1
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 110299558}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &110119996
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -76,45 +52,18 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.375
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &110130600
+--- !u!1101 &110131880
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Hit
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 110226262}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.625
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &110186022
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: x_velocity
-    m_EventTreshold: 0.1
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110265426}
   m_Solo: 0
@@ -123,7 +72,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.625
+  m_ExitTime: 0.75
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -135,10 +84,11 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Green Minion Hit
-  m_Speed: 5
+  m_Name: Red Minion Hit
+  m_Speed: 2
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 110131880}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -147,30 +97,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d4c9d529577884168a2734afa4936818, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
---- !u!1102 &110226334
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Green Minion Hit 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d4c9d529577884168a2734afa4936818, type: 2}
+  m_Motion: {fileID: 7400000, guid: ef5dace247d8440eb8883f0affaa69ee, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -181,11 +108,10 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Green Minion Idle
+  m_Name: Red Minion Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 110104934}
   - {fileID: 110119996}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
@@ -195,32 +121,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b3a8bcf95265541689670087793999c2, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
---- !u!1102 &110299558
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Green Minion Walk
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 110186022}
-  - {fileID: 110130600}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: be7683ccd6f0748ffbb7abdf688768f4, type: 2}
+  m_Motion: {fileID: 7400000, guid: e3869156191984b0b81a0efb3de69b42, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -239,9 +140,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 110226262}
     m_Position: {x: 528, y: 120, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 110299558}
-    m_Position: {x: 252, y: 192, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

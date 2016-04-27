@@ -97,13 +97,4 @@ public class PlatformLevel : MonoBehaviour {
      
     }
 
-//
-//    public void LevelCompleted()
-//    {
-//        m_level_started = false;
-//        MazeUI.gameObject.SetActive(true);
-//        LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
-//        UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
-//        RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
-//    }
 }

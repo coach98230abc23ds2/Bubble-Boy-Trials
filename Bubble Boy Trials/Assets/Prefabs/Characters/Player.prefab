@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100898}
   m_LocalRotation: {x: 0, y: 0, z: 0.0064869435, w: 0.99997896}
-  m_LocalPosition: {x: 28.1, y: 19.7, z: 0}
+  m_LocalPosition: {x: 5, y: 31.6, z: 0}
   m_LocalScale: {x: 0.38179237, y: 0.38179186, z: 0.21551527}
   m_Children:
   - {fileID: 486230}
@@ -230,8 +230,10 @@ MonoBehaviour:
   is_dead: 0
   coin: {fileID: 11403822, guid: 30dc01c69d1ae4f5c9336f3d8d82f7e3, type: 2}
   score_text: {fileID: 0}
-  door: {fileID: 11436372, guid: 1c0f2431755a54b43bd6bfccc55c26a9, type: 2}
   collide: 1
+  health_bar: {fileID: 0}
+  enemy1_hit: {fileID: 7400000, guid: d4c9d529577884168a2734afa4936818, type: 2}
+  enemy2_hit: {fileID: 7400000, guid: ef5dace247d8440eb8883f0affaa69ee, type: 2}
 --- !u!114 &11416376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd8e1cdc86c04226a048b71f8d9e0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 10
+  m_MaxSpeed: 8
   m_JumpForce: 1000
   m_AirControl: 1
   m_WhatIsGround:

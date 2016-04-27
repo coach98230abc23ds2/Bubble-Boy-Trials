@@ -1,0 +1,750 @@
+fileFormatVersion: 2
+guid: ab991de1ff0c84f8986aac7037250df5
+timeCreated: 1461705868
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: red minion bubble box_0
+    21300002: red minion bubble box_1
+    21300004: red minion bubble box_2
+    21300006: red minion bubble box_3
+    21300008: red minion bubble box_4
+    21300010: red minion bubble box_5
+    21300012: red minion bubble box_6
+    21300014: red minion bubble box_7
+    21300016: red minion bubble box_8
+    21300018: red minion bubble box_9
+    21300020: red minion bubble box_10
+    21300022: red minion bubble box_11
+    21300024: red minion bubble box_12
+    21300026: red minion bubble box_13
+    21300028: red minion bubble box_14
+    21300030: red minion bubble box_15
+    21300032: red minion bubble box_16
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: red minion bubble box_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 537
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: -175}
+        - {x: 31, y: -175}
+        - {x: 39, y: -170}
+        - {x: 47, y: -111}
+        - {x: 69, y: -122}
+        - {x: 94, y: -118}
+        - {x: 104, y: -96}
+        - {x: 139, y: -52}
+        - {x: 139, y: -31}
+        - {x: 104, y: 62}
+        - {x: 106, y: 128}
+        - {x: 106, y: 180}
+        - {x: 92, y: 210}
+        - {x: 60, y: 226}
+        - {x: 33, y: 227}
+        - {x: -19, y: 227}
+        - {x: -62, y: 222}
+        - {x: -104, y: 202}
+        - {x: -114, y: 156}
+        - {x: -105, y: 63}
+        - {x: -135, y: -26}
+        - {x: -135, y: -47}
+        - {x: -134, y: -54}
+        - {x: -126, y: -60}
+        - {x: -104, y: -59}
+        - {x: -94, y: -56}
+        - {x: -90, y: -158}
+        - {x: -75, y: -207}
+        - {x: -63, y: -219}
+        - {x: -52, y: -224}
+        - {x: -50, y: -225}
+        - {x: -40, y: -225}
+        - {x: -26, y: -215}
+        - {x: -21, y: -198}
+        - {x: -13, y: -139}
+    - name: red minion bubble box_1
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 537
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -173}
+        - {x: 20, y: -184}
+        - {x: 38, y: -162}
+        - {x: 49, y: -130}
+        - {x: 77, y: -134}
+        - {x: 93, y: -125}
+        - {x: 97, y: -64}
+        - {x: 108, y: -38}
+        - {x: 108, y: 52}
+        - {x: 102, y: 80}
+        - {x: 108, y: 135}
+        - {x: 108, y: 176}
+        - {x: 107, y: 188}
+        - {x: 89, y: 215}
+        - {x: 57, y: 226}
+        - {x: 34, y: 227}
+        - {x: -20, y: 227}
+        - {x: -51, y: 224}
+        - {x: -93, y: 210}
+        - {x: -106, y: 180}
+        - {x: -110, y: 155}
+        - {x: -103, y: 65}
+        - {x: -117, y: -45}
+        - {x: -117, y: -60}
+        - {x: -113, y: -69}
+        - {x: -91, y: -71}
+        - {x: -88, y: -99}
+        - {x: -82, y: -168}
+        - {x: -65, y: -215}
+        - {x: -45, y: -224}
+        - {x: -30, y: -224}
+        - {x: -26, y: -221}
+        - {x: -15, y: -204}
+        - {x: -12, y: -194}
+    - name: red minion bubble box_2
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 540
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: -183}
+        - {x: 62, y: -148}
+        - {x: 93, y: -138}
+        - {x: 96, y: -75}
+        - {x: 95, y: 27}
+        - {x: 99, y: 84}
+        - {x: 99, y: 188}
+        - {x: 79, y: 213}
+        - {x: 50, y: 224}
+        - {x: -28, y: 224}
+        - {x: -81, y: 204}
+        - {x: -91, y: 190}
+        - {x: -99, y: 164}
+        - {x: -99, y: 106}
+        - {x: -93, y: 60}
+        - {x: -97, y: -58}
+        - {x: -90, y: -81}
+        - {x: -78, y: -91}
+        - {x: -78, y: -121}
+        - {x: -65, y: -185}
+        - {x: -51, y: -212}
+        - {x: -39, y: -223}
+        - {x: -29, y: -227}
+        - {x: -3, y: -227}
+        - {x: 8, y: -198}
+        - {x: 2, y: -173}
+        - {x: 16, y: -185}
+    - name: red minion bubble box_3
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 537
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58, y: -134}
+        - {x: 89, y: -125}
+        - {x: 89, y: -114}
+        - {x: 83, y: -61}
+        - {x: 87, y: -43}
+        - {x: 84, y: 41}
+        - {x: 104, y: 140}
+        - {x: 104, y: 174}
+        - {x: 92, y: 189}
+        - {x: 54, y: 204}
+        - {x: 12, y: 214}
+        - {x: -35, y: 214}
+        - {x: -63, y: 208}
+        - {x: -75, y: 199}
+        - {x: -91, y: 165}
+        - {x: -101, y: 118}
+        - {x: -103, y: 90}
+        - {x: -105, y: 50}
+        - {x: -106, y: 36}
+        - {x: -106, y: -21}
+        - {x: -93, y: -101}
+        - {x: -84, y: -129}
+        - {x: -49, y: -192}
+        - {x: -33, y: -212}
+        - {x: 11, y: -212}
+        - {x: 15, y: -199}
+        - {x: 34, y: -179}
+        - {x: 50, y: -154}
+    - name: red minion bubble box_4
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 534
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 47, y: -151}
+        - {x: 51, y: -130}
+        - {x: 87, y: -124}
+        - {x: 82, y: -58}
+        - {x: 84, y: -40}
+        - {x: 81, y: 44}
+        - {x: 101, y: 143}
+        - {x: 101, y: 177}
+        - {x: 89, y: 192}
+        - {x: 51, y: 207}
+        - {x: 9, y: 217}
+        - {x: -38, y: 217}
+        - {x: -66, y: 211}
+        - {x: -78, y: 202}
+        - {x: -94, y: 168}
+        - {x: -104, y: 121}
+        - {x: -106, y: 93}
+        - {x: -109, y: 42}
+        - {x: -109, y: -20}
+        - {x: -96, y: -98}
+        - {x: -86, y: -126}
+        - {x: -58, y: -181}
+        - {x: -34, y: -205}
+        - {x: -24, y: -209}
+        - {x: -6, y: -209}
+        - {x: 4, y: -208}
+        - {x: 12, y: -196}
+        - {x: 16, y: -175}
+        - {x: 31, y: -176}
+    - name: red minion bubble box_5
+      rect:
+        serializedVersion: 2
+        x: 2007
+        y: 537
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 85, y: -149}
+        - {x: 92, y: -141}
+        - {x: 87, y: -120}
+        - {x: 106, y: -102}
+        - {x: 109, y: -86}
+        - {x: 137, y: -77}
+        - {x: 137, y: -56}
+        - {x: 81, y: 31}
+        - {x: 112, y: 88}
+        - {x: 124, y: 118}
+        - {x: 122, y: 141}
+        - {x: 61, y: 198}
+        - {x: 34, y: 207}
+        - {x: 0, y: 207}
+        - {x: -18, y: 202}
+        - {x: -45, y: 183}
+        - {x: -84, y: 129}
+        - {x: -102, y: 39}
+        - {x: -102, y: -36}
+        - {x: -89, y: -90}
+        - {x: -75, y: -115}
+        - {x: -47, y: -149}
+        - {x: -7, y: -181}
+        - {x: 21, y: -196}
+        - {x: 37, y: -198}
+        - {x: 54, y: -198}
+        - {x: 62, y: -193}
+        - {x: 65, y: -176}
+        - {x: 53, y: -151}
+    - name: red minion bubble box_6
+      rect:
+        serializedVersion: 2
+        x: 2403
+        y: 533
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 87, y: -145}
+        - {x: 94, y: -137}
+        - {x: 89, y: -116}
+        - {x: 108, y: -98}
+        - {x: 111, y: -82}
+        - {x: 139, y: -73}
+        - {x: 139, y: -52}
+        - {x: 83, y: 35}
+        - {x: 114, y: 92}
+        - {x: 126, y: 122}
+        - {x: 124, y: 145}
+        - {x: 63, y: 202}
+        - {x: 36, y: 211}
+        - {x: 2, y: 211}
+        - {x: -16, y: 206}
+        - {x: -43, y: 187}
+        - {x: -82, y: 133}
+        - {x: -100, y: 43}
+        - {x: -100, y: -32}
+        - {x: -87, y: -86}
+        - {x: -73, y: -111}
+        - {x: -45, y: -145}
+        - {x: -5, y: -177}
+        - {x: 23, y: -192}
+        - {x: 39, y: -194}
+        - {x: 56, y: -194}
+        - {x: 64, y: -189}
+        - {x: 67, y: -172}
+        - {x: 55, y: -147}
+    - name: red minion bubble box_7
+      rect:
+        serializedVersion: 2
+        x: 2801
+        y: 539
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 157, y: -20}
+        - {x: 132, y: -6}
+        - {x: 92, y: -3}
+        - {x: 127, y: 42}
+        - {x: 136, y: 57}
+        - {x: 127, y: 107}
+        - {x: 112, y: 131}
+        - {x: 78, y: 163}
+        - {x: -3, y: 163}
+        - {x: -33, y: 142}
+        - {x: -62, y: 112}
+        - {x: -80, y: 86}
+        - {x: -94, y: 24}
+        - {x: -94, y: -35}
+        - {x: -86, y: -73}
+        - {x: -50, y: -113}
+        - {x: -31, y: -134}
+        - {x: 28, y: -163}
+        - {x: 34, y: -164}
+        - {x: 86, y: -164}
+        - {x: 109, y: -150}
+        - {x: 119, y: -80}
+        - {x: 157, y: -60}
+    - name: red minion bubble box_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 30
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 155, y: -20}
+        - {x: 136, y: -8}
+        - {x: 90, y: -1}
+        - {x: 125, y: 44}
+        - {x: 134, y: 59}
+        - {x: 125, y: 109}
+        - {x: 110, y: 133}
+        - {x: 72, y: 163}
+        - {x: 54, y: 165}
+        - {x: 14, y: 165}
+        - {x: 0, y: 163}
+        - {x: -35, y: 144}
+        - {x: -67, y: 117}
+        - {x: -96, y: 51}
+        - {x: -96, y: -43}
+        - {x: -90, y: -71}
+        - {x: -33, y: -132}
+        - {x: -12, y: -141}
+        - {x: 34, y: -162}
+        - {x: 77, y: -162}
+        - {x: 92, y: -160}
+        - {x: 106, y: -148}
+        - {x: 118, y: -79}
+        - {x: 155, y: -58}
+    - name: red minion bubble box_9
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 30
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 155, y: -20}
+        - {x: 136, y: -8}
+        - {x: 90, y: -1}
+        - {x: 125, y: 44}
+        - {x: 134, y: 59}
+        - {x: 125, y: 109}
+        - {x: 110, y: 133}
+        - {x: 72, y: 163}
+        - {x: 54, y: 165}
+        - {x: 14, y: 165}
+        - {x: 0, y: 163}
+        - {x: -35, y: 144}
+        - {x: -67, y: 117}
+        - {x: -96, y: 51}
+        - {x: -96, y: -43}
+        - {x: -90, y: -71}
+        - {x: -33, y: -132}
+        - {x: -12, y: -141}
+        - {x: 34, y: -162}
+        - {x: 77, y: -162}
+        - {x: 92, y: -160}
+        - {x: 106, y: -148}
+        - {x: 118, y: -79}
+        - {x: 155, y: -58}
+    - name: red minion bubble box_10
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 34
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: -165}
+        - {x: -2, y: -167}
+        - {x: 9, y: -180}
+        - {x: 27, y: -188}
+        - {x: 51, y: -159}
+        - {x: 80, y: -136}
+        - {x: 87, y: -118}
+        - {x: 85, y: -87}
+        - {x: 83, y: 47}
+        - {x: 102, y: 129}
+        - {x: 102, y: 164}
+        - {x: 97, y: 176}
+        - {x: 81, y: 191}
+        - {x: 20, y: 210}
+        - {x: -38, y: 210}
+        - {x: -64, y: 207}
+        - {x: -84, y: 191}
+        - {x: -107, y: 111}
+        - {x: -108, y: 73}
+        - {x: -108, y: -22}
+        - {x: -98, y: -98}
+        - {x: -86, y: -132}
+        - {x: -67, y: -175}
+        - {x: -37, y: -211}
+        - {x: -27, y: -217}
+        - {x: 6, y: -217}
+        - {x: 15, y: -204}
+        - {x: 3, y: -173}
+        - {x: -2, y: -167}
+    - name: red minion bubble box_11
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 29
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33, y: -183}
+        - {x: 54, y: -167}
+        - {x: 71, y: -133}
+        - {x: 95, y: -128}
+        - {x: 107, y: -108}
+        - {x: 108, y: -3}
+        - {x: 108, y: 55}
+        - {x: 99, y: 114}
+        - {x: 91, y: 149}
+        - {x: 57, y: 208}
+        - {x: 42, y: 215}
+        - {x: 5, y: 215}
+        - {x: -39, y: 211}
+        - {x: -107, y: 182}
+        - {x: -117, y: 166}
+        - {x: -117, y: 139}
+        - {x: -113, y: 123}
+        - {x: -81, y: 37}
+        - {x: -85, y: -7}
+        - {x: -82, y: -62}
+        - {x: -75, y: -69}
+        - {x: -68, y: -119}
+        - {x: -78, y: -173}
+        - {x: -82, y: -197}
+        - {x: -65, y: -212}
+        - {x: -42, y: -212}
+        - {x: -36, y: -209}
+        - {x: -14, y: -180}
+        - {x: -4, y: -154}
+        - {x: 4, y: -186}
+    - name: red minion bubble box_12
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 29
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36, y: -183}
+        - {x: 57, y: -167}
+        - {x: 74, y: -133}
+        - {x: 98, y: -128}
+        - {x: 110, y: -108}
+        - {x: 111, y: -3}
+        - {x: 111, y: 55}
+        - {x: 102, y: 114}
+        - {x: 94, y: 149}
+        - {x: 60, y: 208}
+        - {x: 45, y: 215}
+        - {x: 8, y: 215}
+        - {x: -36, y: 211}
+        - {x: -104, y: 182}
+        - {x: -114, y: 166}
+        - {x: -114, y: 139}
+        - {x: -110, y: 123}
+        - {x: -78, y: 37}
+        - {x: -82, y: -7}
+        - {x: -79, y: -62}
+        - {x: -72, y: -69}
+        - {x: -65, y: -119}
+        - {x: -75, y: -173}
+        - {x: -79, y: -197}
+        - {x: -62, y: -212}
+        - {x: -39, y: -212}
+        - {x: -33, y: -209}
+        - {x: -11, y: -180}
+        - {x: -1, y: -154}
+        - {x: 7, y: -186}
+    - name: red minion bubble box_13
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 26
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 103, y: -81}
+        - {x: 139, y: -77}
+        - {x: 148, y: -65}
+        - {x: 148, y: -45}
+        - {x: 102, y: 23}
+        - {x: 103, y: 48}
+        - {x: 96, y: 99}
+        - {x: 61, y: 157}
+        - {x: 28, y: 183}
+        - {x: -17, y: 192}
+        - {x: -54, y: 192}
+        - {x: -61, y: 191}
+        - {x: -130, y: 148}
+        - {x: -136, y: 123}
+        - {x: -136, y: 86}
+        - {x: -103, y: 28}
+        - {x: -90, y: 14}
+        - {x: -67, y: -50}
+        - {x: -77, y: -78}
+        - {x: -130, y: -132}
+        - {x: -136, y: -140}
+        - {x: -136, y: -154}
+        - {x: -118, y: -175}
+        - {x: -108, y: -175}
+        - {x: -41, y: -154}
+        - {x: -28, y: -175}
+        - {x: -4, y: -175}
+        - {x: 34, y: -143}
+        - {x: 69, y: -141}
+        - {x: 91, y: -121}
+    - name: red minion bubble box_14
+      rect:
+        serializedVersion: 2
+        x: 2405
+        y: 29
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 87, y: -125}
+        - {x: 99, y: -85}
+        - {x: 135, y: -81}
+        - {x: 144, y: -69}
+        - {x: 144, y: -49}
+        - {x: 101, y: 20}
+        - {x: 95, y: 96}
+        - {x: 57, y: 153}
+        - {x: 24, y: 179}
+        - {x: -21, y: 188}
+        - {x: -58, y: 188}
+        - {x: -65, y: 187}
+        - {x: -134, y: 144}
+        - {x: -140, y: 119}
+        - {x: -140, y: 82}
+        - {x: -107, y: 24}
+        - {x: -94, y: 10}
+        - {x: -71, y: -54}
+        - {x: -105, y: -96}
+        - {x: -140, y: -141}
+        - {x: -140, y: -156}
+        - {x: -118, y: -173}
+        - {x: -94, y: -170}
+        - {x: -55, y: -157}
+        - {x: -40, y: -171}
+        - {x: -28, y: -179}
+        - {x: -8, y: -179}
+        - {x: 7, y: -166}
+        - {x: 29, y: -143}
+        - {x: 65, y: -145}
+    - name: red minion bubble box_15
+      rect:
+        serializedVersion: 2
+        x: 2801
+        y: 29
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 101, y: -85}
+        - {x: 137, y: -81}
+        - {x: 146, y: -69}
+        - {x: 146, y: -49}
+        - {x: 103, y: 20}
+        - {x: 97, y: 96}
+        - {x: 59, y: 153}
+        - {x: 26, y: 179}
+        - {x: -19, y: 188}
+        - {x: -56, y: 188}
+        - {x: -63, y: 187}
+        - {x: -132, y: 144}
+        - {x: -138, y: 119}
+        - {x: -138, y: 82}
+        - {x: -105, y: 24}
+        - {x: -92, y: 10}
+        - {x: -69, y: -54}
+        - {x: -79, y: -82}
+        - {x: -132, y: -136}
+        - {x: -138, y: -151}
+        - {x: -125, y: -169}
+        - {x: -103, y: -172}
+        - {x: -63, y: -163}
+        - {x: -39, y: -172}
+        - {x: -28, y: -179}
+        - {x: -5, y: -179}
+        - {x: 32, y: -146}
+        - {x: 67, y: -145}
+        - {x: 89, y: -125}
+    - name: red minion bubble box_16
+      rect:
+        serializedVersion: 2
+        x: 3203
+        y: 29
+        width: 366
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42, y: -182}
+        - {x: 61, y: -151}
+        - {x: 92, y: -128}
+        - {x: 104, y: -113}
+        - {x: 107, y: -94}
+        - {x: 107, y: 60}
+        - {x: 101, y: 97}
+        - {x: 98, y: 113}
+        - {x: 87, y: 153}
+        - {x: 63, y: 198}
+        - {x: 43, y: 215}
+        - {x: 19, y: 215}
+        - {x: -18, y: 212}
+        - {x: -40, y: 210}
+        - {x: -100, y: 187}
+        - {x: -117, y: 171}
+        - {x: -117, y: 142}
+        - {x: -112, y: 116}
+        - {x: -88, y: 67}
+        - {x: -85, y: -65}
+        - {x: -69, y: -73}
+        - {x: -68, y: -115}
+        - {x: -81, y: -178}
+        - {x: -78, y: -203}
+        - {x: -65, y: -211}
+        - {x: -40, y: -211}
+        - {x: -13, y: -184}
+        - {x: -9, y: -165}
+        - {x: 3, y: -183}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

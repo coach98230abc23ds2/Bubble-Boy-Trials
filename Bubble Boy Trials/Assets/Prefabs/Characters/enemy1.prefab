@@ -60,7 +60,6 @@ GameObject:
   - 50: {fileID: 5018348}
   - 114: {fileID: 11427986}
   - 114: {fileID: 11457786}
-  - 95: {fileID: 9576940}
   m_Layer: 10
   m_Name: enemy1
   m_TagString: Enemy
@@ -296,23 +295,6 @@ PolygonCollider2D:
       - {x: -0.415, y: -1.79}
       - {x: -0.505, y: -1.8399999}
       - {x: -0.49499997, y: -1.8499999}
---- !u!95 &9576940
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172038}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2990e501e9e44fb686d2fe346b365fd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9594584
 Animator:
   serializedVersion: 3
@@ -352,9 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c70ae7fb36f4e26b8394791ad5ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WhatIsIncline:
-    serializedVersion: 2
-    m_Bits: 4096
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4096
