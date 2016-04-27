@@ -114,6 +114,7 @@ public class BossBattleSystem : MonoBehaviour
                 }
                 bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 bubble.transform.position = player.transform.position + new Vector3(0.5f, 0f, 0);
+                bubble.transform.localScale += new Vector3(.5f,.5f,.5f);
                 bubbleLive = true;
                 createBubble = false;
             }
@@ -125,6 +126,7 @@ public class BossBattleSystem : MonoBehaviour
                 }
                 bubble = GameObject.Instantiate(Resources.Load("SlimeBubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 bubble.transform.position = enemy.transform.position + new Vector3(-0.5f, 0f, 0);
+                bubble.transform.localScale += new Vector3(.5f,.5f,.5f);
                 bubbleLive = true;
                 createBubble = false;
             }

@@ -23,7 +23,6 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
     private bool m_touched_door = false;
-    private bool health_bar_exists = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private EnemySpawner m_spawner;
@@ -55,12 +54,9 @@ public class PlatformPlayer : MonoBehaviour {
 
     void Start()
     {       
-          if (!health_bar_exists){
-            health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
-            health_bar.GetComponent<Slider>().value = m_health;
-            health_bar_exists = true;
-          }
+        health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+        health_bar.GetComponent<Slider>().value = m_health;
     }
 
     private void RespawnPlayer()
@@ -138,29 +134,6 @@ public class PlatformPlayer : MonoBehaviour {
         GainScore(score_increase);
         collided = true;
     }
-
-//    IEnumerator WaitToDestroy(GameObject curr_enemy, int score_increase)
-//    {   
-//        AnimationClip enemy_hit;
-//        float time_to_wait;
-//        if (curr_enemy.name == "enemy1(Clone)")
-//        {
-//            enemy_hit = enemy1_hit;
-//            time_to_wait = enemy_hit.length/4;
-//        }
-//        else
-//        {
-//            enemy_hit = enemy2_hit;
-//            time_to_wait = enemy_hit.length;
-//        }
-//
-//        yield return new WaitForSeconds(time_to_wait);
-//
-//        Destroy(curr_enemy);
-//        GainScore(score_increase);
-//        collide = true;
-//
-//    }
 
     void FixedUpdate()
     {
@@ -295,19 +268,16 @@ public class PlatformPlayer : MonoBehaviour {
     void TakeDamage (Transform enemy)
     {   
         m_player_anim.SetTrigger("Defend");
-        m_player_control.m_Jump = false;
 
-        if (enemy.name == "enemy1(Clone)")
-        {
-            Vector2 displacement = (transform.position - enemy.position);
+        Vector2 displacement = (transform.position - enemy.position);
 //            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
-            Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
-            // Create a vector that's from the enemy to the player with an upwards boost.
-            Vector2 hurt_vector = new_displacement + Vector2.up;
+        Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
+        // Create a vector that's from the enemy to the player with an upwards boost.
+        Vector2 hurt_vector = new_displacement + Vector2.up;
 
-            // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
-            GetComponent<Rigidbody2D>().AddForce(hurt_vector);
-        }
+        // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
+        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
+
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
