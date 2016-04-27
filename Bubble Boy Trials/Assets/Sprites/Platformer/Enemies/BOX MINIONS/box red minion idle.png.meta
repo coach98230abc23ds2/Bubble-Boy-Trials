@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: e3c314dbbf0904f92bcdcb2ca7bc411f
+timeCreated: 1461681367
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: box red minion idle_0
+    21300002: box red minion idle_1
+    21300004: box red minion idle_2
+    21300006: box red minion idle_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: box red minion idle_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 51
+        width: 470
+        height: 695
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17, y: -250.5}
+        - {x: 26, y: -237.5}
+        - {x: 30, y: -182.5}
+        - {x: 53, y: -202.5}
+        - {x: 76, y: -193.5}
+        - {x: 86, y: -175.5}
+        - {x: 85, y: -144.5}
+        - {x: 104, y: -126.5}
+        - {x: 131, y: -120.5}
+        - {x: 138, y: -110.5}
+        - {x: 138, y: -97.5}
+        - {x: 137, y: -92.5}
+        - {x: 87, y: -21.5}
+        - {x: 92, y: 104.5}
+        - {x: 72, y: 143.5}
+        - {x: 29, y: 151.5}
+        - {x: -28, y: 151.5}
+        - {x: -77, y: 145.5}
+        - {x: -108, y: 133.5}
+        - {x: -122, y: 112.5}
+        - {x: -127, y: 88.5}
+        - {x: -126, y: -35.5}
+        - {x: -161, y: -94.5}
+        - {x: -161, y: -119.5}
+        - {x: -131, y: -134.5}
+        - {x: -109, y: -114.5}
+        - {x: -108, y: -166.5}
+        - {x: -104, y: -233.5}
+        - {x: -94, y: -289.5}
+        - {x: -72, y: -300.5}
+        - {x: -45, y: -300.5}
+        - {x: -40, y: -295.5}
+        - {x: -27, y: -219.5}
+        - {x: -7, y: -248.5}
+    - name: box red minion idle_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 51
+        width: 470
+        height: 695
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -214.5}
+        - {x: 16, y: -212.5}
+        - {x: 25, y: -209.5}
+        - {x: 32, y: -161.5}
+        - {x: 69, y: -163.5}
+        - {x: 87, y: -147.5}
+        - {x: 92, y: -100.5}
+        - {x: 118, y: -96.5}
+        - {x: 123, y: -92.5}
+        - {x: 123, y: -74.5}
+        - {x: 121, y: -62.5}
+        - {x: 87, y: 16.5}
+        - {x: 91, y: 89.5}
+        - {x: 88, y: 150.5}
+        - {x: 70, y: 173.5}
+        - {x: 53, y: 184.5}
+        - {x: 30, y: 186.5}
+        - {x: -52, y: 186.5}
+        - {x: -80, y: 182.5}
+        - {x: -117, y: 160.5}
+        - {x: -129, y: 118.5}
+        - {x: -121, y: 12.5}
+        - {x: -145, y: -47.5}
+        - {x: -151, y: -75.5}
+        - {x: -151, y: -91.5}
+        - {x: -145, y: -99.5}
+        - {x: -107, y: -104.5}
+        - {x: -108, y: -136.5}
+        - {x: -97, y: -235.5}
+        - {x: -80, y: -265.5}
+        - {x: -46, y: -265.5}
+        - {x: -36, y: -256.5}
+        - {x: -28, y: -179.5}
+        - {x: -18, y: -198.5}
+    - name: box red minion idle_2
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 51
+        width: 470
+        height: 695
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -173.5}
+        - {x: 5, y: -181.5}
+        - {x: 20, y: -180.5}
+        - {x: 27, y: -168.5}
+        - {x: 30, y: -113.5}
+        - {x: 40, y: -125.5}
+        - {x: 59, y: -131.5}
+        - {x: 84, y: -121.5}
+        - {x: 92, y: -75.5}
+        - {x: 117, y: -61.5}
+        - {x: 117, y: -30.5}
+        - {x: 85, y: 58.5}
+        - {x: 92, y: 123.5}
+        - {x: 89, y: 183.5}
+        - {x: 74, y: 206.5}
+        - {x: 36, y: 219.5}
+        - {x: -43, y: 219.5}
+        - {x: -72, y: 216.5}
+        - {x: -106, y: 203.5}
+        - {x: -124, y: 178.5}
+        - {x: -126, y: 95.5}
+        - {x: -119, y: 49.5}
+        - {x: -140, y: -10.5}
+        - {x: -141, y: -27.5}
+        - {x: -141, y: -77.5}
+        - {x: -114, y: -89.5}
+        - {x: -97, y: -175.5}
+        - {x: -80, y: -213.5}
+        - {x: -70, y: -227.5}
+        - {x: -63, y: -228.5}
+        - {x: -44, y: -228.5}
+        - {x: -35, y: -220.5}
+        - {x: -29, y: -209.5}
+        - {x: -28, y: -160.5}
+    - name: box red minion idle_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 51
+        width: 470
+        height: 695
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -214.5}
+        - {x: 16, y: -212.5}
+        - {x: 25, y: -209.5}
+        - {x: 32, y: -161.5}
+        - {x: 69, y: -163.5}
+        - {x: 87, y: -147.5}
+        - {x: 92, y: -100.5}
+        - {x: 118, y: -96.5}
+        - {x: 123, y: -92.5}
+        - {x: 123, y: -74.5}
+        - {x: 121, y: -62.5}
+        - {x: 87, y: 16.5}
+        - {x: 91, y: 89.5}
+        - {x: 88, y: 150.5}
+        - {x: 70, y: 173.5}
+        - {x: 53, y: 184.5}
+        - {x: 30, y: 186.5}
+        - {x: -52, y: 186.5}
+        - {x: -80, y: 182.5}
+        - {x: -117, y: 160.5}
+        - {x: -129, y: 118.5}
+        - {x: -121, y: 12.5}
+        - {x: -145, y: -47.5}
+        - {x: -151, y: -75.5}
+        - {x: -151, y: -91.5}
+        - {x: -145, y: -99.5}
+        - {x: -107, y: -104.5}
+        - {x: -108, y: -136.5}
+        - {x: -97, y: -235.5}
+        - {x: -80, y: -265.5}
+        - {x: -46, y: -265.5}
+        - {x: -36, y: -256.5}
+        - {x: -28, y: -179.5}
+        - {x: -18, y: -198.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

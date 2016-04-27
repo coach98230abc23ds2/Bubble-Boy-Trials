@@ -21,6 +21,7 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
+    private bool health_bar_exists = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private EnemySpawner m_spawner;
@@ -47,10 +48,12 @@ public class PlatformPlayer : MonoBehaviour {
     {       
 //        if (GameObject.FindGameObjectsWithTag("Health").GetLength(2) == 0)
 //        {
+          if (!health_bar_exists){
             health_bar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             health_bar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
             health_bar.GetComponent<Slider>().value = m_health;
-//        }
+            health_bar_exists = true;
+          }
     }
 
     private void RespawnPlayer()

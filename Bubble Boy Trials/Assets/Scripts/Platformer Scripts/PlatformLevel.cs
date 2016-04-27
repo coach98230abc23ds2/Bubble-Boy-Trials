@@ -15,11 +15,13 @@ public class PlatformLevel : MonoBehaviour {
     private GameObject m_health_bar;
     private GameObject new_elevator;
     private GameObject new_camera;
+    private AudioSource plat_sound_track;
 
     public GameObject m_elevator;
     public GameObject maze_camera;
     public GameObject plat_camera;
     public GameObject player_prefab;
+    public AudioSource boss_sound_track;
 
 
 
@@ -30,8 +32,8 @@ public class PlatformLevel : MonoBehaviour {
 
     void Start()
     {
-        AudioSource sound_track = GetComponent<AudioSource>();
-        sound_track.Play();
+        plat_sound_track = GetComponent<AudioSource>();
+        plat_sound_track.Play();
         m_level_started = true;
         m_platform = GameObject.Find("Platform");
         m_player = GameObject.Find("Player");
@@ -42,16 +44,12 @@ public class PlatformLevel : MonoBehaviour {
 
     void Update()
     {
-        if (!m_level_started)
-        {   
-            m_level_started = true;
-            StartLevel();
-        }
     }
 
     public void StartLevel()
     {   
 //        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
+        Resources.UnloadUnusedAssets();
         m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(true);
         m_player.SetActive(true);
         m_platform.SetActive(true);
@@ -63,25 +61,30 @@ public class PlatformLevel : MonoBehaviour {
     }
 
     public void LevelCompleted()
-    {
+    {   
+        if (m_level_started)
+        {
+        m_level_started = false;
+        plat_sound_track.Stop();
         SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
         Scene scene = SceneManager.GetSceneByName("BossBattleScene");
         SceneManager.SetActiveScene(scene);
 //        m_platform.SetActive(false);
-//        Resources.UnloadUnusedAssets();
-        m_main_camera.SetActive(false);
+       // Resources.UnloadUnusedAssets();
+        //m_main_camera.SetActive(false);
 
 
-        m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(false);
-        m_player.SetActive(false);
+        //m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(false);
+        //m_player.SetActive(false);
 
-        new_elevator = Instantiate(m_elevator);
-        new_elevator.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Character";
-        SceneManager.MoveGameObjectToScene(new_elevator, scene);
+        //new_elevator = Instantiate(m_elevator);
+        //new_elevator.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Character";
+        //SceneManager.MoveGameObjectToScene(new_elevator, scene);
 
-        new_camera = Instantiate(maze_camera);
-        SceneManager.MoveGameObjectToScene(new_camera, scene);
-       
+        //new_camera = Instantiate(maze_camera);
+        //SceneManager.MoveGameObjectToScene(new_camera, scene);
+        }
+
     }
 
     void ClearScripts(GameObject obj)
