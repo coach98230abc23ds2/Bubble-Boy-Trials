@@ -12,7 +12,6 @@ public class PlatformPlayer : MonoBehaviour {
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
     public float hit_height = 3.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
-    public Coin coin;
     public Text score_text; 
     public bool collided = false;
     public GameObject health_bar;
@@ -37,6 +36,7 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_emy_anim;
     private Platformer2DUserControl player_control;
     private Weapon weapon;
+    private AudioSource source;
 
    
 
@@ -50,6 +50,7 @@ public class PlatformPlayer : MonoBehaviour {
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
         player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
         weapon = this.gameObject.GetComponent<Weapon>();
+        source = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
@@ -285,8 +286,8 @@ public class PlatformPlayer : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Coin")
         {
+            source.Play();
             Destroy(coll.gameObject);
-            coin.PlaySound(coll.transform.position);
             GainScore(40);
         }
     }

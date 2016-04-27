@@ -300,7 +300,6 @@ GameObject:
   - 4: {fileID: 492520}
   - 212: {fileID: 21210970}
   - 58: {fileID: 5891190}
-  - 114: {fileID: 11454654}
   m_Layer: 0
   m_Name: pemdas_coin
   m_TagString: Coin
@@ -419,7 +418,6 @@ GameObject:
   - 4: {fileID: 435058}
   - 212: {fileID: 21298126}
   - 58: {fileID: 5821430}
-  - 114: {fileID: 11488864}
   m_Layer: 0
   m_Name: pemdas_coin (1)
   m_TagString: Coin
@@ -437,7 +435,6 @@ GameObject:
   - 4: {fileID: 447354}
   - 212: {fileID: 21254276}
   - 58: {fileID: 5865810}
-  - 114: {fileID: 11448544}
   m_Layer: 0
   m_Name: pemdas_coin
   m_TagString: Coin
@@ -455,7 +452,6 @@ GameObject:
   - 4: {fileID: 419620}
   - 212: {fileID: 21272208}
   - 58: {fileID: 5857768}
-  - 114: {fileID: 11486470}
   m_Layer: 0
   m_Name: pemdas_coin (1)
   m_TagString: Coin
@@ -541,7 +537,6 @@ GameObject:
   - 4: {fileID: 442096}
   - 212: {fileID: 21282078}
   - 58: {fileID: 5879440}
-  - 114: {fileID: 11496050}
   m_Layer: 0
   m_Name: pemdas_coin (2)
   m_TagString: Coin
@@ -610,7 +605,6 @@ GameObject:
   - 4: {fileID: 418278}
   - 212: {fileID: 21266948}
   - 58: {fileID: 5835108}
-  - 114: {fileID: 11447780}
   m_Layer: 0
   m_Name: pemdas_coin (3)
   m_TagString: Coin
@@ -2284,78 +2278,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 9.93, y: 8.56}
---- !u!114 &11447780
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!114 &11448544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!114 &11454654
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!114 &11486470
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!114 &11488864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
---- !u!114 &11496050
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
 --- !u!212 &21203294
 SpriteRenderer:
   m_ObjectHideFlags: 1

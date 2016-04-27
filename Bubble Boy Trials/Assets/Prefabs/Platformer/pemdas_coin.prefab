@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 430418}
   - 212: {fileID: 21208382}
   - 58: {fileID: 5837436}
-  - 114: {fileID: 11403822}
   m_Layer: 0
   m_Name: pemdas_coin
   m_TagString: Coin
@@ -44,18 +43,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.825
---- !u!114 &11403822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6276ae86d954d43efbbff899d8a53baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
 --- !u!212 &21208382
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -113,6 +100,26 @@ Prefab:
       propertyPath: audio
       value: 
       objectReference: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b9c2c66bfaa0ddf428e90ea7122de98f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: Priority
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103654}
