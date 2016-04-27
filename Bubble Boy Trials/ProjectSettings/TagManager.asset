@@ -26,6 +26,7 @@ TagManager:
   - Coin
   - Death
   - Health
+  - PlayerElevator
   layers:
   - Default
   - TransparentFX

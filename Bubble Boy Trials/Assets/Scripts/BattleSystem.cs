@@ -82,6 +82,11 @@ public class BattleSystem : MonoBehaviour
         {
             timeRemaining -= Time.fixedDeltaTime;
 
+            if (player.GetComponent<Player>().isDead)
+            {
+                GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(false);
+            }
+
             Animator playerAnimator = player.GetComponent<Animator>();
             Animator enemyAnimator = enemy.GetComponent<Animator>();
             if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
@@ -115,14 +120,15 @@ public class BattleSystem : MonoBehaviour
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
                     {
                         player.GetComponent<Player>().TakeDamage(10);
+                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
-                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
+                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) > 1f && Vector3.Distance(bubble.transform.position, player.transform.position) < 3.5f && Input.GetKeyDown(KeyCode.Space))
                     {
-                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
@@ -132,7 +138,8 @@ public class BattleSystem : MonoBehaviour
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
                         player.GetComponent<Player>().TakeDamage(20);
-                        player.GetComponent<Animator>().SetTrigger("Defend");
+                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
+                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
@@ -276,7 +283,7 @@ public class BattleSystem : MonoBehaviour
         if (enemy.GetComponent<Player>().isDead)
         {
             SceneManager.UnloadScene(1);
-            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
+            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(true);
         }
         else
         {
