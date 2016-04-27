@@ -16,11 +16,13 @@ public class MazeSystem : MonoBehaviour
 
     Vector2 m_target_position;
     MazeNode m_current_node;
+    MazeNode m_prev_node;
     Vector2 m_player_current_position;
     Elevator m_elevator;
 
     bool m_level_started;
     bool m_path_chosen;
+    bool m_retreating;
 
     void Awake()
     {
@@ -31,11 +33,13 @@ public class MazeSystem : MonoBehaviour
     void Start()
     {
         m_current_node = GameObject.FindGameObjectWithTag("Root Node").GetComponent<MazeNode>();
+        m_prev_node = m_current_node;
         m_target_position = m_current_node.transform.position;
         m_elevator = GameObject.FindGameObjectWithTag("PlayerElevator").GetComponent<Elevator>();
         m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
         m_path_chosen = true;
+        m_retreating = false;
         MazeUI.gameObject.SetActive(false);
     }
 	
@@ -48,9 +52,20 @@ public class MazeSystem : MonoBehaviour
             Vector2 movement_difference = m_target_position - (Vector2)m_elevator.transform.position;
             if (movement_difference.magnitude < EPSILON)
             {
-                m_elevator.transform.position = m_target_position;
-                m_level_started = true;
-                StartLevel();
+                if (!m_retreating)
+                {
+                    m_elevator.transform.position = m_target_position;
+                    m_level_started = true;
+                    StartLevel();
+                }
+                else
+                {
+                    m_path_chosen = false;
+                    m_retreating = false;
+                    LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
+                    UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
+                    RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
+                }
             }
             else
             {
@@ -69,17 +84,28 @@ public class MazeSystem : MonoBehaviour
         m_path_chosen = false;
     }
 
-    public void LevelCompleted()
+    public void LevelCompleted(bool success)
     {
         m_level_started = false;
         MazeUI.gameObject.SetActive(true);
-        LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
-        UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
-        RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
+        if (success)
+        {
+            LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
+            UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
+            RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
+        }
+        else
+        {
+            m_current_node = m_prev_node;
+            m_target_position = m_current_node.transform.position;
+            m_path_chosen = true;
+            m_retreating = true;
+        }
     }
 
     public void MoveLeft()
     {
+        m_prev_node = m_current_node;
         m_current_node = m_current_node.Left_Node;
         m_target_position = m_current_node.transform.position;
         MazeUI.gameObject.SetActive(false);
@@ -88,6 +114,7 @@ public class MazeSystem : MonoBehaviour
 
     public void MoveRight()
     {
+        m_prev_node = m_current_node;
         m_current_node = m_current_node.Right_Node;
         m_target_position = m_current_node.transform.position;
         MazeUI.gameObject.SetActive(false);
@@ -96,6 +123,7 @@ public class MazeSystem : MonoBehaviour
 
     public void MoveUp()
     {
+        m_prev_node = m_current_node;
         m_current_node = m_current_node.Up_Node;
         m_target_position = m_current_node.transform.position;
         MazeUI.gameObject.SetActive(false);

@@ -82,6 +82,11 @@ public class BattleSystem : MonoBehaviour
         {
             timeRemaining -= Time.fixedDeltaTime;
 
+            if (player.GetComponent<Player>().isDead)
+            {
+                GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(false);
+            }
+
             Animator playerAnimator = player.GetComponent<Animator>();
             Animator enemyAnimator = enemy.GetComponent<Animator>();
             if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Idle"))
@@ -278,7 +283,7 @@ public class BattleSystem : MonoBehaviour
         if (enemy.GetComponent<Player>().isDead)
         {
             SceneManager.UnloadScene(1);
-            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted();
+            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(true);
         }
         else
         {
