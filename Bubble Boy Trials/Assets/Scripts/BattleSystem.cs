@@ -46,6 +46,7 @@ public class BattleSystem : MonoBehaviour
     private bool createBubble;
     private int comboChain;
     private bool started;
+    private int m_score;
 
     // Use this for initialization
     void Start()
@@ -61,6 +62,8 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         enemy.transform.position = player.transform.position + new Vector3(10, 0, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
+        m_score = GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().GetScore();
+        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
 	
     // Update is called once per frame
@@ -283,7 +286,7 @@ public class BattleSystem : MonoBehaviour
         if (enemy.GetComponent<Player>().isDead)
         {
             SceneManager.UnloadScene(1);
-            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(true);
+            GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().LevelCompleted(true, m_score);
         }
         else
         {

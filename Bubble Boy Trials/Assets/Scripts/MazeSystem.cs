@@ -24,6 +24,8 @@ public class MazeSystem : MonoBehaviour
     bool m_path_chosen;
     bool m_retreating;
 
+    int m_score;
+
     void Awake()
     {
         GameObject.DontDestroyOnLoad(this);
@@ -36,7 +38,6 @@ public class MazeSystem : MonoBehaviour
         m_prev_node = m_current_node;
         m_target_position = m_current_node.transform.position;
         m_elevator = GameObject.FindGameObjectWithTag("PlayerElevator").GetComponent<Elevator>();
-        m_elevator.transform.position = new Vector2(0,0);
         m_level_started = false;
         m_path_chosen = true;
         m_retreating = false;
@@ -49,12 +50,12 @@ public class MazeSystem : MonoBehaviour
         // we just got back from a level
         if (!m_level_started && m_path_chosen)
         {
-            Vector2 movement_difference = m_target_position - (Vector2)m_elevator.transform.position;
+            Vector2 movement_difference = m_target_position - (Vector2)m_elevator.transform.position + new Vector2(-0.1f, 1.0f);
             if (movement_difference.magnitude < EPSILON)
             {
                 if (!m_retreating)
                 {
-                    m_elevator.transform.position = m_target_position;
+                    m_elevator.transform.position = m_target_position + new Vector2(-0.1f, 1.0f);
                     m_level_started = true;
                     StartLevel();
                 }
@@ -84,12 +85,16 @@ public class MazeSystem : MonoBehaviour
         m_path_chosen = false;
     }
 
-    public void LevelCompleted(bool success)
+    public void LevelCompleted(bool success, int score=0)
     {
         m_level_started = false;
         MazeUI.gameObject.SetActive(true);
         if (success)
         {
+            if (score > 0)
+            {
+                UpdateScore(score);
+            }
             LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
             UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
             RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
@@ -101,6 +106,17 @@ public class MazeSystem : MonoBehaviour
             m_path_chosen = true;
             m_retreating = true;
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        m_score = score;
+        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
+    }
+
+    public int GetScore()
+    {
+        return m_score;
     }
 
     public void MoveLeft()
