@@ -26,7 +26,7 @@ public class Door : MonoBehaviour {
     {
        PlaySound(position);
        yield return new WaitForSeconds(door_clip.length);
-       level.LevelCompleted(this.gameObject);
+       level.PauseLevel(this.gameObject);
     }
 
 

@@ -302,7 +302,7 @@ public class BossBattleSystem : MonoBehaviour
         if (enemy.GetComponent<Player>().isDead)
         {
             SceneManager.UnloadScene(4);
-            platform_lvl.StartLevel();
+            platform_lvl.ResumeLevel();
         }
         else
         {

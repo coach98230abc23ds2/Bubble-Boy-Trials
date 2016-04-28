@@ -10,7 +10,7 @@ public class PlatformPlayer : MonoBehaviour {
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
     public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
-    public float hit_height = 3.0f; //height at which player will hit the enemy's head 
+    public float hit_height = 10.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
     public Text score_text; 
     public bool collided = false;
@@ -78,10 +78,11 @@ public class PlatformPlayer : MonoBehaviour {
 //        m_num_combos++;-
         m_score += increment /* * m_num_combos*/;
     }
-
+   
 	// Update is called once per frame
 	void Update () 
     {
+        Debug.DrawRay(this.transform.Find("CastOrigin").transform.position, Vector3.down);
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
             || m_lives <= 0)
@@ -132,11 +133,11 @@ public class PlatformPlayer : MonoBehaviour {
 
         Destroy(curr_enemy, time_to_wait);
         GainScore(score_increase);
-        collided = true;
+        collided = false;
     }
 
     void FixedUpdate()
-    {
+    {   
         Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
         Vector2 down_dir = transform.TransformDirection(Vector2.down);
  
@@ -217,6 +218,7 @@ public class PlatformPlayer : MonoBehaviour {
 
                         GetComponent<Platformer2DUserControl>().enabled = false;
                         GetComponentInChildren<Weapon>().enabled = false;
+                        RespawnPlayer();
                     }
                 }
             }
@@ -227,7 +229,6 @@ public class PlatformPlayer : MonoBehaviour {
     {
         if (coll.gameObject.name == "enemy2(Clone)")
         {
-            // need to fix this; enemies go right through enemy2.
             if (Time.time > m_last_hit_time + m_repeat_damage_period) 
             {
                 if(m_health > 0f)
@@ -253,7 +254,7 @@ public class PlatformPlayer : MonoBehaviour {
 
                     GetComponent<Platformer2DUserControl>().enabled = false;
                     GetComponentInChildren<Weapon>().enabled = false;
-//                    m_anim.SetTrigger("Die");
+                    RespawnPlayer();
                 }
             }
         }
@@ -271,7 +272,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         Vector2 displacement = (transform.position - enemy.position);
 //            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
-        Vector2 new_displacement = new Vector2 (4000* displacement.x, 5 *displacement.y);
+        Vector2 new_displacement = new Vector2 (4000* displacement.x, 500 *displacement.y);
         // Create a vector that's from the enemy to the player with an upwards boost.
         Vector2 hurt_vector = new_displacement + Vector2.up;
 
@@ -281,6 +282,8 @@ public class PlatformPlayer : MonoBehaviour {
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
+
+        m_touched_head = false;
 
         // Play a random clip of the player getting hurt.
 //        int i = Random.Range (0, m_ouch_clips.Length);

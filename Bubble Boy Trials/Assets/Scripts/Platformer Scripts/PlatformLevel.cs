@@ -36,7 +36,7 @@ public class PlatformLevel : MonoBehaviour {
         m_health_bar = GameObject.Find("HealthBar");
     }
 
-    public void StartLevel()
+    public void ResumeLevel()
     {   
 //        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
         Resources.UnloadUnusedAssets();
@@ -50,7 +50,7 @@ public class PlatformLevel : MonoBehaviour {
         m_level_started = true;
     }
 
-    public void LevelCompleted(GameObject door)
+    public void PauseLevel(GameObject door)
     {   
         if (m_level_started)
         {
@@ -62,6 +62,13 @@ public class PlatformLevel : MonoBehaviour {
             Destroy(door,2.0f);
         }
 
+    }
+
+    public void LevelCompleted()
+    {
+        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
+        Scene scene = SceneManager.GetSceneByName("MazeScene");
+        SceneManager.SetActiveScene(scene);
     }
 
 
