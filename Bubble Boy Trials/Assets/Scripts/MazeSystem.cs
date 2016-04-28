@@ -78,11 +78,19 @@ public class MazeSystem : MonoBehaviour
 
     void StartLevel()
     {
-        SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Additive);
-        Scene scene = SceneManager.GetSceneByName(m_current_node.Scene_Id);
-        SceneManager.SetActiveScene(scene);
-        m_level_started = true;
-        m_path_chosen = false;
+        // this is the last scene, so destroy the maze and let it take over
+        if (m_current_node.Scene_Id == "PrimeScene")
+        {
+            SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Additive);
+            Scene scene = SceneManager.GetSceneByName(m_current_node.Scene_Id);
+            SceneManager.SetActiveScene(scene);
+            m_level_started = true;
+            m_path_chosen = false;
+        }
     }
 
     public void LevelCompleted(bool success, int score=0)

@@ -214,9 +214,9 @@ public class BattleSystem : MonoBehaviour
     private void HidePlayerUI()
     {
         answers.ForEach(b => b.gameObject.SetActive(false));
-        problem.gameObject.SetActive(false);
         time_remaining.gameObject.SetActive(false);
         battleMessage.gameObject.SetActive(true);
+        problem.text = "You are attacking!";
     }
 
     private float CurrentAverage()
@@ -282,6 +282,9 @@ public class BattleSystem : MonoBehaviour
         {
             dmg += 10 * comboChain - 2;
         }
+        m_score += dmg;
+        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
+        problem.text = "You did " + dmg + " damage!";
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
@@ -315,6 +318,6 @@ public class BattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
-        timeRemaining = Random.Range(2, 5);
+        problem.text = "Now defend by pressing SPACEBAR!";
     }
 }

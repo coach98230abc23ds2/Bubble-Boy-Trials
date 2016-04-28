@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public int Health = 30;
     private GameObject healthBar;
     public bool isDead = false;
+    private int MaxHealth;
     
     // Use this for initialization
     void Start()
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
         healthBar.GetComponent<Slider>().value = Health;
         healthBar.GetComponent<Slider>().maxValue = Health;
         healthBar.GetComponent<Slider>().minValue = 0;
+        MaxHealth = Health;
     }
 	
     // Update is called once per frame
@@ -48,7 +50,14 @@ public class Player : MonoBehaviour
                 healthBar.GetComponent<Slider>().value -= 10 * Time.deltaTime;
             }
         }
-
+        else if (healthBar == null)
+        {
+            healthBar = GameObject.Instantiate(Resources.Load("HealthBar"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            healthBar.transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+            healthBar.GetComponent<Slider>().value = Health;
+            healthBar.GetComponent<Slider>().maxValue = MaxHealth;
+            healthBar.GetComponent<Slider>().minValue = 0;
+        }
     }
 
     public void TakeDamage(int damage)
