@@ -116,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100898}
   m_LocalRotation: {x: 0, y: 0, z: 0.0064869435, w: 0.99997896}
-  m_LocalPosition: {x: -11, y: 31.4, z: 0}
+  m_LocalPosition: {x: 31.7, y: 20.7, z: 0}
   m_LocalScale: {x: 0.76, y: 0.76, z: 0.42}
   m_Children:
   - {fileID: 486230}
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd8e1cdc86c04226a048b71f8d9e0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 8
-  m_JumpForce: 1000
+  m_MaxSpeed: 12
+  m_JumpForce: 1500
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
@@ -390,7 +390,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_MaxSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_JumpForce
+      value: 1500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100898}

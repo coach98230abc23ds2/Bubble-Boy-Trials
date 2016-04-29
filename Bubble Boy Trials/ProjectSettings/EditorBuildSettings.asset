@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/DrOddScene.unity
   - enabled: 1
     path: Assets/Scenes/BossBattleScene.unity
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity

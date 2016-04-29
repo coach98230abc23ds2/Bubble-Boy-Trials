@@ -19,8 +19,8 @@ public class EnemySpawner : MonoBehaviour {
 
 	public GameObject[] enemy_types; //stores type of enemies
 	private GameObject[] active_objects; //active game objects
-	private float[] enemy_1_positions = new float[]{24.59f, 84.0f, 118.0f, 156.0f}; //all possible x-coordinate spawning points for grounded minions
-    private float[] enemy_2_positions = new float[]{48.0f, 136.7f}; //all possible x-coordinate spawning points for flying minions
+	private float[] enemy_1_positions = new float[]{32.1f, 154.9f, 298f, 308f}; //all possible x-coordinate spawning points for grounded minions
+    private float[] enemy_2_positions = new float[]{75.2f, 251.3f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
 																    & their current positions */
                                                                     																										

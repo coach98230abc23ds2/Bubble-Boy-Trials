@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets._2D;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlatformPlayer : MonoBehaviour {
 
@@ -37,7 +41,19 @@ public class PlatformPlayer : MonoBehaviour {
     private Weapon weapon;
     private AudioSource source;
 
-   
+    private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
+    private float[] respawn_y_positions = new float[]{15.7f, 17.9f, 33.8f};
+    private Dictionary<float, float> respawn_positions = new Dictionary<float,float>();
+
+
+    void InitializeRespawnDict ()
+    {  
+      int arr_length = respawn_x_positions.Length;
+      for (int i = 0; i < arr_length; i++)
+      {
+        respawn_positions.Add (respawn_x_positions[i], respawn_y_positions[i]);
+      }
+    }
 
     void Awake ()
     {
@@ -50,6 +66,7 @@ public class PlatformPlayer : MonoBehaviour {
         player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
         weapon = this.gameObject.GetComponent<Weapon>();
         source = this.gameObject.GetComponent<AudioSource>();
+        InitializeRespawnDict();
     }
 
     void Start()
@@ -66,10 +83,20 @@ public class PlatformPlayer : MonoBehaviour {
         m_health = 100f;
         health_bar.GetComponent<Slider>().value = m_health;
         m_score -= (int) (m_score * m_score_penalty);
-        Vector2 temp = this.gameObject.transform.position;
-        temp.x = 5.3f;
-        temp.y = 20.0f;
-        this.gameObject.transform.position = temp;
+
+        Vector2 player_pos = this.gameObject.transform.position;
+
+        float closest_key = -11.1f;
+
+        foreach (KeyValuePair<float, float> pair in respawn_positions)
+        {
+            if (Mathf.Abs(player_pos.x - pair.Key) < Mathf.Abs(player_pos.x - closest_key))
+            {   
+                closest_key = pair.Key;
+            }
+        }
+
+        this.gameObject.transform.position = new Vector3 (closest_key, respawn_positions[closest_key], 0f);
     }
 
     //increases score by the increment number
@@ -133,7 +160,24 @@ public class PlatformPlayer : MonoBehaviour {
 
         Destroy(curr_enemy, time_to_wait);
         GainScore(score_increase);
-        collided = false;
+//        DelayHeadHit(curr_enemy);
+        m_touched_head = false;
+    }
+
+    IEnumerator DelayHeadHit (GameObject curr_enemy)
+    {   
+        float curr_length;
+
+        if (curr_enemy.name == "enemy1(Clone)")
+        {
+            curr_length = enemy1_hit.length/5;
+        } 
+        else
+        {
+            curr_length = enemy2_hit.length/2;
+        }
+        yield return new WaitForSeconds(curr_length);
+        m_touched_head = false;
     }
 
     void FixedUpdate()
@@ -227,7 +271,7 @@ public class PlatformPlayer : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.name == "enemy2(Clone)")
+        if (coll.transform.root.gameObject.name == "enemy2(Clone)")
         {
             if (Time.time > m_last_hit_time + m_repeat_damage_period) 
             {
@@ -266,6 +310,12 @@ public class PlatformPlayer : MonoBehaviour {
         }
     }
 
+    IEnumerator DelayCollision ()
+    {
+        yield return new WaitForSeconds (.1f);
+        collided = false;
+    }
+
     void TakeDamage (Transform enemy)
     {   
         m_player_anim.SetTrigger("Defend");
@@ -283,7 +333,7 @@ public class PlatformPlayer : MonoBehaviour {
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
 
-        m_touched_head = false;
+        DelayCollision();
 
         // Play a random clip of the player getting hurt.
 //        int i = Random.Range (0, m_ouch_clips.Length);

@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour {
   
     [SerializeField] private LayerMask m_WhatIsGround; 
 
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = 1f; // Radius of the overlap circle to determine if grounded
 
     private int m_move_state = 0;
     private int m_direction = -1;
@@ -98,12 +98,12 @@ public class EnemyMovement : MonoBehaviour {
 
         if (m_can_move == true)
         {
-            if (this.name == "enemy1" || this.name == "enemy1(Clone)")
+            if (this.gameObject.name == "enemy1" || this.gameObject.name == "enemy1(Clone)")
             {
                  //need to fix this physics; enemy going up a slope
                 if (!m_Grounded)
                 {
-                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-5f, -9.8f);
+                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-2.5f, -20f);
 
                 }
                 else if (m_incline && m_Grounded)
@@ -113,7 +113,7 @@ public class EnemyMovement : MonoBehaviour {
 
                 else if (!m_incline && m_Grounded)
                 {
-                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-3f, 0f);   
+                    this.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-5f, 0f);   
                 }
                 m_anim.SetFloat("x_velocity", Mathf.Abs(this.GetComponentInChildren<Rigidbody2D>().velocity.x));
             }
