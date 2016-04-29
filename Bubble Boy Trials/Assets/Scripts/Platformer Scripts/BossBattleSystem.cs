@@ -80,7 +80,7 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = new Vector3 (352.2f, 42.4f, 0);
+        enemy.transform.position = new Vector3 (352.2f, 40.5f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
 //        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
@@ -90,7 +90,7 @@ public class BossBattleSystem : MonoBehaviour
     {
         if (!started)
         {
-            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 5.5f)
+            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 11f)
             {
                 started = true;
                 PlayerTurn();
@@ -114,7 +114,7 @@ public class BossBattleSystem : MonoBehaviour
                 }
                 bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 bubble.transform.position = player.transform.position + new Vector3(0.5f, 0f, 0);
-                bubble.transform.localScale += new Vector3(.5f,.5f,.5f);
+                bubble.transform.localScale += new Vector3(1f,1f,1f);
                 bubbleLive = true;
                 createBubble = false;
             }
@@ -124,9 +124,9 @@ public class BossBattleSystem : MonoBehaviour
                 {
                     GameObject.Destroy(bubble);
                 }
-                bubble = GameObject.Instantiate(Resources.Load("SlimeBubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                bubble = GameObject.Instantiate(Resources.Load("Bubble"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 bubble.transform.position = enemy.transform.position + new Vector3(-0.5f, 0f, 0);
-                bubble.transform.localScale += new Vector3(.5f,.5f,.5f);
+                bubble.transform.localScale += new Vector3(1f,1f,1f);
                 bubbleLive = true;
                 createBubble = false;
             }
@@ -301,7 +301,7 @@ public class BossBattleSystem : MonoBehaviour
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
-            SceneManager.UnloadScene(4);
+            SceneManager.UnloadScene(5);
             platform_lvl.ResumeLevel();
         }
         else

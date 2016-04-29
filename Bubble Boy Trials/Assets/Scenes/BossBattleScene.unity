@@ -1413,15 +1413,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22419086, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.2855588
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 22419086, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.2855588
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 22419086, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.2855588
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 121876, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
       propertyPath: m_Layer

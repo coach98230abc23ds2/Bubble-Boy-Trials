@@ -25,7 +25,7 @@ public class Door : MonoBehaviour {
     public IEnumerator WaitToSwitch(Vector3 position)
     {
        PlaySound(position);
-       yield return new WaitForSeconds(door_clip.length);
+       yield return new WaitForSeconds(door_clip.length/4);
        level.PauseLevel(this.gameObject);
     }
 

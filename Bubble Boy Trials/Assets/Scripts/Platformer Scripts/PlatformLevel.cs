@@ -74,7 +74,7 @@ public class PlatformLevel : MonoBehaviour {
         door.SetActive(false);
     }
 
-    public void LevelCompleted()
+    public void SwitchToMaze()
     { 
         SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
         Scene scene = SceneManager.GetSceneByName("MazeScene");
