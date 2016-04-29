@@ -16,6 +16,7 @@ public class PlatformLevel : MonoBehaviour {
     private GameObject new_elevator;
     private GameObject new_camera;
     private AudioSource source;
+    private GameObject platform_door;
 
     public GameObject m_elevator;
     public GameObject maze_camera;
@@ -44,6 +45,8 @@ public class PlatformLevel : MonoBehaviour {
         m_player.SetActive(true);
         m_platform.SetActive(true);
         m_main_camera.SetActive(true);
+        platform_door.SetActive(true);
+
 
         Scene scene = SceneManager.GetSceneByName(platformer_name);
         SceneManager.SetActiveScene(scene);
@@ -59,13 +62,20 @@ public class PlatformLevel : MonoBehaviour {
             SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
             Scene scene = SceneManager.GetSceneByName("BossBattleScene");
             SceneManager.SetActiveScene(scene);
-            Destroy(door,2.0f);
+            platform_door = door;
+            StartCoroutine(HideDoor(door));
         }
 
     }
 
-    public void LevelCompleted()
+    IEnumerator HideDoor(GameObject door)
     {
+        yield return new WaitForSeconds(2.0f);
+        door.SetActive(false);
+    }
+
+    public void LevelCompleted()
+    { 
         SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
         Scene scene = SceneManager.GetSceneByName("MazeScene");
         SceneManager.SetActiveScene(scene);

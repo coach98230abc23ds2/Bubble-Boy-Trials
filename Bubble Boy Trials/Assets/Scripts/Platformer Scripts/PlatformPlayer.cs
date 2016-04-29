@@ -208,7 +208,7 @@ public class PlatformPlayer : MonoBehaviour {
         }
 
         Vector2 right_dir = transform.TransformDirection(Vector2.right);
-        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 15f, 1 << 14);
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 30f, 1 << 14);
 
         if (!m_touched_door)
         {
@@ -242,6 +242,7 @@ public class PlatformPlayer : MonoBehaviour {
                     if(m_health > 0f)
                     {
                         TakeDamage(coll.transform); 
+                        collided = true;
                         m_last_hit_time = Time.time; 
                     }
                     else
@@ -269,6 +270,14 @@ public class PlatformPlayer : MonoBehaviour {
         }
     }
 
+    void OnCollisionExit2D (Collision2D coll)
+    {
+        if (coll.gameObject.name == "enemy1(Clone)")
+        {
+            collided = false;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.transform.root.gameObject.name == "enemy2(Clone)")
@@ -278,7 +287,8 @@ public class PlatformPlayer : MonoBehaviour {
                 if(m_health > 0f)
                 {
                     TakeDamage(coll.transform); 
-                    m_last_hit_time = Time.time; 
+                    m_last_hit_time = Time.time;
+                    collided = true; 
                 }
                 else
                 {
@@ -310,11 +320,20 @@ public class PlatformPlayer : MonoBehaviour {
         }
     }
 
-    IEnumerator DelayCollision ()
+    void OnTriggerExit2D (Collider2D coll)
     {
-        yield return new WaitForSeconds (.1f);
-        collided = false;
+       if (coll.transform.root.gameObject.name == "enemy2(Clone)")
+       {
+           collided = false;
+       }
+
     }
+
+    //    IEnumerator DelayCollision ()
+//    {
+//        yield return new WaitForSeconds (.1f);
+//        collided = false;
+//    }
 
     void TakeDamage (Transform enemy)
     {   
@@ -333,7 +352,7 @@ public class PlatformPlayer : MonoBehaviour {
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
 
-        DelayCollision();
+//        DelayCollision();
 
         // Play a random clip of the player getting hurt.
 //        int i = Random.Range (0, m_ouch_clips.Length);

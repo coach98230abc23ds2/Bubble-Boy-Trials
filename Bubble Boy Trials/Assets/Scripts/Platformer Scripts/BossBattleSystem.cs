@@ -80,7 +80,7 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = new Vector3 (190.1f, 33.67f, 0);
+        enemy.transform.position = new Vector3 (352.2f, 42.4f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
 //        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
@@ -97,7 +97,7 @@ public class BossBattleSystem : MonoBehaviour
             }
             else
             {
-                enemy.transform.position -= new Vector3(.4f * Time.fixedDeltaTime, 0, 0);
+                enemy.transform.position -= new Vector3(.8f * Time.fixedDeltaTime, 0, 0);
             }
         }
         if (started)
