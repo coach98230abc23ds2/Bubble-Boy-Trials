@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 283582129200c48509adf4ba89321227
-timeCreated: 1461333834
+timeCreated: 1461959497
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -66,7 +66,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -86,7 +86,7 @@ TextureImporter:
         width: 8
         height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_1
@@ -97,7 +97,7 @@ TextureImporter:
         width: 7
         height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_2
@@ -108,7 +108,7 @@ TextureImporter:
         width: 13
         height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_3
@@ -119,7 +119,7 @@ TextureImporter:
         width: 16
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_4
@@ -130,7 +130,7 @@ TextureImporter:
         width: 16
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_5
@@ -141,7 +141,7 @@ TextureImporter:
         width: 16
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_6
@@ -152,7 +152,7 @@ TextureImporter:
         width: 18
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_7
@@ -163,7 +163,7 @@ TextureImporter:
         width: 1881
         height: 423
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -823.5, y: -145.5}
@@ -363,7 +363,7 @@ TextureImporter:
         width: 22
         height: 276
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_9
@@ -374,7 +374,7 @@ TextureImporter:
         width: 22
         height: 276
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_10
@@ -385,7 +385,7 @@ TextureImporter:
         width: 22
         height: 276
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_11
@@ -396,7 +396,7 @@ TextureImporter:
         width: 28
         height: 276
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_12
@@ -407,7 +407,7 @@ TextureImporter:
         width: 28
         height: 280
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_13
@@ -418,7 +418,7 @@ TextureImporter:
         width: 28
         height: 280
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: syringe straight_14
@@ -429,7 +429,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -450,7 +450,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -471,7 +471,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -492,7 +492,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -513,7 +513,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -534,7 +534,7 @@ TextureImporter:
         width: 1881
         height: 380
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -750.5, y: -177}
@@ -719,7 +719,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -740,7 +740,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -761,7 +761,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -782,7 +782,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -803,7 +803,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -824,7 +824,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -845,7 +845,7 @@ TextureImporter:
         width: 33
         height: 298
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11.5, y: 149}
@@ -866,7 +866,7 @@ TextureImporter:
         width: 1197
         height: 359
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -308.5, y: -179.5}

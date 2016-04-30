@@ -102,6 +102,7 @@ public class Weapon : MonoBehaviour {
     {
         Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
+        Clone.transform.localScale += new Vector3(.5f,.5f,.5f);
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
         force.velocity = transform.TransformDirection (-transform.right) * bulletSpeed;
@@ -111,6 +112,7 @@ public class Weapon : MonoBehaviour {
     {
         Vector3 firePointPosition = new Vector3 (bullet.position.x, bullet.position.y, bullet.position.z);
         Clone = (Instantiate(bulletPrefab, firePointPosition, Quaternion.identity)) as GameObject;
+        Clone.transform.localScale += new Vector3(.5f,.5f,.5f);
         force = Clone.GetComponent<Rigidbody2D>();
         force.isKinematic = true;
         force.velocity = transform.TransformDirection (transform.right) * bulletSpeed;

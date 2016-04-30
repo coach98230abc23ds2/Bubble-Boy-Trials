@@ -44,16 +44,24 @@ public class PlatformPlayer : MonoBehaviour {
 
     private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
     private float[] respawn_y_positions = new float[]{15.7f, 17.9f, 33.8f};
-    private Dictionary<float, float> respawn_positions = new Dictionary<float,float>();
+
+    private Dictionary<float, float> respawn_positions = new Dictionary<float, float>();
+    private List<float> respawn_x_positions_used = new List<float>();
+
 
 
     void InitializeRespawnDict ()
     {  
-      int arr_length = respawn_x_positions.Length;
-      for (int i = 0; i < arr_length; i++)
-      {
-        respawn_positions.Add (respawn_x_positions[i], respawn_y_positions[i]);
-      }
+        int arr_length = respawn_x_positions.Length;
+        for (int i = 0; i < arr_length; i++)
+        {   
+            respawn_positions.Add (respawn_x_positions[i],respawn_y_positions[i]);
+        }
+    }
+
+    private bool IsInUsedList (float x_pos)
+    {
+        return (respawn_x_positions_used.Contains(x_pos));
     }
 
     void Awake ()
@@ -92,7 +100,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         foreach (KeyValuePair<float, float> pair in respawn_positions)
         {
-            if (Mathf.Abs(player_pos.x - pair.Key) < Mathf.Abs(player_pos.x - closest_key))
+            if ((Mathf.Abs(player_pos.x - pair.Key) < Mathf.Abs(player_pos.x - closest_key)) && IsInUsedList(pair.Key))
             {   
                 closest_key = pair.Key;
             }
@@ -110,7 +118,21 @@ public class PlatformPlayer : MonoBehaviour {
    
 	// Update is called once per frame
 	void Update () 
-    {
+    {   
+        float player_x_pos = this.gameObject.transform.position.x;
+
+        foreach (float possible_x_pos in respawn_x_positions)
+        {
+            if (player_x_pos - possible_x_pos >= 0)
+            {
+                if (!(IsInUsedList(possible_x_pos)) && respawn_positions.ContainsKey(possible_x_pos))
+                {   
+//                    Debug.Log("added new key to used_positions dict: " + Convert.ToString(possible_x_pos));
+                    respawn_x_positions_used.Add(possible_x_pos);
+                }
+            }
+        }
+
         Debug.DrawRay(this.transform.Find("CastOrigin").transform.position, Vector3.down);
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 

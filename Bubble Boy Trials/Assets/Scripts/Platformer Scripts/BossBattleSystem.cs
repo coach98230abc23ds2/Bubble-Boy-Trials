@@ -80,9 +80,9 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = new Vector3 (352.2f, 40.5f, 0);
+        enemy.transform.position = new Vector3 (352.2f, 40.42f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
-//        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
+        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
 	
     // Update is called once per frame
@@ -133,7 +133,7 @@ public class BossBattleSystem : MonoBehaviour
 
             if (bubble != null)
             {
-                bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+                bubble.transform.position += new Vector3(3.0f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
                 if (bubbleLive && attackingPlayer)
                 {
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
@@ -229,9 +229,9 @@ public class BossBattleSystem : MonoBehaviour
     private void HidePlayerUI()
     {
         answers.ForEach(b => b.gameObject.SetActive(false));
-        problem.gameObject.SetActive(false);
         time_remaining.gameObject.SetActive(false);
         battleMessage.gameObject.SetActive(true);
+        problem.text = "You are attacking!";
     }
 
     private float CurrentAverage()
@@ -254,7 +254,6 @@ public class BossBattleSystem : MonoBehaviour
         // since that requires the operation is known
         current_problem = new Problem();
 
-        //need to get the prefab that max used
         timeRemaining = CurrentAverage();
         time_remaining.maxValue = timeRemaining;
 
@@ -293,11 +292,15 @@ public class BossBattleSystem : MonoBehaviour
 
     private void ApplyHit()
     {
-        int dmg = 5;
+        int dmg = 10;
         if (comboChain >= 3)
         {
             dmg += 10 * comboChain - 2;
         }
+        m_score += dmg;
+        GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
+        problem.text = "You did " + dmg + " damage!";
+
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
@@ -331,6 +334,6 @@ public class BossBattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
-        timeRemaining = Random.Range(2, 5);
+        problem.text = "Now defend by pressing SPACEBAR!";
     }
 }
