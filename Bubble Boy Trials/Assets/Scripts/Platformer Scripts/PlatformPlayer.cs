@@ -39,7 +39,7 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_emy_anim;
     private Platformer2DUserControl player_control;
     private Weapon weapon;
-    private AudioSource source;
+    private AudioSource[] source;
     private PlatformLevel platform_lvl;
 
     private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
@@ -74,7 +74,7 @@ public class PlatformPlayer : MonoBehaviour {
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
         player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
         weapon = this.gameObject.GetComponent<Weapon>();
-        source = this.gameObject.GetComponent<AudioSource>();
+        source = this.gameObject.GetComponents<AudioSource>();
         platform_lvl = GameObject.Find("Platform").GetComponent<PlatformLevel>();
         InitializeRespawnDict();
     }
@@ -334,9 +334,15 @@ public class PlatformPlayer : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Coin")
         {
-            source.Play();
+            source[0].Play();
             Destroy(coll.gameObject);
-            GainScore(40);
+            GainScore(30);
+        }
+        else if (coll.gameObject.tag == "Coin2")
+        {
+            source[1].Play();
+            Destroy(coll.gameObject);
+            GainScore(10); 
         }
 
         if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
