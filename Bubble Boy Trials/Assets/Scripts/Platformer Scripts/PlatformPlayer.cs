@@ -29,6 +29,7 @@ public class PlatformPlayer : MonoBehaviour {
     private bool m_touched_door = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
+    private float cast_radius = 1f;
     private EnemySpawner m_spawner;
     private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
     private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
@@ -242,11 +243,10 @@ public class PlatformPlayer : MonoBehaviour {
 
     void FixedUpdate()
     {   
-        Vector2 cast_origin = GameObject.Find("CastOrigin").transform.position; 
-        Vector2 down_dir = transform.TransformDirection(Vector2.down);
+        GameObject cast_origin = GameObject.Find("CastOrigin");
  
-        RaycastHit2D[] hit = Physics2D.RaycastAll(cast_origin, down_dir, hit_height, 1 << 13);
-
+//        Collider2D[] hit = Physics2D.OverlapCircleAll(cast_origin.transform.position, cast_radius, 1 << 13);
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(cast_origin.transform.position, cast_radius, Vector2.down, hit_height, 1 << 13);
         if (!m_touched_head)
         {
             if (hit != null)
@@ -267,8 +267,9 @@ public class PlatformPlayer : MonoBehaviour {
             }
         }
 
+
         Vector2 right_dir = transform.TransformDirection(Vector2.right);
-        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin, right_dir, 30f, 1 << 14);
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin.transform.position, right_dir, 30f, 1 << 14);
 
         if (!m_touched_door)
         {
