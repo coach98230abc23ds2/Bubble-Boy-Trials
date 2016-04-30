@@ -9,7 +9,7 @@ using System.Linq;
 
 public class PlatformPlayer : MonoBehaviour {
 
-    public float m_repeat_damage_period= 2f; // how frequently the player can be damaged.
+    public float m_repeat_damage_period= .25f; // how frequently the player can be damaged.
     public float m_health = 100f; // the player's m_health
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
@@ -87,9 +87,24 @@ public class PlatformPlayer : MonoBehaviour {
     }
 
     private void RespawnPlayer()
-    {
+    {   
+        // Find all of the colliders on the gameobject and set them all to not be triggers
+        Collider2D[] cols = GetComponents<Collider2D>();
+        foreach(Collider2D c in cols)
+        {
+            c.isTrigger = false;
+        }
+
+        // Move all sprite parts of the player to the back
+        SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer s in spr)
+        {
+            s.sortingLayerName = "Character";
+        }
+            
         GetComponent<Platformer2DUserControl>().enabled = true;
         GetComponentInChildren<Weapon>().enabled = true;
+        health_bar.SetActive(true);
         m_health = 100f;
         health_bar.GetComponent<Slider>().value = m_health;
         m_score -= (int) (m_score * m_score_penalty);
@@ -155,6 +170,27 @@ public class PlatformPlayer : MonoBehaviour {
                                 );
 
             health_bar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 50);
+        }
+
+        // Find all of the colliders on the gameobject and set them all to be triggers.
+        if (m_health <= 0f)
+        {
+            Collider2D[] cols = GetComponents<Collider2D>();
+            foreach(Collider2D c in cols)
+            {
+                c.isTrigger = true;
+            }
+
+            // Move all sprite parts of the player to the front
+            SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+            foreach(SpriteRenderer s in spr)
+            {
+                s.sortingLayerName = "UI";
+            }
+
+            GetComponent<Platformer2DUserControl>().enabled = false;
+            GetComponentInChildren<Weapon>().enabled = false;
+            RespawnPlayer();
         }
 	}
 
@@ -269,26 +305,6 @@ public class PlatformPlayer : MonoBehaviour {
                         collided = true;
                         m_last_hit_time = Time.time; 
                     }
-                    else
-                    {
-                        // Find all of the colliders on the gameobject and set them all to be triggers.
-                        Collider2D[] cols = GetComponents<Collider2D>();
-                        foreach(Collider2D c in cols)
-                        {
-                            c.isTrigger = true;
-                        }
-
-                        // Move all sprite parts of the player to the front
-                        SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-                        foreach(SpriteRenderer s in spr)
-                        {
-                            s.sortingLayerName = "UI";
-                        }
-
-                        GetComponent<Platformer2DUserControl>().enabled = false;
-                        GetComponentInChildren<Weapon>().enabled = false;
-                        RespawnPlayer();
-                    }
                 }
             }
         }
@@ -313,26 +329,6 @@ public class PlatformPlayer : MonoBehaviour {
                     TakeDamage(coll.transform); 
                     m_last_hit_time = Time.time;
                     collided = true; 
-                }
-                else
-                {
-                    // Find all of the colliders on the gameobject and set them all to be triggers.
-                    Collider2D[] cols = GetComponents<Collider2D>();
-                    foreach(Collider2D c in cols)
-                    {
-                        c.isTrigger = true;
-                    }
-
-                    // Move all sprite parts of the player to the front
-                    SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-                    foreach(SpriteRenderer s in spr)
-                    {
-                        s.sortingLayerName = "UI";
-                    }
-
-                    GetComponent<Platformer2DUserControl>().enabled = false;
-                    GetComponentInChildren<Weapon>().enabled = false;
-                    RespawnPlayer();
                 }
             }
         }
@@ -399,7 +395,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         if (m_health <= 0)
         {
-            Destroy(health_bar);
+            health_bar.SetActive(false);
             is_dead = true;
         }
     }
