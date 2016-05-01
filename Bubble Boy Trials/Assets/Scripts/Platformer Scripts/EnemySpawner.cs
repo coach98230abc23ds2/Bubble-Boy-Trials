@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 	private GameObject player;
 
     private bool can_spawn;
+    private bool first_spawn;
 	private float m_timer = 0.0f;
 	private float m_new_x; 
 	private float m_new_y;
@@ -80,6 +81,11 @@ public class EnemySpawner : MonoBehaviour {
 		}
 	}
 
+    IEnumerator DelaySpawn ()
+    {
+        yield return new WaitForSeconds (10f);
+        can_spawn = true;
+    }
 
 	//removes a position from the given enemy's list of positons.
 	public void RemoveFromDict (string name, float pos)
@@ -96,6 +102,9 @@ public class EnemySpawner : MonoBehaviour {
 	            }
       		}
 			curr_enemy_positions[name].Remove(new_pos); 
+            can_spawn = false;
+            StartCoroutine(DelaySpawn());
+
 		}
 		catch (Exception e)
 		{
@@ -150,14 +159,13 @@ public class EnemySpawner : MonoBehaviour {
             }
             for (int i = 0; i< curr_positions.Length; i++)
             {
-                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 30.0f){  
+                if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 20.0f){  
                     if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
                     {
 						spawn_position = new Vector2 (curr_positions[i], 30);
 						GameObject new_enemy = (GameObject) Instantiate(enemy, 
 	                                spawn_position, enemy.transform.rotation);
 	                    AddToDict(new_enemy.name, curr_positions[i]);
-//                        can_spawn = false;
     		    	}
     		    }
     		}
@@ -171,26 +179,21 @@ public class EnemySpawner : MonoBehaviour {
         m_player_pos = player.transform.position.x;
         can_spawn = true;
     }
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
-		active_objects.Distinct();
 
-		if(can_spawn && (Time.time > last_hit_time + 5f))
+    void Update ()
+    {
+        active_objects = UnityEngine.GameObject.FindGameObjectsWithTag("Enemy"); 
+        active_objects.Distinct();
+
+    }
+
+	void FixedUpdate () 
+	{
+		if(can_spawn)
 		{
 			m_player_pos = player.transform.position.x;
 			SpawnMinions();
-            last_hit_time = Time.fixedTime;
 		}
 	}
-
-//    void FixedUpdate()
-//    {
-//        can_spawn = false; 
-//
-//
-//    }
-
+   
 }

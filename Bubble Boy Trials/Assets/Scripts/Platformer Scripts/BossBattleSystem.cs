@@ -133,7 +133,7 @@ public class BossBattleSystem : MonoBehaviour
 
             if (bubble != null)
             {
-                bubble.transform.position += new Vector3(3.0f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
+                bubble.transform.position += new Vector3(6.0f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
                 if (bubbleLive && attackingPlayer)
                 {
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)

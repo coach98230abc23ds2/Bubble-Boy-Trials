@@ -29,7 +29,7 @@ public class PlatformPlayer : MonoBehaviour {
     private bool m_touched_door = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
-    private float cast_radius = 1f;
+    private float cast_radius = .1f;
     private EnemySpawner m_spawner;
     private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
     private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
@@ -40,8 +40,11 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator m_emy_anim;
     private Platformer2DUserControl player_control;
     private Weapon weapon;
-    private AudioSource[] source;
+    private AudioSource[] player_source;
+    private AudioSource enemy1_source;
+    private AudioSource enemy2_source;
     private PlatformLevel platform_lvl;
+    private bool facing_dir;
 
     private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
     private float[] respawn_y_positions = new float[]{15.7f, 17.9f, 33.8f};
@@ -75,8 +78,9 @@ public class PlatformPlayer : MonoBehaviour {
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
         player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
         weapon = this.gameObject.GetComponent<Weapon>();
-        source = this.gameObject.GetComponents<AudioSource>();
+        player_source = this.gameObject.GetComponents<AudioSource>();
         platform_lvl = GameObject.Find("Platform").GetComponent<PlatformLevel>();
+        facing_dir = this.gameObject.GetComponent<PlatformerCharacter2D>().m_FacingRight;
         InitializeRespawnDict();
     }
 
@@ -244,8 +248,7 @@ public class PlatformPlayer : MonoBehaviour {
     void FixedUpdate()
     {   
         GameObject cast_origin = GameObject.Find("CastOrigin");
- 
-//        Collider2D[] hit = Physics2D.OverlapCircleAll(cast_origin.transform.position, cast_radius, 1 << 13);
+
         RaycastHit2D[] hit = Physics2D.CircleCastAll(cast_origin.transform.position, cast_radius, Vector2.down, hit_height, 1 << 13);
         if (!m_touched_head)
         {
@@ -261,6 +264,7 @@ public class PlatformPlayer : MonoBehaviour {
                         GameObject parent_enemy = collider_hit.transform.root.gameObject;
                         m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
                         HurtEnemy(parent_enemy, 10);
+                        player_source[2].Play();  
                     }   
                 }
                 
@@ -339,13 +343,13 @@ public class PlatformPlayer : MonoBehaviour {
         }
         if (coll.gameObject.tag == "Coin")
         {
-            source[0].Play();
+            player_source[0].Play();
             Destroy(coll.gameObject);
             GainScore(30);
         }
         else if (coll.gameObject.tag == "Coin2")
         {
-            source[1].Play();
+            player_source[1].Play();
             Destroy(coll.gameObject);
             GainScore(10); 
         }
@@ -370,20 +374,33 @@ public class PlatformPlayer : MonoBehaviour {
     {   
         m_player_anim.SetTrigger("Defend");
 
-        Vector2 displacement = (transform.position - enemy.position);
-//            Debug.Log("Displacement: " + System.Convert.ToString(displacement));
-        Vector2 new_displacement = new Vector2 (4000* displacement.x, 500 *displacement.y);
+        // Make sure the player can't jump.
+        m_player_control.m_Jump = false;
+
+        int direction;
+
+        //player facing right
+        if (facing_dir)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+
+
         // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector2 hurt_vector = new_displacement + Vector2.up;
+        Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 2.5f + direction * (Vector3.right * 20f);
 
         // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
-        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
+//        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
+        GetComponent<Rigidbody2D>().AddForce(hurtVector * 200f);
 
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
 
-//        DelayCollision();
 
         // Play a random clip of the player getting hurt.
 //        int i = Random.Range (0, m_ouch_clips.Length);
