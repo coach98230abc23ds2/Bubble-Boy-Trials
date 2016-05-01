@@ -34,12 +34,12 @@ public class PlatformPlayer : MonoBehaviour {
     private EnemySpawner m_spawner;
     private SpriteRenderer m_health_bar;           // Reference to the sprite renderer of the m_health bar.
     private Vector3 m_health_scale;                // The local scale of the m_health bar initially (with full m_health).
-    private Platformer2DUserControl m_player_control;        // Reference to the PlayerControl script.
     private Animator m_door_anim;                      // Reference to the animator on the door
     private Animator m_player_anim;                     // Reference to the animator on the player
     private Door m_door;
     private Animator m_emy_anim;
     private Platformer2DUserControl player_control;
+    private PlatformerCharacter2D plat_char;
     private Weapon weapon;
     private AudioSource[] player_source;
     private AudioSource enemy1_source;
@@ -76,12 +76,12 @@ public class PlatformPlayer : MonoBehaviour {
     void Awake ()
     {
         // Setting up references.
-        m_player_control = GetComponent<Platformer2DUserControl>();
         m_spawner = Camera.main.GetComponent<EnemySpawner>(); // need to set this back to Camera.current for scene integration
         m_player_anim = this.gameObject.GetComponent<Animator>();
         m_door = GameObject.Find("BossDoor").GetComponent<Door>();
         m_door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
         player_control = this.gameObject.GetComponent<Platformer2DUserControl>();
+        plat_char = this.gameObject.GetComponent<PlatformerCharacter2D>();
         weapon = this.gameObject.GetComponent<Weapon>();
         player_source = this.gameObject.GetComponents<AudioSource>();
         platform_lvl = GameObject.Find("Platform").GetComponent<PlatformLevel>();
@@ -322,8 +322,19 @@ public class PlatformPlayer : MonoBehaviour {
         {
             RespawnPlayer();
         }
+        else if (coll.gameObject.tag == "Water")
+        {
+            plat_char.touching_water = true;
+        }
     }
-   
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Water")
+        {
+            plat_char.touching_water = false;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D coll)
     {   
@@ -355,18 +366,20 @@ public class PlatformPlayer : MonoBehaviour {
             Destroy(coll.gameObject);
             GainScore(10); 
         }
-
-        if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
+        else if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
         {
             platform_lvl.SwitchToMaze();
         }
+
     }
+
+   
 
     IEnumerator TakeDamage (Transform enemy)
     {   
         m_player_anim.SetTrigger("Defend");
         // Make sure the player can't jump.
-        m_player_control.m_Jump = false;
+        player_control.m_Jump = false;
 
         int direction;
 

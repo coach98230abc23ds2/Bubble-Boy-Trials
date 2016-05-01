@@ -35,7 +35,7 @@ public class PlatformEnemy : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {   
-        if (coll.gameObject.tag == "Death")
+        if (coll.gameObject.tag == "Water")
         {
             player.collided = true;
             GameObject parent_enemy = this.transform.gameObject;

@@ -11,15 +11,16 @@ namespace UnityStandardAssets._2D
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
-        const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-        const float hit_height = 3f;
+        const float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
+        const float hit_height = .05f;
         private bool m_Grounded;            // Whether or not the player is grounded.
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         public bool m_FacingRight = true;  // For determining which way the player is currently facing.
-        private bool m_double_jump = false; // For checking if a player can double jump.
+        public bool m_double_jump = false; // For checking if a player can double jump.
+        public bool touching_water = false;
         private bool scroll_left = false;
         private bool scroll_right = false;
 
@@ -113,9 +114,14 @@ namespace UnityStandardAssets._2D
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-                m_double_jump = true;
-            }else if (jump && !m_Grounded && can_move){
 
+                if (!touching_water)
+                {
+                    m_double_jump = true;
+                }
+            }
+            else if (jump && !m_Grounded && can_move && !touching_water)
+            {
                 //Allows the player to jump again.
                 if (m_double_jump){
                     m_double_jump = false;
