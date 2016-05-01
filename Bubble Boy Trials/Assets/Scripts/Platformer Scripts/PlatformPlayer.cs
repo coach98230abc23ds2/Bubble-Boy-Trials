@@ -296,7 +296,7 @@ public class PlatformPlayer : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     { 
         if (!collided){     
-            if (coll.gameObject.name == "enemy1(Clone)" || coll.gameObject.tag == "Death")
+            if (coll.gameObject.name == "enemy1(Clone)")
             {
                 if (Time.time > m_last_hit_time + m_repeat_damage_period) 
                 {
@@ -308,6 +308,10 @@ public class PlatformPlayer : MonoBehaviour {
                     }
                 }
             }
+        }
+        if (coll.gameObject.tag == "Death")
+        {
+            RespawnPlayer();
         }
     }
 
@@ -361,11 +365,6 @@ public class PlatformPlayer : MonoBehaviour {
 
     }
 
-    //    IEnumerator DelayCollision ()
-//    {
-//        yield return new WaitForSeconds (.1f);
-//        collided = false;
-//    }
 
     void TakeDamage (Transform enemy)
     {   
