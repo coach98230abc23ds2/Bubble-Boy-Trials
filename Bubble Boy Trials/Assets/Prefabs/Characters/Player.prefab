@@ -473,6 +473,7 @@ MonoBehaviour:
   health_bar: {fileID: 0}
   enemy1_hit: {fileID: 7400000, guid: d4c9d529577884168a2734afa4936818, type: 2}
   enemy2_hit: {fileID: 7400000, guid: ef5dace247d8440eb8883f0affaa69ee, type: 2}
+  player_defend: {fileID: 7400000, guid: 2fec70700ac4c417788d8205147e18c6, type: 2}
 --- !u!114 &11416376
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class PlatformPlayer : MonoBehaviour {
     public float m_health = 100f; // the player's m_health
     public AudioClip[] m_ouch_clips;               // Array of clips to play when the player is damaged.
     public float m_hurt_force = 1000f;               // The force with which the player is pushed when hurt.
-    public float m_damage_amount = 10f;            // The amount of damage to take when enemies touch the player
+    public float m_damage_amount = 20f;            // The amount of damage to take when enemies touch the player
     public float hit_height = 10.0f; //height at which player will hit the enemy's head 
     public bool is_dead = false;
     public Text score_text; 
@@ -21,6 +21,7 @@ public class PlatformPlayer : MonoBehaviour {
     public GameObject health_bar;
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
+    public AnimationClip player_defend;
 
     private int m_lives = 3; //player's remaining lives
     private int m_score = 0; //player's current score
@@ -310,7 +311,7 @@ public class PlatformPlayer : MonoBehaviour {
                 {
                     if(m_health > 0f)
                     {
-                        TakeDamage(coll.transform); 
+                        StartCoroutine(TakeDamage(coll.transform)); 
                         collided = true;
                         m_last_hit_time = Time.time; 
                     }
@@ -334,7 +335,7 @@ public class PlatformPlayer : MonoBehaviour {
                 {
                     if(m_health > 0f)
                     {
-                        TakeDamage(coll.transform); 
+                        StartCoroutine(TakeDamage(coll.transform)); 
                         m_last_hit_time = Time.time;
                         collided = true; 
                     }
@@ -361,11 +362,9 @@ public class PlatformPlayer : MonoBehaviour {
         }
     }
 
-
-    void TakeDamage (Transform enemy)
+    IEnumerator TakeDamage (Transform enemy)
     {   
         m_player_anim.SetTrigger("Defend");
-
         // Make sure the player can't jump.
         m_player_control.m_Jump = false;
 
@@ -392,6 +391,9 @@ public class PlatformPlayer : MonoBehaviour {
 
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
+
+        yield return new WaitForSeconds(player_defend.length);
+        collided = false;
 
 
         // Play a random clip of the player getting hurt.
