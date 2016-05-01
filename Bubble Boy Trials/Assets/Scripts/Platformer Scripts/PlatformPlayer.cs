@@ -53,6 +53,10 @@ public class PlatformPlayer : MonoBehaviour {
     private List<float> respawn_x_positions_used = new List<float>();
 
 
+    public void SetCollide (bool did_collide)
+    {
+        collided = did_collide;
+    }
 
     void InitializeRespawnDict ()
     {  
@@ -318,29 +322,26 @@ public class PlatformPlayer : MonoBehaviour {
             RespawnPlayer();
         }
     }
-
-    void OnCollisionExit2D (Collision2D coll)
-    {
-        if (coll.gameObject.name == "enemy1(Clone)")
-        {
-            collided = false;
-        }
-    }
+   
 
     void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (coll.transform.root.gameObject.name == "enemy2(Clone)")
+    {   
+        if (!collided)
         {
-            if (Time.time > m_last_hit_time + m_repeat_damage_period) 
+            if (coll.transform.root.gameObject.name == "enemy2(Clone)")
             {
-                if(m_health > 0f)
+                if (Time.time > m_last_hit_time + m_repeat_damage_period) 
                 {
-                    TakeDamage(coll.transform); 
-                    m_last_hit_time = Time.time;
-                    collided = true; 
+                    if(m_health > 0f)
+                    {
+                        TakeDamage(coll.transform); 
+                        m_last_hit_time = Time.time;
+                        collided = true; 
+                    }
                 }
             }
         }
+
         if (coll.gameObject.tag == "Coin")
         {
             player_source[0].Play();
@@ -358,15 +359,6 @@ public class PlatformPlayer : MonoBehaviour {
         {
             platform_lvl.SwitchToMaze();
         }
-    }
-
-    void OnTriggerExit2D (Collider2D coll)
-    {
-       if (coll.transform.root.gameObject.name == "enemy2(Clone)")
-       {
-           collided = false;
-       }
-
     }
 
 

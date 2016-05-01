@@ -5,98 +5,143 @@ public class Ammo : MonoBehaviour {
 
     private PlatformPlayer m_player;
     private EnemySpawner spawner;
-    private Animator m_anim;
+    private Animator ammo_anim;
+    private AudioSource[] ammo_audio;
+    private float alive_time = 3.0f; //time allowed for bubble to be alive
 
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
+    public AnimationClip bubble_burst;
 
-    void GotHurt(GameObject enemy)
+    void GotHurt(GameObject enemy, float time_to_wait)
     {
-        if (!m_player.collided)
-        {
-            enemy.GetComponentInChildren<Rigidbody2D>().MoveRotation(45f);
-            Animator m_anim = enemy.GetComponentInChildren<Animator>();
-            EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-            enemy.GetComponentInChildren<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
-                                                                      RigidbodyConstraints2D.FreezePositionY) ;
-            movement.m_can_move = false;
-            m_anim.SetTrigger("Hit");
+        m_player.collided = true;
+        enemy.GetComponentInChildren<Rigidbody2D>().MoveRotation(45f);
+        Animator m_anim = enemy.GetComponentInChildren<Animator>();
+        EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+        enemy.GetComponentInChildren<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX |
+                                                                  RigidbodyConstraints2D.FreezePositionY) ;
+        movement.m_can_move = false;
+        m_anim.SetTrigger("Hit");
+      
+        Destroy(enemy, time_to_wait);
+    }
 
-
-            AnimationClip enemy_hit;
-            float time_to_wait;
-            if (enemy.name == "enemy1(Clone)")
-            {
-                enemy_hit = enemy1_hit;
-                time_to_wait = enemy_hit.length/4;
-            }
-            else
-            {
-                enemy_hit = enemy2_hit;
-                time_to_wait = enemy_hit.length;
-            }
-
-
-            Destroy(enemy, time_to_wait);
-            m_player.GainScore(10);
-        }
-
+    IEnumerator DelayHit (float time_to_wait)
+    {   
+        yield return new WaitForSeconds(time_to_wait);
+        m_player.GainScore(10);
+        m_player.SetCollide(false);
+        Destroy(this.gameObject);
     }
 
     //handles collision for when ammo collides with enemies of type enemy1
     void OnCollisionEnter2D(Collision2D coll)
     {
-        try
+        if (!m_player.collided)
         {
-            Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<BoxCollider2D>());
-            Physics2D.IgnoreCollision(this.gameObject.GetComponent<CircleCollider2D>(), m_player.gameObject.GetComponent<CircleCollider2D>());
-        }
-        catch
-        {
-            Debug.Log("Object is not a bubble.");
-        }
-        float x_pos = coll.transform.root.gameObject.transform.position.x;
-        //destroys ammo and minion; increases player's score
-        GameObject current_obj = coll.transform.root.gameObject;
-        Debug.Log(current_obj.name);
-        if (current_obj.tag == "Enemy")
-        {
-            spawner.RemoveFromDict(current_obj.name, x_pos);
-            Destroy(this.gameObject);
-            GotHurt(current_obj);
+            float x_pos = coll.transform.root.gameObject.transform.position.x;
+            //destroys ammo and minion; increases player's score
+            GameObject current_obj = coll.transform.root.gameObject;
+            Debug.Log(current_obj.name);
+            if (current_obj.tag == "Enemy")
+            {
+                spawner.RemoveFromDict(current_obj.name, x_pos);
+
+                AnimationClip enemy_hit;
+                float time_to_wait = 0f;
+                if (current_obj.name == "enemy1(Clone)")
+                {
+                    enemy_hit = enemy1_hit;
+                    time_to_wait = enemy_hit.length/4;
+                }
+                else if (current_obj.name == "enemy2(Clone)")
+                {
+                    enemy_hit = enemy2_hit;
+                    time_to_wait = enemy_hit.length;
+                }
+                GotHurt(current_obj, time_to_wait);
+
+
+                StartCoroutine(DelayHit(time_to_wait));
+                StartCoroutine(BurstBubble());
+            }
         }
  
     }
 
 
+
     //handles collision for when ammo collides with enemies of type enemy2
     void OnTriggerEnter2D(Collider2D coll)
-    {
-        float x_pos = coll.transform.root.gameObject.transform.position.x;
-        GameObject parent_object = coll.transform.root.gameObject;
-        Debug.Log(parent_object.name);
-        if (parent_object.tag == "Enemy")
+    {   
+        if (!m_player.collided)
         {
-            spawner.RemoveFromDict(parent_object.name, x_pos); 
-            Destroy(this.gameObject);
-            GotHurt(parent_object);
+            float x_pos = coll.transform.root.gameObject.transform.position.x;
+            GameObject parent_object = coll.transform.root.gameObject;
+            Debug.Log(parent_object.name);
+            if (parent_object.tag == "Enemy")
+            {
+                spawner.RemoveFromDict(parent_object.name, x_pos);
+                 
+                AnimationClip enemy_hit;
+                float time_to_wait = 0f;
+                if (parent_object.name == "enemy1(Clone)")
+                {
+                    enemy_hit = enemy1_hit;
+                    time_to_wait = enemy_hit.length/4;
+                }
+                else if (parent_object.name == "enemy2(Clone)")
+                {
+                    enemy_hit = enemy2_hit;
+                    time_to_wait = enemy_hit.length;
+                }
+                GotHurt(parent_object, time_to_wait);
+
+
+                StartCoroutine(DelayHit(time_to_wait));
+                StartCoroutine(BurstBubble());
+            }
         }
     }
+
+    IEnumerator BurstBubble ()
+    {
+        ammo_anim.SetTrigger("Burst");
+        ammo_audio[1].Play();
+        yield return new WaitForSeconds(bubble_burst.length);
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     
     void Awake()
     {
         spawner = Camera.main.GetComponent<EnemySpawner>();
         GameObject player = GameObject.Find("Player");
         m_player = player.GetComponent<PlatformPlayer>(); 
+        ammo_anim = this.gameObject.GetComponent<Animator>();
+        ammo_audio = this.gameObject.GetComponents<AudioSource>();
+        StartCoroutine(DestroyBubble());
     }
 
     void Update()
-    {
+    {  
         //destroys ammo when it goes out of the camera's view
         float viewport_x_pos = Camera.main.WorldToViewportPoint(this.transform.position).x;
         if (viewport_x_pos > 1 || viewport_x_pos < -1)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(DestroyBubble());
         }
     }
+
+    IEnumerator DestroyBubble ()
+    {   
+        yield return new WaitForSeconds(alive_time);
+        ammo_anim.SetTrigger("Burst");
+        ammo_audio[1].Play();
+        yield return new WaitForSeconds(bubble_burst.length);
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Destroy(this.gameObject);
+    }
+   
 }
