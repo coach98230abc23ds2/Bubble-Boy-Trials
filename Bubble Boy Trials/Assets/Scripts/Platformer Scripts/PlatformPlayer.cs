@@ -28,6 +28,7 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
     private bool m_touched_door = false;
+    private bool m_touched_poline = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private float cast_radius = .1f;
@@ -326,6 +327,14 @@ public class PlatformPlayer : MonoBehaviour {
         {
             plat_char.touching_water = true;
         }
+//        else if (coll.gameObject.tag == "Trampoline")
+//        {   
+//            if (!m_touched_poline)
+//            {
+//                coll.gameObject.GetComponent<AudioSource>().Play();
+//                m_touched_poline = true;
+//            }
+//        }
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -333,6 +342,19 @@ public class PlatformPlayer : MonoBehaviour {
         if (coll.gameObject.tag == "Water")
         {
             plat_char.touching_water = false;
+        }
+        else if (coll.gameObject.tag == "Trampoline")
+        {   
+           m_touched_poline = false;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Trampoline")
+        {
+            coll.gameObject.GetComponent<AudioSource>().Play();
+            m_touched_poline = true;
         }
     }
 

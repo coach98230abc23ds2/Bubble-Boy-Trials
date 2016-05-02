@@ -28,6 +28,9 @@ TagManager:
   - Health
   - PlayerElevator
   - Door
+  - Coin2
+  - Water
+  - Trampoline
   layers:
   - Default
   - TransparentFX
