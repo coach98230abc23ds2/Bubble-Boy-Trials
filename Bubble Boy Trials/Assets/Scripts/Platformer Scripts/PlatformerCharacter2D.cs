@@ -65,7 +65,7 @@ namespace UnityStandardAssets._2D
                 if (colliders[i].transform.gameObject != gameObject)
                     m_Grounded = true;
             }
-            Debug.Log("Setting grounded as" + System.Convert.ToString(m_Grounded));
+//            Debug.Log("Setting grounded as" + System.Convert.ToString(m_Grounded));
             m_Anim.SetBool("Ground", m_Grounded);
 
             // Set the vertical animation

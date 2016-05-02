@@ -53,11 +53,13 @@ public class BossBattleSystem : MonoBehaviour
     private bool started;
     private int m_score;
     private AudioSource[] sounds;
+    private Animator enemy_anim;
 
     void Awake()
     {
         sounds = this.gameObject.GetComponents<AudioSource>();
         StartCoroutine(PlayBossMusic());
+        enemy_anim = enemy.GetComponent<Animator>();
     }
 
     IEnumerator PlayBossMusic()
@@ -80,7 +82,7 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = new Vector3 (352.2f, 40.42f, 0);
+        enemy.transform.position = new Vector3 (352.2f, 40.22f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
     }
@@ -94,12 +96,15 @@ public class BossBattleSystem : MonoBehaviour
             {
                 started = true;
                 PlayerTurn();
+                enemy_anim.SetFloat("Speed", 0f);
             }
             else
             {
                 enemy.transform.position -= new Vector3(.8f * Time.fixedDeltaTime, 0, 0);
+                enemy_anim.SetFloat("Speed", 1f);
             }
         }
+
         if (started)
         {
             timeRemaining -= Time.fixedDeltaTime;
