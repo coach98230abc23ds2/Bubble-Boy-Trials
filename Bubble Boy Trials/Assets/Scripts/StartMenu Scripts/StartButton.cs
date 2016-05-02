@@ -7,10 +7,24 @@ using System.Collections.Generic;
 
 public class StartButton : MonoBehaviour {
 
-    public void StartGame () 
+    private GameObject canvas;
+    private GameObject camera;
+    private GameObject event_system;
+
+    void Awake()
     {
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
-        Scene scene = SceneManager.GetSceneByName("MazeScene");
+        canvas = GameObject.Find("Canvas");
+        camera = GameObject.Find("Main Camera");
+        event_system = GameObject.Find("EventSystem");
+    }
+
+    public void StartCharacterSelection ()
+    {
+        SceneManager.LoadScene("CharacterSelection", LoadSceneMode.Additive);
+        Scene scene = SceneManager.GetSceneByName("CharacterSelection");
         SceneManager.SetActiveScene(scene);
+        SceneManager.MoveGameObjectToScene(event_system, scene);
+        Destroy(canvas);
+        Destroy(camera);
     }
 }
