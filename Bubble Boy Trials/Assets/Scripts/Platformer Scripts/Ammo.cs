@@ -7,7 +7,7 @@ public class Ammo : MonoBehaviour {
     private EnemySpawner spawner;
     private Animator ammo_anim;
     private AudioSource[] ammo_audio;
-    private float alive_time = 3.0f; //time allowed for bubble to be alive
+    private float alive_time = 2f; //time allowed for bubble to be alive
 
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
