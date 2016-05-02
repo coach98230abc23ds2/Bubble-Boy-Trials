@@ -778,23 +778,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22414396, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22414396, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22414394, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22414394, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22414394, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11414394, guid: 76468d871d8a4e849acbd8929104039b, type: 2}
       propertyPath: m_MaxValue
@@ -1415,7 +1415,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Enemy approaching!
 --- !u!222 &1298927036
 CanvasRenderer:
   m_ObjectHideFlags: 0

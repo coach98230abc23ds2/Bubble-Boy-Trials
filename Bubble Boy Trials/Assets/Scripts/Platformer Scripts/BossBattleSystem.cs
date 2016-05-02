@@ -57,6 +57,9 @@ public class BossBattleSystem : MonoBehaviour
     private Animator enemy_anim;
     private GameObject main_camera;
 
+    private float y_velocity = 0;
+    private float ground_level;
+
     void Awake()
     {
         sounds = this.gameObject.GetComponents<AudioSource>();
@@ -88,14 +91,27 @@ public class BossBattleSystem : MonoBehaviour
         enemy.transform.position = new Vector3 (352.2f, 41.41f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
+        ground_level = player.transform.position.y;
+        player.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 	
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (y_velocity != 0)
+        {
+            player.transform.position += new Vector3(0, y_velocity * Time.fixedDeltaTime, 0);
+            y_velocity -= 9.81f * Time.fixedDeltaTime;
+            if (player.transform.position.y <= ground_level)
+            {
+                player.transform.position = new Vector3(player.transform.position.x, ground_level, player.transform.position.z);
+                y_velocity = 0;
+            }
+        }
+
         if (!started)
         {
-            if (Vector3.Distance(enemy.transform.position, player.transform.position) < 11f)
+            if (enemy.transform.position.x - player.transform.position.x < 11f)
             {
                 started = true;
                 PlayerTurn();
@@ -153,27 +169,20 @@ public class BossBattleSystem : MonoBehaviour
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
-                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) < 4f && Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetKeyDown(KeyCode.Space) && y_velocity == 0)
                     {
-                        player.GetComponent<Animator>().SetTrigger("Defend");
-                        bubble.GetComponent<Animator>().SetTrigger("Burst");
-                        player.GetComponents<AudioSource>()[3].Play();
-                        PlayerTurn();
-                        bubbleLive = false;
-                        bubble.GetComponents<AudioSource>()[1].Play();
+                        y_velocity = 10f;
                     }
-                    else if (Input.GetKeyDown(KeyCode.Space))
+                    if (bubble.transform.position.x + 2f < player.transform.position.x)
                     {
-                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
-                        player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
+                        player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
                         bubbleLive = false;
-                        player.GetComponents<AudioSource>()[4].Play();
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                 }
-                else if (bubbleLive && !attackingPlayer && Vector3.Distance(bubble.transform.position, enemy.transform.position) < 0.5)
+                else if (bubbleLive && !attackingPlayer && bubble.transform.position.x - enemy.transform.position.x > -0.5f)
                 {
                     bubble.GetComponent<Animator>().SetTrigger("Burst");
                     enemy.GetComponent<AudioSource>().Play();
@@ -239,7 +248,7 @@ public class BossBattleSystem : MonoBehaviour
         answers.ForEach(b => b.gameObject.SetActive(false));
         time_remaining.gameObject.SetActive(false);
         battleMessage.gameObject.SetActive(true);
-        problem.text = "You are attacking!";
+        problem.text = "Wait for the bubble to hit!";
     }
 
     private float CurrentAverage()
@@ -312,6 +321,7 @@ public class BossBattleSystem : MonoBehaviour
         enemy.GetComponent<Player>().TakeDamage(dmg);
         if (enemy.GetComponent<Player>().isDead)
         {
+            player.GetComponent<Rigidbody2D>().isKinematic = false;
             SceneManager.UnloadScene(5);
             platform_lvl.ResumeLevel();
         }
@@ -342,6 +352,6 @@ public class BossBattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
-        problem.text = "Now defend by pressing SPACEBAR!";
+        problem.text = "Now jump over the bubble with SPACEBAR!";
     }
 }
