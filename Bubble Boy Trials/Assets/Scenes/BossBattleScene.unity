@@ -1551,7 +1551,8 @@ Prefab:
       propertyPath: MinDistance
       value: 3.9033527
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11465548, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1482854614
@@ -1744,6 +1745,19 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 121876, guid: c25ef85e9a3c446428318c1483c60ef7, type: 2}
   m_PrefabInternal: {fileID: 1448231054}
+--- !u!114 &1631079450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1631079449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0df1cf836304e6da6c4acd5d1e04f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  isDead: 0
 --- !u!1 &1698799135
 GameObject:
   m_ObjectHideFlags: 0

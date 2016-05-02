@@ -318,8 +318,8 @@ public class BossBattleSystem : MonoBehaviour
         GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
         problem.text = "You did " + dmg + " damage!";
 
-        enemy.GetComponent<Player>().TakeDamage(dmg);
-        if (enemy.GetComponent<Player>().isDead)
+        enemy.GetComponent<Boss>().TakeDamage(dmg);
+        if (enemy.GetComponent<Boss>().isDead)
         {
             player.GetComponent<Rigidbody2D>().isKinematic = false;
             SceneManager.UnloadScene(5);
