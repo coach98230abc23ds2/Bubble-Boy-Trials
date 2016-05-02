@@ -22,9 +22,9 @@ public class StartButton : MonoBehaviour {
     {
         SceneManager.LoadScene("CharacterSelection", LoadSceneMode.Additive);
         Scene scene = SceneManager.GetSceneByName("CharacterSelection");
-        SceneManager.SetActiveScene(scene);
         SceneManager.MoveGameObjectToScene(event_system, scene);
-        Destroy(canvas);
         Destroy(camera);
+        SceneManager.UnloadScene(0);
+        SceneManager.SetActiveScene(scene);
     }
 }

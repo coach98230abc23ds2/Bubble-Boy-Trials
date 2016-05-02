@@ -180,7 +180,7 @@ public class PlatformPlayer : MonoBehaviour {
                                     (ViewportPos.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)
                                 );
 
-            health_bar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 50);
+            health_bar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 130);
         }
 
         // Find all of the colliders on the gameobject and set them all to be triggers.
@@ -232,6 +232,7 @@ public class PlatformPlayer : MonoBehaviour {
         GainScore(score_increase);
 //        DelayHeadHit(curr_enemy);
         m_touched_head = false;
+        collided = false;
     }
 
     IEnumerator DelayHeadHit (GameObject curr_enemy)
@@ -326,14 +327,11 @@ public class PlatformPlayer : MonoBehaviour {
         if (!collided){     
             if (coll.gameObject.name == "enemy1(Clone)")
             {
-                if (Time.time > m_last_hit_time + m_repeat_damage_period) 
-                {
-                    if(m_health > 0f)
-                    {
-                        StartCoroutine(TakeDamage(coll.transform)); 
-                        collided = true;
-                        m_last_hit_time = Time.time; 
-                    }
+                if(m_health > 0f)
+                {   
+                    collided = true;
+                    StartCoroutine(TakeDamage(coll.transform)); 
+                    m_last_hit_time = Time.time; 
                 }
             }
         }
@@ -345,14 +343,6 @@ public class PlatformPlayer : MonoBehaviour {
         {
             plat_char.touching_water = true;
         }
-//        else if (coll.gameObject.tag == "Trampoline")
-//        {   
-//            if (!m_touched_poline)
-//            {
-//                coll.gameObject.GetComponent<AudioSource>().Play();
-//                m_touched_poline = true;
-//            }
-//        }
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -382,14 +372,10 @@ public class PlatformPlayer : MonoBehaviour {
         {
             if (coll.transform.root.gameObject.name == "enemy2(Clone)")
             {
-                if (Time.time > m_last_hit_time + m_repeat_damage_period) 
+                if(m_health > 0f)
                 {
-                    if(m_health > 0f)
-                    {
-                        StartCoroutine(TakeDamage(coll.transform)); 
-                        m_last_hit_time = Time.time;
-                        collided = true; 
-                    }
+                    collided = true; 
+                    StartCoroutine(TakeDamage(coll.transform)); 
                 }
             }
         }
@@ -447,7 +433,7 @@ public class PlatformPlayer : MonoBehaviour {
         // Update what the m_health bar looks like.
         UpdateHealthBar(m_damage_amount);
 
-        yield return new WaitForSeconds(player_defend.length);
+        yield return new WaitForSeconds(player_defend.length/3);
         collided = false;
 
 

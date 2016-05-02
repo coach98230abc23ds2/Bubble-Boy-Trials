@@ -13,9 +13,30 @@ public class Ammo : MonoBehaviour {
     public AnimationClip enemy2_hit;
     public AnimationClip bubble_burst;
 
+    void FixedUpdate()
+    {
+        Debug.Log(System.Convert.ToString(m_player.collided));
+    }
+    IEnumerator BurstBubble (float time_to_wait)
+    {
+        ammo_anim.SetTrigger("Burst");
+        ammo_audio[1].Play();
+        yield return new WaitForSeconds(bubble_burst.length);
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        StartCoroutine(DelayHit(time_to_wait));
+    }
+
+    IEnumerator DelayHit (float time_to_wait)
+    {   
+        yield return new WaitForSeconds(time_to_wait);
+        m_player.GainScore(10);
+        m_player.SetCollide(false);
+        Destroy(this.gameObject);
+    }
+
     void GotHurt(GameObject enemy, float time_to_wait)
     {
-        m_player.collided = true;
+        m_player.SetCollide(true);
         enemy.GetComponentInChildren<Rigidbody2D>().MoveRotation(45f);
         Animator m_anim = enemy.GetComponentInChildren<Animator>();
         EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
@@ -25,14 +46,7 @@ public class Ammo : MonoBehaviour {
         m_anim.SetTrigger("Hit");
       
         Destroy(enemy, time_to_wait);
-    }
-
-    IEnumerator DelayHit (float time_to_wait)
-    {   
-        yield return new WaitForSeconds(time_to_wait);
-        m_player.GainScore(10);
-        m_player.SetCollide(false);
-        Destroy(this.gameObject);
+        StartCoroutine(BurstBubble(time_to_wait));
     }
 
     //handles collision for when ammo collides with enemies of type enemy1
@@ -53,7 +67,7 @@ public class Ammo : MonoBehaviour {
                 if (current_obj.name == "enemy1(Clone)")
                 {
                     enemy_hit = enemy1_hit;
-                    time_to_wait = enemy_hit.length/4;
+                    time_to_wait = enemy_hit.length/6.4f;
                 }
                 else if (current_obj.name == "enemy2(Clone)")
                 {
@@ -61,16 +75,10 @@ public class Ammo : MonoBehaviour {
                     time_to_wait = enemy_hit.length;
                 }
                 GotHurt(current_obj, time_to_wait);
-
-
-                StartCoroutine(DelayHit(time_to_wait));
-                StartCoroutine(BurstBubble());
             }
         }
  
     }
-
-
 
     //handles collision for when ammo collides with enemies of type enemy2
     void OnTriggerEnter2D(Collider2D coll)
@@ -97,20 +105,8 @@ public class Ammo : MonoBehaviour {
                     time_to_wait = enemy_hit.length;
                 }
                 GotHurt(parent_object, time_to_wait);
-
-
-                StartCoroutine(DelayHit(time_to_wait));
-                StartCoroutine(BurstBubble());
             }
         }
-    }
-
-    IEnumerator BurstBubble ()
-    {
-        ammo_anim.SetTrigger("Burst");
-        ammo_audio[1].Play();
-        yield return new WaitForSeconds(bubble_burst.length);
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     
@@ -137,6 +133,7 @@ public class Ammo : MonoBehaviour {
     IEnumerator DestroyBubble ()
     {   
         yield return new WaitForSeconds(alive_time);
+        m_player.SetCollide(false);
         ammo_anim.SetTrigger("Burst");
         ammo_audio[1].Play();
         yield return new WaitForSeconds(bubble_burst.length);

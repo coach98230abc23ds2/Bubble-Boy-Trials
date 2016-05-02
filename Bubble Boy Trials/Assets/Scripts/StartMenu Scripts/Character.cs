@@ -6,12 +6,22 @@ using System.Collections.Generic;
 public class Character : MonoBehaviour {
 
     private Animator char_anim;
+    private GameObject canvas;
+    private GameObject text_canvas;
+    private GameObject camera;
+    private GameObject char_choice;
+    private GameObject event_sys;
 
 	// Use this for initialization
 	void Start () 
     {
 	    this.gameObject.transform.SetAsLastSibling();
         char_anim = this.gameObject.GetComponent<Animator>();
+        canvas = GameObject.Find("Canvas");
+        text_canvas = GameObject.Find("TextCanvas");
+        camera = GameObject.Find("Camera");
+        char_choice = GameObject.Find("CharacterChoice");
+        event_sys = GameObject.Find("EventSystem");
 	}
 	
 	void OnMouseEnter()
@@ -27,13 +37,16 @@ public class Character : MonoBehaviour {
     public void MakeCharacterJump()
     {
         char_anim.SetTrigger("Jump");
-        StartMaze();
+        StartCoroutine(StartMaze());
     }
 
-    private void StartMaze()
+    IEnumerator StartMaze()
     {
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("MazeScene", LoadSceneMode.Additive);
         Scene scene = SceneManager.GetSceneByName("MazeScene");
+        SceneManager.MoveGameObjectToScene(char_choice, scene);
+        SceneManager.UnloadScene(6);
         SceneManager.SetActiveScene(scene);
     }
 }

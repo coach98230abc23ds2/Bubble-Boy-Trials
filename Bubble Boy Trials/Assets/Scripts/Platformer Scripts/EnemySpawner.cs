@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	public GameObject[] enemy_types; //stores type of enemies
 	private GameObject[] active_objects; //active game objects
-	private float[] enemy_1_positions = new float[]{/*32.1f,*/ 154.9f, 298f, 308f}; //all possible x-coordinate spawning points for grounded minions
+	private float[] enemy_1_positions = new float[]{/*32.1f,*/ 154.9f, 298f, 358.3f}; //all possible x-coordinate spawning points for grounded minions
     private float[] enemy_2_positions = new float[]{75.2f, 251.3f}; //all possible x-coordinate spawning points for flying minions
 	private Dictionary<string, List<float>> curr_enemy_positions; /* dictionary that holds all active instantiated enemies 
 																    & their current positions */
@@ -83,7 +83,7 @@ public class EnemySpawner : MonoBehaviour {
 
     IEnumerator DelaySpawn ()
     {
-        yield return new WaitForSeconds (10f);
+        yield return new WaitForSeconds (8f);
         can_spawn = true;
     }
 
@@ -160,7 +160,14 @@ public class EnemySpawner : MonoBehaviour {
             for (int i = 0; i< curr_positions.Length; i++)
             {
                 if (Mathf.Abs(m_player_pos - curr_positions[i]) <= 30.0f){  
-                    if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
+                    if (curr_positions[i] == 358.3f && ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
+                    {
+                        spawn_position = new Vector2 (curr_positions[i], 15.3f);
+                        GameObject new_enemy = (GameObject) Instantiate(enemy, 
+                                    spawn_position, enemy.transform.rotation);
+                        AddToDict(new_enemy.name, curr_positions[i]);
+                    }
+                    else if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
                     {
 						spawn_position = new Vector2 (curr_positions[i], 30);
 						GameObject new_enemy = (GameObject) Instantiate(enemy, 
