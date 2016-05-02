@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour {
 
@@ -25,5 +27,13 @@ public class Character : MonoBehaviour {
     public void MakeCharacterJump()
     {
         char_anim.SetTrigger("Jump");
+        StartMaze();
+    }
+
+    private void StartMaze()
+    {
+        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
+        Scene scene = SceneManager.GetSceneByName("MazeScene");
+        SceneManager.SetActiveScene(scene);
     }
 }
