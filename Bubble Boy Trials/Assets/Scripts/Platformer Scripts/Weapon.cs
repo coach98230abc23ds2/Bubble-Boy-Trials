@@ -5,7 +5,7 @@ using UnityStandardAssets._2D;
 public class Weapon : MonoBehaviour {
 
     private float fireRate = 0f;
-    private float bulletSpeed = 6f;
+    private float bulletSpeed = 9.6f;
 
 //    public LayerMask whatToHit;
     public GameObject bulletPrefab;
