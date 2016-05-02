@@ -19,6 +19,7 @@ public class PlatformLevel : MonoBehaviour {
     private AudioSource source;
     private GameObject platform_door;
     private Platformer2DUserControl m_player_control; 
+    private Animator door_anim;
 
     public GameObject m_elevator;
     public GameObject maze_camera;
@@ -38,6 +39,7 @@ public class PlatformLevel : MonoBehaviour {
         m_canvas = GameObject.Find("Canvas");
         m_health_bar = GameObject.Find("HealthBar");
         m_player_control = GameObject.Find("Player").GetComponent<Platformer2DUserControl>();
+        door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
     }
 
     public void ResumeLevel()
@@ -49,6 +51,7 @@ public class PlatformLevel : MonoBehaviour {
         m_platform.SetActive(true);
         m_main_camera.SetActive(true);
         platform_door.SetActive(true);
+        door_anim.SetTrigger("Idle");
         m_player.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         m_player_control.m_can_move = true;
 
@@ -72,29 +75,21 @@ public class PlatformLevel : MonoBehaviour {
 
     }
 
-    IEnumerator HideDoor(GameObject door)
+    public IEnumerator HideDoor(GameObject door)
     {
         yield return new WaitForSeconds(2.0f);
         door.SetActive(false);
+
     }
 
-    public void SwitchToMaze()
-    { 
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
-        Scene scene = SceneManager.GetSceneByName("MazeScene");
-        SceneManager.SetActiveScene(scene);
-    }
-
-
-
-    void ClearScripts(GameObject obj)
-    {
-        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
-        foreach(MonoBehaviour script in scripts)
-        {
-            script.enabled = false;
-        }
-     
+    public void SwitchToMaze(GameObject door)
+    {   
+        m_player.GetComponent<PlatformPlayer>().RenderPlayerImmobile();
+        m_player.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        m_player.GetComponent<Platformer2DUserControl>().m_can_move = false;
+        Door door_script = door.GetComponent<Door>();
+        StartCoroutine(door_script.WaitToSwitchMaze(door.transform.position));
+//        Debug.Log("switching to maze");
     }
 
 }

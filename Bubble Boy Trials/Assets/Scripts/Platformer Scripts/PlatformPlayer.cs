@@ -27,7 +27,8 @@ public class PlatformPlayer : MonoBehaviour {
     private int m_score = 0; //player's current score
     private int m_num_combos = 0; // player's current number of combos
     private bool m_touched_head = false;
-    private bool m_touched_door = false;
+    public bool m_touched_door = false;
+    private bool m_touched_poline = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private float cast_radius = .1f;
@@ -84,7 +85,7 @@ public class PlatformPlayer : MonoBehaviour {
         plat_char = this.gameObject.GetComponent<PlatformerCharacter2D>();
         weapon = this.gameObject.GetComponent<Weapon>();
         player_source = this.gameObject.GetComponents<AudioSource>();
-        platform_lvl = GameObject.Find("Platform").GetComponent<PlatformLevel>();
+        platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
         facing_dir = this.gameObject.GetComponent<PlatformerCharacter2D>().m_FacingRight;
         InitializeRespawnDict();
     }
@@ -214,7 +215,6 @@ public class PlatformPlayer : MonoBehaviour {
                                                                   RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
-//        StartCoroutine(WaitToDestroy(curr_enemy, score_increase));
         AnimationClip enemy_hit;
         float time_to_wait;
         if (curr_enemy.name == "enemy1(Clone)")
@@ -250,6 +250,14 @@ public class PlatformPlayer : MonoBehaviour {
         m_touched_head = false;
     }
 
+    public void RenderPlayerImmobile()
+    {
+        m_player_anim.SetFloat("Speed",0);
+        this.gameObject.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        player_control.m_can_move = false;
+        weapon.can_attack = false;
+    }
+
     void FixedUpdate()
     {   
         GameObject cast_origin = GameObject.Find("CastOrigin");
@@ -279,6 +287,7 @@ public class PlatformPlayer : MonoBehaviour {
 
         Vector2 right_dir = transform.TransformDirection(Vector2.right);
         RaycastHit2D[] hit2 = Physics2D.RaycastAll(cast_origin.transform.position, right_dir, 30f, 1 << 14);
+        RaycastHit2D[] hit3 = Physics2D.CircleCastAll(cast_origin.transform.position, 2f, Vector2.down, 1f, 1 << 14);
 
         if (!m_touched_door)
         {
@@ -288,17 +297,27 @@ public class PlatformPlayer : MonoBehaviour {
                 foreach (RaycastHit2D collider_hit in hit2){
                     if(collider_hit.transform.gameObject.name == "BossDoor")
                     {       
-                        m_player_anim.SetFloat("Speed",0);
-                        this.gameObject.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                        player_control.m_can_move = false;
-                        weapon.can_attack = false;
+                        RenderPlayerImmobile();
                         m_touched_door = true;
-                        m_door_anim.SetBool("is_active", true);
+                        m_door_anim.SetTrigger("Active");
                         StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
+           
         }
+        if (hit3 != null)
+        {
+            foreach (RaycastHit2D collider_hit in hit3)
+            {
+                Debug.Log(collider_hit.transform.gameObject.name);
+                if (collider_hit.transform.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
+                {
+                    platform_lvl.SwitchToMaze(collider_hit.transform.gameObject);
+                }
+            }
+        }
+
     }
 
 
@@ -326,6 +345,14 @@ public class PlatformPlayer : MonoBehaviour {
         {
             plat_char.touching_water = true;
         }
+//        else if (coll.gameObject.tag == "Trampoline")
+//        {   
+//            if (!m_touched_poline)
+//            {
+//                coll.gameObject.GetComponent<AudioSource>().Play();
+//                m_touched_poline = true;
+//            }
+//        }
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -333,6 +360,19 @@ public class PlatformPlayer : MonoBehaviour {
         if (coll.gameObject.tag == "Water")
         {
             plat_char.touching_water = false;
+        }
+        else if (coll.gameObject.tag == "Trampoline")
+        {   
+           m_touched_poline = false;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Trampoline")
+        {
+            coll.gameObject.GetComponent<AudioSource>().Play();
+            m_touched_poline = true;
         }
     }
 
@@ -366,10 +406,12 @@ public class PlatformPlayer : MonoBehaviour {
             Destroy(coll.gameObject);
             GainScore(10); 
         }
-        else if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
-        {
-            platform_lvl.SwitchToMaze();
-        }
+//        else if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
+//        {
+//            platform_lvl.SwitchToMaze();
+//        }
+//
+//        Debug.Log(coll.gameObject.name);
 
     }
 

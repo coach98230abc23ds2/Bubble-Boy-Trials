@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using UnityStandardAssets._2D;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
@@ -54,12 +55,14 @@ public class BossBattleSystem : MonoBehaviour
     private int m_score;
     private AudioSource[] sounds;
     private Animator enemy_anim;
+    private GameObject main_camera;
 
     void Awake()
     {
         sounds = this.gameObject.GetComponents<AudioSource>();
         StartCoroutine(PlayBossMusic());
         enemy_anim = enemy.GetComponent<Animator>();
+        main_camera = GameObject.Find("MainCamera");
     }
 
     IEnumerator PlayBossMusic()
@@ -106,7 +109,7 @@ public class BossBattleSystem : MonoBehaviour
         }
 
         if (started)
-        {
+        {   
             timeRemaining -= Time.fixedDeltaTime;
 
             Animator playerAnimator = player.GetComponent<Animator>();
@@ -154,19 +157,19 @@ public class BossBattleSystem : MonoBehaviour
                     {
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
-//                        player.GetComponents<AudioSource>()[0].Play();
+                        player.GetComponents<AudioSource>()[3].Play();
                         PlayerTurn();
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(0);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
                         player.GetComponent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
                         bubbleLive = false;
-//                        player.GetComponents<AudioSource>()[1].Play();
+                        player.GetComponents<AudioSource>()[4].Play();
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                 }
