@@ -180,7 +180,7 @@ public class PlatformPlayer : MonoBehaviour {
                                     (ViewportPos.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)
                                 );
 
-            health_bar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 130);
+            health_bar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 100);
         }
 
         // Find all of the colliders on the gameobject and set them all to be triggers.
@@ -261,6 +261,7 @@ public class PlatformPlayer : MonoBehaviour {
 
     void FixedUpdate()
     {   
+        
         GameObject cast_origin = GameObject.Find("CastOrigin");
 
         RaycastHit2D[] hit = Physics2D.CircleCastAll(cast_origin.transform.position, cast_radius, Vector2.down, hit_height, 1 << 13);
