@@ -248,7 +248,7 @@ public class BossBattleSystem : MonoBehaviour
         answers.ForEach(b => b.gameObject.SetActive(false));
         time_remaining.gameObject.SetActive(false);
         battleMessage.gameObject.SetActive(true);
-        problem.text = "You are attacking!";
+        problem.text = "Wait for the bubble to hit!";
     }
 
     private float CurrentAverage()
@@ -352,6 +352,6 @@ public class BossBattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
-        problem.text = "Now defend by pressing SPACEBAR!";
+        problem.text = "Now jump over the bubble with SPACEBAR!";
     }
 }
