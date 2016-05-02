@@ -301,7 +301,8 @@ public class PlatformPlayer : MonoBehaviour {
                     {       
                         RenderPlayerImmobile();
                         m_touched_door = true;
-                        m_door_anim.SetTrigger("Active");
+//                        m_door_anim.SetTrigger("Active");
+                        m_door_anim.SetBool("active", true);
                         StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
