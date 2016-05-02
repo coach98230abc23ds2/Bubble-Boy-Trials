@@ -48,6 +48,9 @@ public class BattleSystem : MonoBehaviour
     private bool started;
     private int m_score;
 
+    private float ground_level;
+    private float y_velocity = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -60,6 +63,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         player = GameObject.FindGameObjectWithTag("Player");
+        ground_level = player.transform.position.y;
         enemy.transform.position = player.transform.position + new Vector3(10, 0, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         m_score = GameObject.FindGameObjectWithTag("MazeSystem").GetComponent<MazeSystem>().GetScore();
@@ -69,6 +73,16 @@ public class BattleSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (y_velocity != 0)
+        {
+            player.transform.position += new Vector3(0, y_velocity * Time.fixedDeltaTime, 0);
+            y_velocity -= 9.81f * Time.fixedDeltaTime;
+            if (player.transform.position.y <= ground_level)
+            {
+                player.transform.position = new Vector3(player.transform.position.x, ground_level, player.transform.position.z);
+                y_velocity = 0;
+            }
+        }
         if (!started)
         {
             if (Vector3.Distance(enemy.transform.position, player.transform.position) < 5.2f)
@@ -120,7 +134,7 @@ public class BattleSystem : MonoBehaviour
                 bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
                 if (bubbleLive && attackingPlayer)
                 {
-                    if (Vector3.Distance(bubble.transform.position, player.transform.position) < 0.5f)
+                    if (Vector3.Distance(bubble.transform.position, player.transform.position) < 1.5f)
                     {
                         player.GetComponent<Player>().TakeDamage(10);
                         player.GetComponentInParent<Animator>().SetTrigger("Defend");
@@ -129,24 +143,16 @@ public class BattleSystem : MonoBehaviour
                         bubbleLive = false;
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
-                    else if (Vector3.Distance(bubble.transform.position, player.transform.position) > 1f && Vector3.Distance(bubble.transform.position, player.transform.position) < 3.5f && Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetKeyDown(KeyCode.Space) && y_velocity == 0)
                     {
-                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
+                        y_velocity = 6f;
+                    }
+                    if (bubble.transform.position.x + 2f < player.transform.position.x)
+                    {
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         player.GetComponents<AudioSource>()[0].Play();
                         PlayerTurn();
                         bubbleLive = false;
-                        bubble.GetComponents<AudioSource>()[1].Play();
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        player.GetComponent<Player>().TakeDamage(20);
-                        player.GetComponentInParent<Animator>().SetTrigger("Defend");
-                        GameObject.FindGameObjectWithTag("PlayerElevator").GetComponentInParent<Animator>().SetTrigger("Defend");
-                        bubble.GetComponent<Animator>().SetTrigger("Burst");
-                        PlayerTurn();
-                        bubbleLive = false;
-                        player.GetComponents<AudioSource>()[1].Play();
                         bubble.GetComponents<AudioSource>()[1].Play();
                     }
                 }
