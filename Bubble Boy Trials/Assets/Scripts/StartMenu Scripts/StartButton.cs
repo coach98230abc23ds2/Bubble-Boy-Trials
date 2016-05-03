@@ -12,7 +12,7 @@ public class StartButton : MonoBehaviour {
     private GameObject event_system;
 
     void Awake()
-    {
+    {   
         canvas = GameObject.Find("Canvas");
         camera = GameObject.Find("Main Camera");
         event_system = GameObject.Find("EventSystem");

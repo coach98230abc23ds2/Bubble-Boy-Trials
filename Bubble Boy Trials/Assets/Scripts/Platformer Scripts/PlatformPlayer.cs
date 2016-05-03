@@ -457,6 +457,7 @@ public class PlatformPlayer : MonoBehaviour {
         {
             health_bar.SetActive(false);
             is_dead = true;
+            m_touched_door = false;
         }
     }
 }

@@ -37,8 +37,11 @@ public class Door : MonoBehaviour {
         m_door_anim.SetBool("active", true);
         yield return new WaitForSeconds(door_clip.length/2);
         player_anim.SetFloat("Speed", 1f);
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
-        Scene scene = SceneManager.GetSceneByName("MazeScene");
+//        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
+//        Scene scene = SceneManager.GetSceneByName("MazeScene");
+//        SceneManager.SetActiveScene(scene);
+        SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
+        Scene scene = SceneManager.GetSceneByName("WinScene");
         SceneManager.SetActiveScene(scene);
     }
 

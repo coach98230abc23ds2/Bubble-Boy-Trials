@@ -16,7 +16,7 @@ public class PlatformLevel : MonoBehaviour {
     private GameObject m_health_bar;
     private GameObject new_elevator;
     private GameObject new_camera;
-    private AudioSource source;
+    private AudioSource[] source;
     private GameObject platform_door;
     private Platformer2DUserControl m_player_control; 
     private Animator door_anim;
@@ -36,8 +36,8 @@ public class PlatformLevel : MonoBehaviour {
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
-        source.Play();
+        source = GetComponents<AudioSource>();
+        source[0].Play();
         m_level_started = true;
         m_platform = GameObject.Find("Platform");
         m_player = GameObject.Find("Player");
@@ -71,10 +71,11 @@ public class PlatformLevel : MonoBehaviour {
         }
     }
 
-    public void ResumeLevel()
+    public void ResumeLevel(AudioSource music)
     {   
 //        SceneManager.LoadScene(platformer_name, LoadSceneMode.Additive);
-        Resources.UnloadUnusedAssets();
+//        Resources.UnloadUnusedAssets();
+        music.Play();
         m_player.GetComponent<PlatformPlayer>().health_bar.SetActive(true);
         m_player.SetActive(true);
         m_platform.SetActive(true);
@@ -94,7 +95,7 @@ public class PlatformLevel : MonoBehaviour {
         if (m_level_started)
         {
             m_level_started = false;
-            source.Stop();
+            source[0].Stop();
             SceneManager.LoadScene("BossBattleScene", LoadSceneMode.Additive);
             Scene scene = SceneManager.GetSceneByName("BossBattleScene");
             SceneManager.SetActiveScene(scene);

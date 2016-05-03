@@ -6,7 +6,7 @@ public class Boss : MonoBehaviour
 {
 
     public int Health = 30;
-    private GameObject healthBar;
+    public GameObject healthBar;
     public bool isDead = false;
     private int MaxHealth;
     

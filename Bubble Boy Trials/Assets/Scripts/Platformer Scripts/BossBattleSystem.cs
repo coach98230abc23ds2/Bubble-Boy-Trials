@@ -32,6 +32,7 @@ public class BossBattleSystem : MonoBehaviour
     private PlatformLevel platform_lvl;
     private GameObject player;
     private BattleState current_state;
+    private AudioSource[] platform_music;
 
     private static float MAX_TIME_PER_TURN = 10;
     private static float TIME_INCREASE_ON_WRONG_ANSWER = 1;
@@ -66,6 +67,7 @@ public class BossBattleSystem : MonoBehaviour
         StartCoroutine(PlayBossMusic());
         enemy_anim = enemy.GetComponent<Animator>();
         main_camera = GameObject.Find("MainCamera");
+        platform_music = GameObject.Find("PlatformLevel").GetComponents<AudioSource>();
     }
 
     IEnumerator PlayBossMusic()
@@ -162,7 +164,7 @@ public class BossBattleSystem : MonoBehaviour
                 {
                     if (Vector3.Distance(bubble.transform.position, player.transform.position) < 2f)
                     {
-                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(20);
+                        player.GetComponent<PlatformPlayer>().UpdateHealthBar(25);
                         player.GetComponentInParent<Animator>().SetTrigger("Defend");
                         bubble.GetComponent<Animator>().SetTrigger("Burst");
                         PlayerTurn();
@@ -210,6 +212,16 @@ public class BossBattleSystem : MonoBehaviour
                     }
                     break;
             }
+        }
+
+        if (player.GetComponent<PlatformPlayer>().m_health <= 0f)
+        {
+            
+            player.GetComponent<Rigidbody2D>().isKinematic = false;
+            SceneManager.UnloadScene(5);
+//            Destroy(enemy.GetComponent<Boss>().healthBar);
+            platform_lvl.ResumeLevel(platform_music[0]);
+
         }
     }
 
@@ -323,7 +335,7 @@ public class BossBattleSystem : MonoBehaviour
         {
             player.GetComponent<Rigidbody2D>().isKinematic = false;
             SceneManager.UnloadScene(5);
-            platform_lvl.ResumeLevel();
+            platform_lvl.ResumeLevel(platform_music[1]);
         }
         else
         {
