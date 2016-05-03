@@ -49,22 +49,28 @@ public class MazeSystem : MonoBehaviour
         m_retreating = false;
         MazeUI.gameObject.SetActive(false);
         maze_player = GameObject.Find("MazePlayer");
-        char_choice = GameObject.Find("CharacterChoice").GetComponent<CharacterChoice>();
         SetSpriteAndAnimator();
     }
 
     void SetSpriteAndAnimator()
     {   
-        Debug.Log(char_choice.GetCharacter());
-        if (char_choice.GetCharacter() == "Girl")
+        try
         {
-            maze_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
-            maze_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
+            char_choice = GameObject.Find("CharacterChoice").GetComponent<CharacterChoice>();
+            if (char_choice.GetCharacter() == "Girl")
+            {
+                maze_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
+                maze_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
+            }
+            else
+            {
+                maze_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
+                maze_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
+            }
         }
-        else
+        catch
         {
-            maze_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
-            maze_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
+            Debug.LogError("There is no character selected.");
         }
     }
 	
