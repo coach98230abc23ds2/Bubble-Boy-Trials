@@ -5,6 +5,11 @@ public class CharacterChoice : MonoBehaviour {
 
     private string character_chosen;
 
+    void Awake()
+    {
+        GameObject.DontDestroyOnLoad(this);
+    }
+
 	public void SaveCharacter(string character)
     {   
         character_chosen = character;

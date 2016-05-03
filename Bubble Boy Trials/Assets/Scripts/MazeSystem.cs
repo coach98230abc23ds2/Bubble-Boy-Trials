@@ -106,6 +106,9 @@ public class MazeSystem : MonoBehaviour
         if (m_current_node.Scene_Id == "PrimeScene")
         {
             SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Single);
+            Scene scene = SceneManager.GetSceneByName("MazeScene");
+            SceneManager.MoveGameObjectToScene(char_choice.gameObject, scene);
+            SceneManager.SetActiveScene(scene);
         }
         else
         {
