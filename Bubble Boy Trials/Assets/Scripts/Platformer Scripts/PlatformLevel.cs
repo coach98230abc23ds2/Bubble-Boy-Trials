@@ -20,6 +20,7 @@ public class PlatformLevel : MonoBehaviour {
     private GameObject platform_door;
     private Platformer2DUserControl m_player_control; 
     private Animator door_anim;
+    private CharacterChoice char_choice;
 
 
     public GameObject m_elevator;
@@ -45,22 +46,30 @@ public class PlatformLevel : MonoBehaviour {
         m_health_bar = GameObject.Find("HealthBar");
         m_player_control = GameObject.Find("Player").GetComponent<Platformer2DUserControl>();
         door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
+        SetSpriteAndAnimator();
     }
 
-//    void SetSpriteAndAnimator()
-//    {   
-//        Debug.Log(char_choice.GetCharacter());
-//        if (char_choice.GetCharacter() == "Girl")
-//        {
-//            maze_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
-//            maze_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
-//        }
-//        else
-//        {
-//            maze_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
-//            maze_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
-//        }
-//    }
+    void SetSpriteAndAnimator()
+    {   
+        try
+        {
+            char_choice = GameObject.Find("CharacterChoice").GetComponent<CharacterChoice>();
+            if (char_choice.GetCharacter() == "Girl")
+            {
+                m_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
+                m_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
+            }
+            else
+            {
+                m_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
+                m_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
+            }
+        }
+        catch
+        {
+            Debug.LogError("There is no character selected.");
+        }
+    }
 
     public void ResumeLevel()
     {   
