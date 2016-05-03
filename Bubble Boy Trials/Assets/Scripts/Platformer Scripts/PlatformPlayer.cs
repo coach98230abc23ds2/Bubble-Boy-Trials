@@ -219,28 +219,7 @@ public class PlatformPlayer : MonoBehaviour {
                                                                   RigidbodyConstraints2D.FreezePositionY) ;
         movement.m_can_move = false;
         m_emy_anim.SetTrigger("Hit");
-        AnimationClip enemy_hit;
-        float time_to_wait;
-        if (curr_enemy.name == "enemy1(Clone)")
-        {
-            enemy_hit = enemy1_hit;
-            time_to_wait = enemy_hit.length/4;
-        }
-        else
-        {
-            enemy_hit = enemy2_hit;
-            time_to_wait = enemy_hit.length;
-        }
 
-        Destroy(curr_enemy, time_to_wait);
-        GainScore(score_increase);
-//        DelayHeadHit(curr_enemy);
-        m_touched_head = false;
-        collided = false;
-    }
-
-    IEnumerator DelayHeadHit (GameObject curr_enemy)
-    {   
         float curr_length;
 
         if (curr_enemy.name == "enemy1(Clone)")
@@ -251,8 +230,17 @@ public class PlatformPlayer : MonoBehaviour {
         {
             curr_length = enemy2_hit.length/2;
         }
+
+        GainScore(score_increase);
+        StartCoroutine(DelayHeadHit(curr_enemy, curr_length));
+    }
+
+    IEnumerator DelayHeadHit (GameObject curr_enemy, float curr_length)
+    {   
         yield return new WaitForSeconds(curr_length);
         m_touched_head = false;
+        collided = false;
+        Destroy(curr_enemy);
     }
 
     public void RenderPlayerImmobile()

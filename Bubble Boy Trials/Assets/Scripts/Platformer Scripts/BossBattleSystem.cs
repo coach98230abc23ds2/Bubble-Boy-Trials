@@ -71,7 +71,7 @@ public class BossBattleSystem : MonoBehaviour
     IEnumerator PlayBossMusic()
     {
         sounds[1].Play();
-        yield return new WaitForSeconds(sounds[1].clip.length);
+        yield return new WaitForSeconds(sounds[1].clip.length + .5f);
         sounds[2].Play();
     }
 
