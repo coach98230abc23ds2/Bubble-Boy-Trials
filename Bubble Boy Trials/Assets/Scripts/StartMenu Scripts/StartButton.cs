@@ -17,14 +17,23 @@ public class StartButton : MonoBehaviour {
         canvas = GameObject.Find("Canvas");
         camera = GameObject.Find("Main Camera");
         event_system = GameObject.Find("EventSystem");
-        char_choice = GameObject.Find("CharacterChoice");
     }
 
     public void StartCharacterSelection ()
     {
         SceneManager.LoadScene("CharacterSelection", LoadSceneMode.Additive);
         Scene scene = SceneManager.GetSceneByName("CharacterSelection");
-        Destroy(char_choice);
+
+        try
+        {
+            char_choice = GameObject.Find("CharacterChoice");
+            Destroy(char_choice);
+        }
+        catch 
+        {
+            Debug.LogError("There is no character selected.");
+        }
+
         SceneManager.MoveGameObjectToScene(event_system, scene);
         Destroy(camera);
         SceneManager.SetActiveScene(scene);
