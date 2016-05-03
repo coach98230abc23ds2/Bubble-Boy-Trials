@@ -11,6 +11,6 @@ public class Elevator : MonoBehaviour
         //GameObject.FindGameObjectWithTag("Player").transform.position += new Vector3(move_distance.x, move_distance.y, 0);
 
         // keeps the camera centered on the elevator
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+        Camera.main.transform.position = new Vector3(transform.position.x + 2f, transform.position.y - 2f, Camera.main.transform.position.z);
     }
 }
