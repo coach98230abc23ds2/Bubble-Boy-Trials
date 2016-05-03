@@ -31,6 +31,7 @@ TagManager:
   - Coin2
   - Water
   - Trampoline
+  - Treasure
   layers:
   - Default
   - TransparentFX

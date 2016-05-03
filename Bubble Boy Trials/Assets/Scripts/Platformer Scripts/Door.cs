@@ -34,7 +34,6 @@ public class Door : MonoBehaviour {
     public IEnumerator WaitToSwitchMaze (Vector3 position)
     {
         PlaySound(position);
-//        m_door_anim.SetTrigger("Active");
         m_door_anim.SetBool("active", true);
         yield return new WaitForSeconds(door_clip.length/2);
         player_anim.SetFloat("Speed", 1f);

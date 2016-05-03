@@ -18,6 +18,7 @@ public class PlatformPlayer : MonoBehaviour {
     public bool is_dead = false;
     public Text score_text; 
     public bool collided = false;
+    public bool can_open_door = false;
     public GameObject health_bar;
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
@@ -29,6 +30,7 @@ public class PlatformPlayer : MonoBehaviour {
     private bool m_touched_head = false;
     public bool m_touched_door = false;
     private bool m_touched_poline = false;
+    private bool m_touched_chest = false;
     private float m_last_hit_time; // the time at which the player was last hit.
     private float m_score_penalty = .50f; // decimal percentage the player's score is reduced after dying
     private float cast_radius = .1f;
@@ -46,6 +48,7 @@ public class PlatformPlayer : MonoBehaviour {
     private AudioSource enemy1_source;
     private AudioSource enemy2_source;
     private PlatformLevel platform_lvl;
+    private Animator treasure_anim;
     private bool facing_dir;
 
     private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
@@ -87,6 +90,7 @@ public class PlatformPlayer : MonoBehaviour {
         player_source = this.gameObject.GetComponents<AudioSource>();
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
         facing_dir = this.gameObject.GetComponent<PlatformerCharacter2D>().m_FacingRight;
+        treasure_anim = GameObject.Find("treasure").GetComponent<Animator>();
         InitializeRespawnDict();
     }
 
@@ -299,11 +303,10 @@ public class PlatformPlayer : MonoBehaviour {
                 foreach (RaycastHit2D collider_hit in hit2){
                     if(collider_hit.transform.gameObject.name == "BossDoor")
                     {       
-                        RenderPlayerImmobile();
-                        m_touched_door = true;
-//                        m_door_anim.SetTrigger("Active");
-                        m_door_anim.SetBool("active", true);
-                        StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
+//                        RenderPlayerImmobile();
+//                        m_touched_door = true;
+//                        m_door_anim.SetBool("active", true);
+//                        StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
@@ -314,7 +317,7 @@ public class PlatformPlayer : MonoBehaviour {
             foreach (RaycastHit2D collider_hit in hit3)
             {
                 Debug.Log(collider_hit.transform.gameObject.name);
-                if (collider_hit.transform.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
+                if (collider_hit.transform.gameObject.name == "BossDoor" && Input.GetKeyDown("up") && can_open_door)
                 {
                     platform_lvl.SwitchToMaze(collider_hit.transform.gameObject);
                 }
@@ -394,16 +397,25 @@ public class PlatformPlayer : MonoBehaviour {
             Destroy(coll.gameObject);
             GainScore(10); 
         }
-//        else if (coll.gameObject.name == "BossDoor" && Input.GetKeyDown("up"))
-//        {
-//            platform_lvl.SwitchToMaze();
-//        }
-//
-//        Debug.Log(coll.gameObject.name);
+        else if (coll.gameObject.tag == "Treasure")
+        {   
+            if (!m_touched_chest)
+            {
+                m_touched_chest = true;
+                can_open_door = true;
+                player_source[5].Play();
+                StartCoroutine(OpenChest(coll.gameObject));
+            }
+        }
 
     }
 
-   
+    IEnumerator OpenChest (GameObject coll)
+    {
+        treasure_anim.SetTrigger("Open");
+        yield return new WaitForSeconds(player_source[5].clip.length - .5f);
+        Destroy(coll);
+    }
 
     IEnumerator TakeDamage (Transform enemy)
     {   
