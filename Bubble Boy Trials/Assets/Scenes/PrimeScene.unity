@@ -1943,6 +1943,10 @@ MonoBehaviour:
   maze_camera: {fileID: 164002, guid: fc1f0141dcf7045398bc9f7b8082c9f0, type: 2}
   plat_camera: {fileID: 154304, guid: 90b7a593efff64802979a4ec4e9d4037, type: 2}
   player_prefab: {fileID: 100898, guid: b71f08d5049fa49f38a8b2b44606f7e8, type: 2}
+  boy_anim_control: {fileID: 9100000, guid: bcc2d83c8e85244d2ae78855b8bfe381, type: 2}
+  girl_anim_control: {fileID: 9100000, guid: d400c8dd6a00b4d24b41a77b66776b41, type: 2}
+  boy_sprite: {fileID: 21300000, guid: 850d893af88ea4a9090e2ba66e96893e, type: 3}
+  girl_sprite: {fileID: 21300000, guid: 89a93603a0f214cac92b7e3e561b69a4, type: 3}
 --- !u!4 &2064108949
 Transform:
   m_ObjectHideFlags: 0
