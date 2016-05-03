@@ -21,10 +21,15 @@ public class PlatformLevel : MonoBehaviour {
     private Platformer2DUserControl m_player_control; 
     private Animator door_anim;
 
+
     public GameObject m_elevator;
     public GameObject maze_camera;
     public GameObject plat_camera;
     public GameObject player_prefab;
+    public RuntimeAnimatorController boy_anim_control;
+    public RuntimeAnimatorController girl_anim_control;
+    public Sprite boy_sprite;
+    public Sprite girl_sprite;
 
 
 
@@ -41,6 +46,21 @@ public class PlatformLevel : MonoBehaviour {
         m_player_control = GameObject.Find("Player").GetComponent<Platformer2DUserControl>();
         door_anim = GameObject.Find("BossDoor").GetComponent<Animator>();
     }
+
+//    void SetSpriteAndAnimator()
+//    {   
+//        Debug.Log(char_choice.GetCharacter());
+//        if (char_choice.GetCharacter() == "Girl")
+//        {
+//            maze_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
+//            maze_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
+//        }
+//        else
+//        {
+//            maze_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
+//            maze_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
+//        }
+//    }
 
     public void ResumeLevel()
     {   
