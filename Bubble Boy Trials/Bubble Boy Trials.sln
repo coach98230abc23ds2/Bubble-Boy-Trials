@@ -7,8 +7,6 @@ Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assemb
 EndProject
 Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assembly-CSharp-Editor.csproj", "{13EDD4FB-8E83-526C-2045-96DE457AD82F}"
 EndProject
-Project("{13AD1246-12E3-E375-8225-83C9F922C82C}") = "Bubble Boy Trials", "Assembly-UnityScript.unityproj", "{2517DAB0-2ADE-3D2C-FC99-F23C77FD7BA1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{13EDD4FB-8E83-526C-2045-96DE457AD82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13EDD4FB-8E83-526C-2045-96DE457AD82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13EDD4FB-8E83-526C-2045-96DE457AD82F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2517DAB0-2ADE-3D2C-FC99-F23C77FD7BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2517DAB0-2ADE-3D2C-FC99-F23C77FD7BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2517DAB0-2ADE-3D2C-FC99-F23C77FD7BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2517DAB0-2ADE-3D2C-FC99-F23C77FD7BA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
