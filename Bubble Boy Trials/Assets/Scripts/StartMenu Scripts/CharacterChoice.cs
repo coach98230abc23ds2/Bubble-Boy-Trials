@@ -24,4 +24,5 @@ public class CharacterChoice : MonoBehaviour {
     {
         return character_chosen;
     }
+
 }

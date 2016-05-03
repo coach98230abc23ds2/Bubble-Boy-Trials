@@ -534,8 +534,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Defend
-  m_Speed: 3
+  m_Name: Girl Defend
+  m_Speed: 0.437
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110149674}
@@ -550,7 +550,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2fec70700ac4c417788d8205147e18c6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 890925ab3f1584a229db5c0e9fb34ea0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -561,8 +561,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Idle
-  m_Speed: 1
+  m_Name: Girl Idle
+  m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110158388}
@@ -577,7 +577,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0cadaa1a6650a4216beff38c7daec4a2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 960be45410d1048ac80c7db93bd9c933, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -588,8 +588,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Attack
-  m_Speed: 2
+  m_Name: Girl Attack
+  m_Speed: 1.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110110638}
@@ -604,30 +604,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75ea3c6193c3d414eb18198461a93f8b, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
---- !u!1102 &110239602
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Run
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0cadaa1a6650a4216beff38c7daec4a2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9c64a4f6b3fbe4781ae7d06a601877ea, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -638,8 +615,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Jump
-  m_Speed: 1
+  m_Name: Girl Jump
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110148302}
@@ -654,7 +631,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2a025836b3d574a6b9ad7a4516b454e5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 370cdb9c7793e4adebf860580a8553cb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -665,7 +642,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boy Walk
+  m_Name: Girl Walk
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
@@ -681,7 +658,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ca33d1a84bbde474399d8d96706dea92, type: 2}
+  m_Motion: {fileID: 7400000, guid: fda6565e51f78413b98143568abf838f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -700,9 +677,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 110266940}
     m_Position: {x: 168, y: 192, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 110239602}
-    m_Position: {x: 540, y: -48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110258312}
     m_Position: {x: 492, y: 192, z: 0}
