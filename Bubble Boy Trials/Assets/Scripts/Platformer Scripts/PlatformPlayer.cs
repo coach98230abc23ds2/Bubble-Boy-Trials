@@ -413,7 +413,7 @@ public class PlatformPlayer : MonoBehaviour {
     IEnumerator OpenChest (GameObject coll)
     {
         treasure_anim.SetTrigger("Open");
-        yield return new WaitForSeconds(player_source[5].clip.length - .5f);
+        yield return new WaitForSeconds(player_source[5].clip.length/2);
         Destroy(coll);
     }
 
