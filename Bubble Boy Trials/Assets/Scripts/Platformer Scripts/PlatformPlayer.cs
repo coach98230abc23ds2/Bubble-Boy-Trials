@@ -303,10 +303,10 @@ public class PlatformPlayer : MonoBehaviour {
                 foreach (RaycastHit2D collider_hit in hit2){
                     if(collider_hit.transform.gameObject.name == "BossDoor")
                     {       
-//                        RenderPlayerImmobile();
-//                        m_touched_door = true;
-//                        m_door_anim.SetBool("active", true);
-//                        StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
+                        RenderPlayerImmobile();
+                        m_touched_door = true;
+                        m_door_anim.SetBool("active", true);
+                        StartCoroutine(m_door.WaitToSwitch(collider_hit.transform.position));
                     }
                 }
             }
