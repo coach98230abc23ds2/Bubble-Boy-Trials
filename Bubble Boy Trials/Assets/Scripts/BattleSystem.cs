@@ -134,7 +134,7 @@ public class BattleSystem : MonoBehaviour
                 bubble.transform.position += new Vector3(1.5f, 0, 0) * Time.fixedDeltaTime * (attackingPlayer ? -1 : 1);
                 if (bubbleLive && attackingPlayer)
                 {
-                    if (Vector3.Distance(bubble.transform.position, player.transform.position) < 1.5f)
+                    if (Vector3.Distance(bubble.transform.position, player.transform.position) < 1f)
                     {
                         player.GetComponent<Player>().TakeDamage(10);
                         player.GetComponentInParent<Animator>().SetTrigger("Defend");
