@@ -178,7 +178,11 @@ public class BattleSystem : MonoBehaviour
                 case BattleState.enemy_turn:
                     if (timeRemaining < ReactionWindow && !createBubble && !bubbleLive)
                     {
-                        enemyAnimator.SetTrigger("Attacking");
+                        if (enemyAnimator != null)
+                        {
+                            enemyAnimator.SetTrigger("Attacking");
+                        }
+
                         createBubble = true;
                         attackingPlayer = true;
                     }

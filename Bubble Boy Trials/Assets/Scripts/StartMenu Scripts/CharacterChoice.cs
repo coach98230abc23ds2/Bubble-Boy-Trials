@@ -14,4 +14,9 @@ public class CharacterChoice : MonoBehaviour {
     {
         Debug.Log(character_chosen);
     }
+
+    public string GetCharacter()
+    {
+        return character_chosen;
+    }
 }

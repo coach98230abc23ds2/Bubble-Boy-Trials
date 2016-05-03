@@ -24,7 +24,6 @@ public class StartButton : MonoBehaviour {
         Scene scene = SceneManager.GetSceneByName("CharacterSelection");
         SceneManager.MoveGameObjectToScene(event_system, scene);
         Destroy(camera);
-        SceneManager.UnloadScene(0);
         SceneManager.SetActiveScene(scene);
     }
 }
