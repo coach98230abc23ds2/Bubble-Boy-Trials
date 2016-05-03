@@ -132,7 +132,8 @@ public class BossBattleSystem : MonoBehaviour
 
             Animator playerAnimator = player.GetComponent<Animator>();
             Animator enemyAnimator = enemy.GetComponent<Animator>();
-            if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && playerAnimator.GetNextAnimatorStateInfo(0).IsName("Boy Idle"))
+            if (createBubble && !attackingPlayer && playerAnimator.IsInTransition(0) && 
+                (playerAnimator.GetNextAnimatorStateInfo(0).IsName("Boy Idle") || playerAnimator.GetNextAnimatorStateInfo(0).IsName("Girl Idle")))
             {
                 if (bubble != null)
                 {
