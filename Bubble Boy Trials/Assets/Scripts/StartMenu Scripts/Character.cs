@@ -43,10 +43,10 @@ public class Character : MonoBehaviour {
     IEnumerator StartMaze()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
         Scene scene = SceneManager.GetSceneByName("MazeScene");
         SceneManager.MoveGameObjectToScene(char_choice, scene);
-        SceneManager.UnloadScene(6);
+//        SceneManager.UnloadScene(6);
         SceneManager.SetActiveScene(scene);
     }
 }

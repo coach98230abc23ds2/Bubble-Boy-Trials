@@ -13,12 +13,18 @@ public class MazeSystem : MonoBehaviour
     public Button LeftButton;
     public Button UpButton;
     public Button RightButton;
+    public RuntimeAnimatorController boy_anim_control;
+    public RuntimeAnimatorController girl_anim_control;
+    public Sprite boy_sprite;
+    public Sprite girl_sprite;
 
     Vector2 m_target_position;
     MazeNode m_current_node;
     MazeNode m_prev_node;
     Vector2 m_player_current_position;
     Elevator m_elevator;
+    GameObject maze_player;
+    CharacterChoice char_choice;
 
     bool m_level_started;
     bool m_path_chosen;
@@ -42,6 +48,24 @@ public class MazeSystem : MonoBehaviour
         m_path_chosen = true;
         m_retreating = false;
         MazeUI.gameObject.SetActive(false);
+        maze_player = GameObject.Find("MazePlayer");
+        char_choice = GameObject.Find("CharacterChoice").GetComponent<CharacterChoice>();
+        SetSpriteAndAnimator();
+    }
+
+    void SetSpriteAndAnimator()
+    {   
+        Debug.Log(char_choice.GetCharacter());
+        if (char_choice.GetCharacter() == "Girl")
+        {
+            maze_player.GetComponent<SpriteRenderer>().sprite = girl_sprite;
+            maze_player.GetComponent<Animator>().runtimeAnimatorController = girl_anim_control;
+        }
+        else
+        {
+            maze_player.GetComponent<SpriteRenderer>().sprite = boy_sprite;
+            maze_player.GetComponent<Animator>().runtimeAnimatorController = boy_anim_control;
+        }
     }
 	
     // Update is called once per frame
@@ -82,6 +106,9 @@ public class MazeSystem : MonoBehaviour
         if (m_current_node.Scene_Id == "PrimeScene")
         {
             SceneManager.LoadScene(m_current_node.Scene_Id, LoadSceneMode.Single);
+            Scene scene = SceneManager.GetSceneByName("MazeScene");
+            SceneManager.MoveGameObjectToScene(char_choice.gameObject, scene);
+            SceneManager.SetActiveScene(scene);
         }
         else
         {
