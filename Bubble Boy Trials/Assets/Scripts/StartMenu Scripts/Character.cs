@@ -37,16 +37,15 @@ public class Character : MonoBehaviour {
     public void MakeCharacterJump()
     {
         char_anim.SetTrigger("Jump");
-        StartCoroutine(StartMaze());
+        StartCoroutine(StartCutscene());
     }
 
-    IEnumerator StartMaze()
+    IEnumerator StartCutscene()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("MazeScene", LoadSceneMode.Single);
-        Scene scene = SceneManager.GetSceneByName("MazeScene");
+        SceneManager.LoadScene("Cutscene", LoadSceneMode.Single);
+        Scene scene = SceneManager.GetSceneByName("Cutscene");
         SceneManager.MoveGameObjectToScene(char_choice, scene);
-//        SceneManager.UnloadScene(6);
         SceneManager.SetActiveScene(scene);
     }
 }
