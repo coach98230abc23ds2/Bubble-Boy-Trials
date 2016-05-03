@@ -87,7 +87,9 @@ public class PlatformLevel : MonoBehaviour {
 
         Scene scene = SceneManager.GetSceneByName(platformer_name);
         SceneManager.SetActiveScene(scene);
+        Resources.UnloadUnusedAssets();
         m_level_started = true;
+
     }
 
     public void PauseLevel(GameObject door)
