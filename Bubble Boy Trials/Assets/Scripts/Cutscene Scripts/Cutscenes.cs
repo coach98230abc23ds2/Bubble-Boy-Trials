@@ -56,13 +56,14 @@ public class Cutscenes : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-//        if (Input.GetKeyDown(KeyCode.Space) && movie.isPlaying)
-//        {
-//            movie.Pause();
-//        }
-//        else if (Input.GetKeyDown(KeyCode.Space) && !movie.isPlaying)
-//        {
-//            movie.Play();
-//        }
+        if (Input.GetKeyDown(KeyCode.Space) && movie.isPlaying)
+        {
+            movie.Stop();
+        }
+
+        if (!movie.isPlaying)
+        {
+            StartCutscene();
+        }
 	}
 }
