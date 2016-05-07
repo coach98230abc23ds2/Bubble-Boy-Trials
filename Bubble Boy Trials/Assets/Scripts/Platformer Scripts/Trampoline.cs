@@ -39,9 +39,10 @@ public class Trampoline : MonoBehaviour {
             m_is_accelerating = false;
         }
 
-        if (player_rg2d.position.y > 39.7f)
+        if (player_rg2d.position.y > 50.2f)
         {
-            player_rg2d.velocity.Normalize();
+//            player_rg2d.velocity.Normalize();
+            player_rg2d.velocity = Vector3.zero;
         }
 	}
 
@@ -61,15 +62,15 @@ public class Trampoline : MonoBehaviour {
 
             if (m_is_rested)
             {
-                player_rg2d.AddForce(new Vector2(0, .8f * jump_force));
+                player_rg2d.AddForce(new Vector2(0, .4f * jump_force));
             }
             if (m_is_accelerating)
             {
-                player_rg2d.AddForce(new Vector2(0, 1.2f * jump_force));
+                player_rg2d.AddForce(new Vector2(0, .6f * jump_force));
             }
             else
             {
-                player_rg2d.AddForce(new Vector2(0, 1f * jump_force));
+                player_rg2d.AddForce(new Vector2(0, .5f * jump_force));
             }
 
             this.gameObject.GetComponent<AudioSource>().Play();
