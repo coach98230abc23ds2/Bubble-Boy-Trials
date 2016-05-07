@@ -90,7 +90,7 @@ public class BossBattleSystem : MonoBehaviour
         }
         player = GameObject.FindGameObjectWithTag("Player");
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
-        enemy.transform.position = new Vector3 (352.2f, 41.41f, 0);
+        enemy.transform.position = new Vector3 (352.2f, 42.38f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
         ground_level = player.transform.position.y;

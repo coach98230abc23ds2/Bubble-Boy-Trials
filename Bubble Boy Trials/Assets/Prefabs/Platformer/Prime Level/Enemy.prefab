@@ -11,8 +11,8 @@ GameObject:
   - 212: {fileID: 21227318}
   - 222: {fileID: 22206476}
   - 95: {fileID: 9550808}
-  - 114: {fileID: 11465548}
   - 82: {fileID: 8278290}
+  - 114: {fileID: 11427704}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -38,7 +38,7 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 3.9033527
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -111,7 +111,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11465548
+--- !u!114 &11427704
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -119,10 +119,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 121876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ebc52446b2a42f696fc3a5ad50543f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c0df1cf836304e6da6c4acd5d1e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
+  Health: 30
+  healthBar: {fileID: 0}
   isDead: 0
 --- !u!212 &21227318
 SpriteRenderer:
@@ -168,13 +169,13 @@ RectTransform:
   m_GameObject: {fileID: 121876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.56, y: 0.56, z: 0.56}
+  m_LocalScale: {x: 0.84, y: 0.84, z: 0.84}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 0}
+  m_AnchoredPosition: {x: 5.08, y: 0}
   m_SizeDelta: {x: 0.2, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
