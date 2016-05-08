@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Flag : MonoBehaviour {
     public Sprite active_flag;
-
+   
+    private bool played_sound = false;
     private PlatformPlayer player;
 
 	// Use this for initialization
@@ -14,8 +15,13 @@ public class Flag : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {   
-        Vector3 position = this.gameObject.transform.position;
-        player.AddToDict(position.x, position.y);
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = active_flag;
+        if (!played_sound)
+        {
+            Vector3 position = this.gameObject.transform.position;
+            player.AddToDict(position.x, position.y);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = active_flag;
+            this.gameObject.GetComponent<AudioSource>().Play();
+            played_sound = true;
+        }
     }
 }
