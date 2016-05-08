@@ -9,6 +9,7 @@ public class Ammo : MonoBehaviour {
     private AudioSource[] ammo_audio;
     private float alive_time = 2f; //time allowed for bubble to be alive
     private bool ammo_hit = false;
+    private bool ammo_alive = true;
 
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
@@ -20,6 +21,7 @@ public class Ammo : MonoBehaviour {
         ammo_audio[1].Play();
         yield return new WaitForSeconds(bubble_burst.length);
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        ammo_alive = false;
         StartCoroutine(DelayHit(time_to_wait));
     }
 
@@ -27,7 +29,6 @@ public class Ammo : MonoBehaviour {
     {   
         yield return new WaitForSeconds(time_to_wait);
         m_player.GainScore(10);
-        ammo_hit = false;
         m_player.SetCollide(false);
         Destroy(this.gameObject);
     }
@@ -125,16 +126,19 @@ public class Ammo : MonoBehaviour {
         float viewport_x_pos = Camera.main.WorldToViewportPoint(this.transform.position).x;
         if (viewport_x_pos > 1 || viewport_x_pos < -1)
         {
-            StartCoroutine(DestroyBubble());
+            StartCoroutine(DestroyBubble());  
         }
     }
 
     IEnumerator DestroyBubble ()
     {   
         yield return new WaitForSeconds(alive_time);
-        ammo_hit = false;
         ammo_anim.SetTrigger("Burst");
-        ammo_audio[1].Play();
+        Debug.Log("destroyed bubble");
+        if (!ammo_hit)
+        {
+            ammo_audio[1].Play();
+        }
         yield return new WaitForSeconds(bubble_burst.length);
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         Destroy(this.gameObject);

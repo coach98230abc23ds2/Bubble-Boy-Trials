@@ -22,7 +22,6 @@ public class Trampoline : MonoBehaviour {
 	void Update () {
 
         player_y_velocity = player_rg2d.velocity.y;
-        Debug.Log(System.Convert.ToString(player_y_velocity));
 
         if (player_y_velocity < 0f)
         {
