@@ -57,7 +57,6 @@ public class Ammo : MonoBehaviour {
             float x_pos = coll.transform.root.gameObject.transform.position.x;
             //destroys ammo and minion; increases player's score
             GameObject current_obj = coll.transform.root.gameObject;
-            Debug.Log(current_obj.name);
             if (current_obj.tag == "Enemy")
             {
                 spawner.RemoveFromDict(current_obj.name, x_pos);
@@ -87,7 +86,6 @@ public class Ammo : MonoBehaviour {
         {
             float x_pos = coll.transform.root.gameObject.transform.position.x;
             GameObject parent_object = coll.transform.root.gameObject;
-            Debug.Log(parent_object.name);
             if (parent_object.tag == "Enemy")
             {
                 spawner.RemoveFromDict(parent_object.name, x_pos);
@@ -134,7 +132,6 @@ public class Ammo : MonoBehaviour {
     {   
         yield return new WaitForSeconds(alive_time);
         ammo_anim.SetTrigger("Burst");
-        Debug.Log("destroyed bubble");
         if (!ammo_hit)
         {
             ammo_audio[1].Play();
