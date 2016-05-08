@@ -50,8 +50,8 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator treasure_anim;
     private bool facing_dir;
 
-    private float[] respawn_x_positions = new float[]{-11.1f, 140f, 297.8f};
-    private float[] respawn_y_positions = new float[]{15.7f, 17.9f, 33.8f};
+    private float[] respawn_x_positions = new float[]{-11.1f, 49.7f, 140.27f, 297.8f};
+    private float[] respawn_y_positions = new float[]{15.7f,16f, 17.0f, 33.8f};
 
     private Dictionary<float, float> respawn_positions = new Dictionary<float, float>();
     private List<float> respawn_x_positions_used = new List<float>();
@@ -411,7 +411,7 @@ public class PlatformPlayer : MonoBehaviour {
 
 
         // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 2.5f + direction * (Vector3.right * 20f);
+        Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 1f + direction * (Vector3.right * 20f);
 
         // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
 //        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
