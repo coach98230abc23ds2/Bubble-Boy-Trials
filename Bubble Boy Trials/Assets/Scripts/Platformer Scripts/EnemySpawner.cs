@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour {
 	private int m_count = 0;
 	private float m_player_pos = 4.9f; //players current global view position
 	private Vector2 spawn_position; //enemy spawn position
+    private AudioSource source;
 
 	public GameObject[] enemy_types; //stores type of enemies
 	private GameObject[] active_objects; //active game objects
@@ -165,6 +166,7 @@ public class EnemySpawner : MonoBehaviour {
                         spawn_position = new Vector2 (curr_positions[i], 15.3f);
                         GameObject new_enemy = (GameObject) Instantiate(enemy, 
                                     spawn_position, enemy.transform.rotation);
+                        source.Play();
                         AddToDict(new_enemy.name, curr_positions[i]);
                     }
                     else if (ShouldInstantiate(enemy.name + "(Clone)", curr_positions[i]))
@@ -172,6 +174,7 @@ public class EnemySpawner : MonoBehaviour {
 						spawn_position = new Vector2 (curr_positions[i], 30);
 						GameObject new_enemy = (GameObject) Instantiate(enemy, 
 	                                spawn_position, enemy.transform.rotation);
+                        source.Play();
 	                    AddToDict(new_enemy.name, curr_positions[i]);
     		    	}
     		    }
@@ -185,6 +188,7 @@ public class EnemySpawner : MonoBehaviour {
         player = GameObject.Find("Player");
         m_player_pos = player.transform.position.x;
         can_spawn = true;
+        source = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Update ()
