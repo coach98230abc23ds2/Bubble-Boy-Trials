@@ -8,15 +8,12 @@ public class Ammo : MonoBehaviour {
     private Animator ammo_anim;
     private AudioSource[] ammo_audio;
     private float alive_time = 2f; //time allowed for bubble to be alive
+    private bool ammo_hit = false;
 
     public AnimationClip enemy1_hit;
     public AnimationClip enemy2_hit;
     public AnimationClip bubble_burst;
 
-    void FixedUpdate()
-    {
-        Debug.Log(System.Convert.ToString(m_player.collided));
-    }
     IEnumerator BurstBubble (float time_to_wait)
     {
         ammo_anim.SetTrigger("Burst");
@@ -30,12 +27,14 @@ public class Ammo : MonoBehaviour {
     {   
         yield return new WaitForSeconds(time_to_wait);
         m_player.GainScore(10);
+        ammo_hit = false;
         m_player.SetCollide(false);
         Destroy(this.gameObject);
     }
 
     void GotHurt(GameObject enemy, float time_to_wait)
     {
+        ammo_hit = true;
         m_player.SetCollide(true);
         enemy.GetComponentInChildren<Rigidbody2D>().MoveRotation(45f);
         Animator m_anim = enemy.GetComponentInChildren<Animator>();
@@ -52,7 +51,7 @@ public class Ammo : MonoBehaviour {
     //handles collision for when ammo collides with enemies of type enemy1
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (!m_player.collided)
+        if (!ammo_hit)
         {
             float x_pos = coll.transform.root.gameObject.transform.position.x;
             //destroys ammo and minion; increases player's score
@@ -83,7 +82,7 @@ public class Ammo : MonoBehaviour {
     //handles collision for when ammo collides with enemies of type enemy2
     void OnTriggerEnter2D(Collider2D coll)
     {   
-        if (!m_player.collided)
+        if (!ammo_hit)
         {
             float x_pos = coll.transform.root.gameObject.transform.position.x;
             GameObject parent_object = coll.transform.root.gameObject;
@@ -133,7 +132,7 @@ public class Ammo : MonoBehaviour {
     IEnumerator DestroyBubble ()
     {   
         yield return new WaitForSeconds(alive_time);
-        m_player.SetCollide(false);
+        ammo_hit = false;
         ammo_anim.SetTrigger("Burst");
         ammo_audio[1].Play();
         yield return new WaitForSeconds(bubble_burst.length);
