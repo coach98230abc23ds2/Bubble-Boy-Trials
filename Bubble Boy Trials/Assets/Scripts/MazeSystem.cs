@@ -126,6 +126,8 @@ public class MazeSystem : MonoBehaviour
         }
     }
 
+    delegate void GoToNode();
+
     public void LevelCompleted(bool success, int score=0)
     {
         m_level_started = false;
@@ -136,9 +138,35 @@ public class MazeSystem : MonoBehaviour
             {
                 UpdateScore(score);
             }
-            LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
-            UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
-            RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
+            int active_count = 0;
+            GoToNode next_node = MoveLeft;
+            if (m_current_node.Left_Node != null)
+            {
+                active_count++;
+                next_node = MoveLeft;
+            }
+            if (m_current_node.Up_Node != null)
+            {
+                active_count++;
+                next_node = MoveUp;
+            }
+            if (m_current_node.Right_Node != null)
+            {
+                active_count++;
+                next_node = MoveRight;
+            }
+
+            // dont give options if there's only one
+            if (active_count == 1)
+            {
+                next_node();
+            }
+            else
+            {
+                LeftButton.gameObject.SetActive(m_current_node.Left_Node != null);
+                UpButton.gameObject.SetActive(m_current_node.Up_Node != null);
+                RightButton.gameObject.SetActive(m_current_node.Right_Node != null);
+            }
         }
         else
         {

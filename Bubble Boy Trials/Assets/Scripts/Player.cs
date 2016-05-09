@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
                                     (ViewportPos.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)
                                 );
 
-            healthBar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 50);
+            healthBar.GetComponent<RectTransform>().anchoredPosition = ScreenPos + new Vector2(0, 70);
 
             // now move the slider value
             if (healthBar.GetComponent<Slider>().value + 0.5f < Health)
@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
             else if (healthBar.GetComponent<Slider>().value - 0.5f > Health)
             {
                 healthBar.GetComponent<Slider>().value -= 10 * Time.deltaTime;
+            }
+            // if it has to go all the  way back to full just set it
+            if (Health == MaxHealth)
+            {
+                healthBar.GetComponent<Slider>().value = Health;
             }
         }
         else if (healthBar == null)
