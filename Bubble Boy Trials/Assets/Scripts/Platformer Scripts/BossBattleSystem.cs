@@ -89,7 +89,6 @@ public class BossBattleSystem : MonoBehaviour
             }
         }
         player = GameObject.FindGameObjectWithTag("Player");
-        platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
         enemy.transform.position = new Vector3 (352.2f, 42.38f, 0);
         answers = new List<Button> { answer1, answer2, answer3, answer4 };
         GameObject.Find("/Canvas/ScoreText").GetComponent<Text>().text = "Score: " + m_score;
@@ -224,8 +223,7 @@ public class BossBattleSystem : MonoBehaviour
             player.GetComponent<Rigidbody2D>().isKinematic = false;
             SceneManager.UnloadScene(5);
 //            Destroy(enemy.GetComponent<Boss>().healthBar);
-            platform_lvl.ResumeLevel(platform_music[0]);
-
+            GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>().ResumeLevel(platform_music[0]);  
         }
     }
 
@@ -339,7 +337,7 @@ public class BossBattleSystem : MonoBehaviour
         {
             player.GetComponent<Rigidbody2D>().isKinematic = false;
             SceneManager.UnloadScene(5);
-            platform_lvl.ResumeLevel(platform_music[1]);
+            GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>().ResumeLevel(platform_music[1]);
         }
         else
         {

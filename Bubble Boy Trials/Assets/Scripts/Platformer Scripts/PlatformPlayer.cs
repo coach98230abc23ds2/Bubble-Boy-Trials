@@ -50,6 +50,7 @@ public class PlatformPlayer : MonoBehaviour {
     private Animator treasure_anim;
     private bool facing_dir;
     private float jump_force;
+    private Rigidbody2D player_rg2d;
 
     private float[] respawn_x_positions = new float[]{-11.1f};
     private float[] respawn_y_positions = new float[]{15.7f};
@@ -99,6 +100,7 @@ public class PlatformPlayer : MonoBehaviour {
         facing_dir = this.gameObject.GetComponent<PlatformerCharacter2D>().m_FacingRight;
         treasure_anim = GameObject.Find("treasure").GetComponent<Animator>();
         jump_force = plat_char.m_JumpForce;
+        player_rg2d = this.gameObject.GetComponent<Rigidbody2D>();
         InitializeRespawnDict();
     }
 
@@ -308,7 +310,6 @@ public class PlatformPlayer : MonoBehaviour {
                 }
             }
         }
-
     }
 
 
