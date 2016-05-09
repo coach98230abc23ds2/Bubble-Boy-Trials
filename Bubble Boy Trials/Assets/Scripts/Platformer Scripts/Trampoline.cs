@@ -49,6 +49,7 @@ public class Trampoline : MonoBehaviour {
             if (m_is_falling)
             {
                 this.gameObject.GetComponent<AudioSource>().Play();
+                this.gameObject.GetComponent<Animator>().SetTrigger("Bounce");
                 player_rg2d.AddForce(new Vector2(0, .2f* jump_force * Mathf.Abs(player_y_velocity)));
             }
 
