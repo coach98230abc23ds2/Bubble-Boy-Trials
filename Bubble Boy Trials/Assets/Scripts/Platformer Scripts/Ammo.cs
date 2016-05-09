@@ -22,13 +22,13 @@ public class Ammo : MonoBehaviour {
         yield return new WaitForSeconds(bubble_burst.length);
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         ammo_alive = false;
+        m_player.GainScore(10);
         StartCoroutine(DelayHit(time_to_wait));
     }
 
     IEnumerator DelayHit (float time_to_wait)
     {   
         yield return new WaitForSeconds(time_to_wait);
-        m_player.GainScore(10);
         m_player.SetCollide(false);
         Destroy(this.gameObject);
     }

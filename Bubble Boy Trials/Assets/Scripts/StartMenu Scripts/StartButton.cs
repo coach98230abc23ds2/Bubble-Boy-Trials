@@ -10,7 +10,6 @@ public class StartButton : MonoBehaviour {
     private GameObject canvas;
     private GameObject camera;
     private GameObject event_system;
-    private GameObject char_choice;
 
     void Awake()
     {   
@@ -26,11 +25,14 @@ public class StartButton : MonoBehaviour {
 
         try
         {
-            char_choice = GameObject.Find("CharacterChoice");
-            Destroy(char_choice);
+            GameObject char_choice = GameObject.Find("CharacterChoice");
+            GameObject maze_system = GameObject.Find("MazeSystem");
+            Destroy(char_choice); 
+            Destroy(maze_system);
+
         }
         catch 
-        {
+        {   
             Debug.LogError("There is no character selected.");
         }
 

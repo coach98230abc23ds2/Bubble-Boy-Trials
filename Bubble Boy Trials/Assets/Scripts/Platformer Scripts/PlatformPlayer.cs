@@ -49,6 +49,7 @@ public class PlatformPlayer : MonoBehaviour {
     private PlatformLevel platform_lvl;
     private Animator treasure_anim;
     private bool facing_dir;
+    private float jump_force;
 
     private float[] respawn_x_positions = new float[]{-11.1f};
     private float[] respawn_y_positions = new float[]{15.7f};
@@ -97,6 +98,7 @@ public class PlatformPlayer : MonoBehaviour {
         platform_lvl = GameObject.Find("PlatformLevel").GetComponent<PlatformLevel>();
         facing_dir = this.gameObject.GetComponent<PlatformerCharacter2D>().m_FacingRight;
         treasure_anim = GameObject.Find("treasure").GetComponent<Animator>();
+        jump_force = plat_char.m_JumpForce;
         InitializeRespawnDict();
     }
 
@@ -155,20 +157,6 @@ public class PlatformPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {   
-//        float player_x_pos = this.gameObject.transform.position.x;
-
-//        foreach (float possible_x_pos in respawn_x_positions)
-//        {
-//            if (player_x_pos - possible_x_pos >= 0)
-//            {
-//                if (!(IsInDictionary(possible_x_pos)) && respawn_positions.ContainsKey(possible_x_pos))
-//                {   
-////                    Debug.Log("added new key to used_positions dict: " + Convert.ToString(possible_x_pos));
-//                    respawn_x_positions_used.Add(possible_x_pos);
-//                }
-//            }
-//        }
-
         Debug.DrawRay(this.transform.Find("CastOrigin").transform.position, Vector3.down);
         score_text.text = "Score: " + m_score;
         if (this.gameObject.transform.position.y <= 5 
@@ -259,7 +247,8 @@ public class PlatformPlayer : MonoBehaviour {
 
     void FixedUpdate()
     {   
-        
+        float player_y_velocity = this.gameObject.GetComponent<Rigidbody2D>().velocity.y;
+
         GameObject cast_origin = GameObject.Find("CastOrigin");
 
         RaycastHit2D[] hit = Physics2D.CircleCastAll(cast_origin.transform.position, cast_radius, Vector2.down, hit_height, 1 << 13);
@@ -273,7 +262,7 @@ public class PlatformPlayer : MonoBehaviour {
                     {
                         m_touched_head = true;
                         collided = true;
-                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,500));
+                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, .1f * jump_force *  Mathf.Abs(player_y_velocity)));
                         GameObject parent_enemy = collider_hit.transform.root.gameObject;
                         m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
                         HurtEnemy(parent_enemy, 10);
