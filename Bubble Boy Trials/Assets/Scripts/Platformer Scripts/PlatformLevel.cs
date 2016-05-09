@@ -84,10 +84,11 @@ public class PlatformLevel : MonoBehaviour {
         door_anim.SetTrigger("Idle");
         m_player.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         m_player_control.m_can_move = true;
+        m_player.GetComponent<Weapon>().can_attack = true;
 
-        Scene scene = SceneManager.GetSceneByName(platformer_name);
-        SceneManager.SetActiveScene(scene);
-        Resources.UnloadUnusedAssets();
+//        Scene scene = SceneManager.GetSceneByName(platformer_name);
+//        SceneManager.SetActiveScene(scene);
+//        Resources.UnloadUnusedAssets();
         m_level_started = true;
 
     }
