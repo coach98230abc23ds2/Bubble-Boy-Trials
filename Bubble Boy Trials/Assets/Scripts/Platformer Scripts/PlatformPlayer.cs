@@ -262,7 +262,9 @@ public class PlatformPlayer : MonoBehaviour {
                     {
                         m_touched_head = true;
                         collided = true;
-                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, .1f * jump_force *  Mathf.Abs(player_y_velocity)));
+                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, .05f * jump_force *  Mathf.Abs(player_y_velocity)));
+//                        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.gameObject.GetComponent<Rigidbody2D>().velocity 
+//                                                                               + new Vector2(0, 20f);
                         GameObject parent_enemy = collider_hit.transform.root.gameObject;
                         m_spawner.RemoveFromDict(parent_enemy.name, parent_enemy.transform.position.x);
                         HurtEnemy(parent_enemy, 10);
