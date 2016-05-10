@@ -329,6 +329,7 @@ public class BattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
+        timeRemaining = 1.0f;
         problem.text = "Now defend by pressing SPACEBAR!";
     }
 }
