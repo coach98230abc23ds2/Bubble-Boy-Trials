@@ -23,6 +23,8 @@ namespace UnityStandardAssets._2D
         public bool touching_water = false;
         private bool scroll_left = false;
         private bool scroll_right = false;
+        private Vector2 raycast_left;
+        private Vector2 raycast_right;
 
         public static bool can_move = true;
 
@@ -36,6 +38,8 @@ namespace UnityStandardAssets._2D
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 //            m_scroller = GameObject.Find("Background").GetComponent<BGScroller>();
+            raycast_left = GameObject.Find("RCLeft").transform.position;
+            raycast_right = GameObject.Find("RCRight").transform.position;
         }
 
         private void Update()
@@ -74,39 +78,49 @@ namespace UnityStandardAssets._2D
 
 
         public void Move(float move, bool jump)
-        {
-
+        {   
+//            RaycastHit2D[] hit1 = Physics2D.RaycastAll(raycast_right, new Vector2(1.64f,0.52f),180f, Vector2.right, 0.001f, 1 << 12);
+//            RaycastHit2D[] hit2 = Physics2D.RaycastAll(raycast_left, new Vector2(1.64f,0.52f), 180f, Vector2.left, 0.001f, 1 << 12);
+//            if (hit1 != null || hit2 != null)
+//            {
+//                m_Rigidbody2D.velocity = new Vector2(0,0);
+//                Debug.Log("Set Velocity to 0");
+//            }
+//            else
+//            {
             //only control the player if grounded or airControl is turned on
-            if ((m_Grounded || m_AirControl))
-            {
-                // The Speed animator parameter is set to the absolute value of the horizontal input.
-                m_Anim.SetFloat("Speed", Mathf.Abs(move));
+                if ((m_Grounded || m_AirControl))
+                {
+                    // The Speed animator parameter is set to the absolute value of the horizontal input.
+                    m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
-                // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                    // Move the character
+                    m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
-                // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight)
-                {
-                    // ... flip the player.
-                    Flip(); 
-                }
-                    // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight)
-                {
-                    // ... flip the player.
-                    Flip();
-                }
+                    // If the input is moving the player right and the player is facing left...
+                    if (move > 0 && !m_FacingRight)
+                    {
+                        // ... flip the player.
+                        Flip(); 
+                    }
+                        // Otherwise if the input is moving the player left and the player is facing right...
+                    else if (move < 0 && m_FacingRight)
+                    {
+                        // ... flip the player.
+                        Flip();
+                    }
 
-                if (m_Rigidbody2D.velocity.x < 0)
-                {
-                    scroll_left = true;
+                    if (m_Rigidbody2D.velocity.x < 0)
+                    {
+                        scroll_left = true;
+                    }
+                    else if (m_Rigidbody2D.velocity.x > 0)
+                    {
+                        scroll_right = true;
+                    }
                 }
-                else if (m_Rigidbody2D.velocity.x > 0)
-                {
-                    scroll_right = true;
-                }
-            }
+//            }
+
             // If the player should jump...
             if (m_Grounded && jump && m_Anim.GetBool("Ground") && can_move)
             {
