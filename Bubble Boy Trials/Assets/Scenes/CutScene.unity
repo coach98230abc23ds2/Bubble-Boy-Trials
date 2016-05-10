@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a42ed6a209f4445a8befee27ca31e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boy_movie: {fileID: 15200000, guid: f8190e06535cc4306954fd72a9a6a621, type: 3}
-  girl_movie: {fileID: 15200000, guid: 649e51e316fd5495da710209c69ed5e2, type: 3}
+  boy_movie: {fileID: 15200000, guid: 7c9131caa1caa4c869c5403f8757cf1c, type: 3}
+  girl_movie: {fileID: 15200000, guid: 32b708ee4e62c44e191809a0b3b144fb, type: 3}
 --- !u!82 &1259347609
 AudioSource:
   m_ObjectHideFlags: 0
