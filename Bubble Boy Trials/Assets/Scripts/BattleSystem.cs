@@ -146,6 +146,7 @@ public class BattleSystem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Space) && y_velocity == 0)
                     {
                         y_velocity = 6f;
+                        playerAnimator.SetTrigger("Jump");
                     }
                     if (bubble.transform.position.x + 2f < player.transform.position.x)
                     {
