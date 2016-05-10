@@ -330,6 +330,6 @@ public class BattleSystem : MonoBehaviour
     {
         current_state = BattleState.enemy_turn;
         timeRemaining = 1.0f;
-        problem.text = "Now defend by pressing SPACEBAR!";
+        problem.text = "Jump by pressing SPACEBAR!";
     }
 }

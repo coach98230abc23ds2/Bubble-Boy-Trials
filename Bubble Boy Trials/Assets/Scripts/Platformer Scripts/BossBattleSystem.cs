@@ -366,6 +366,6 @@ public class BossBattleSystem : MonoBehaviour
     private void EnemyTurn()
     {
         current_state = BattleState.enemy_turn;
-        problem.text = "Now jump over the bubble with SPACEBAR!";
+        problem.text = "Jump by pressing SPACEBAR!";
     }
 }
