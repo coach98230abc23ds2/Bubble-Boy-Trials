@@ -264,7 +264,7 @@ public class PlatformPlayer : MonoBehaviour {
                     {
                         m_touched_head = true;
                         collided = true;
-                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, .05f * jump_force *  Mathf.Abs(player_y_velocity)));
+                        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, .1f * jump_force *  Mathf.Abs(player_y_velocity)));
 //                        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.gameObject.GetComponent<Rigidbody2D>().velocity 
 //                                                                               + new Vector2(0, 20f);
                         GameObject parent_enemy = collider_hit.transform.root.gameObject;
@@ -410,7 +410,7 @@ public class PlatformPlayer : MonoBehaviour {
 
 
         // Create a vector that's from the enemy to the player with an upwards boost.
-        Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 1f + direction * (Vector3.right * 20f);
+        Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 0f + direction * (Vector3.right * 20f);
 
         // Add a force to the player in the direction of the vector and multiply by the m_hurt_force.
 //        GetComponent<Rigidbody2D>().AddForce(hurt_vector);
